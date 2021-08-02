@@ -1,0 +1,233 @@
+<!--
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+
+
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<html>
+<head>
+  <title>spiky</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <svg id="svg" viewBox="0 0 1600 900">
+        <rect x="0" y="0" width="1600" height="900" fill="#CCFFCC"/>
+        <script>
+            var date = new Date('2021-08-02T03:24:00');
+
+            var svg = document.getElementById("svg");
+            
+            
+            function setAttributes(obj, cmd) {
+                let len = cmd.length;
+                let i=0;
+                while (i+1 < len)
+                {
+                    obj.setAttribute(cmd[i], cmd[i+1]);
+                    i += 2;
+                }
+            }
+
+            function addObj(parent, objtype, cmd) {
+                obj = document.createElementNS('http://www.w3.org/2000/svg',objtype);
+                setAttributes(obj, cmd);
+                parent.appendChild(obj);
+                return obj;
+            }
+
+            function addMonth()
+            {
+                date.setMonth(date.getMonth() + 1);
+            }
+
+            function subMonth()
+            {
+                date.setMonth(date.getMonth() - 1);
+            }
+
+            function addDate()
+            {
+                date.setDate(date.getDate() + 1);
+            }
+
+            function subDate()
+            {
+                date.setDate(date.getDate() - 1);
+            }
+            
+            function getNum()
+            {
+                return (date.getMonth() + 1) / date.getDate() * 1.0;
+            }
+            
+            const today = new Date('2021-08-03T03:24:00')
+            var date = today;
+            
+
+            function addMonth()
+            {
+                date.setMonth(date.getMonth() + 1);
+            }
+
+            function subMonth()
+            {
+                date.setMonth(date.getMonth() - 1);
+            }
+
+            function addDate()
+            {
+                date.setDate(date.getDate() + 1);
+            }
+
+            function subDate()
+            {
+                date.setDate(date.getDate() - 1);
+            }
+            
+            function getNum()
+            {
+                return (date.getMonth() + 1) / date.getDate() * 1.0;
+            }
+            
+            const graphW = 1000;
+            const graphH = 550;
+            const graphX = 300;
+            const graphY = 700;
+            let lineObj = new Array(10);
+
+            function drawLine()
+            {
+                var num = getNum() / 10.0;
+                var arr = new Array(10);
+                for (let i=0; i<10; i++)
+                {
+                    arr[i] = Math.floor(num);
+                    num -= Math.floor(num);
+                    num *= 10;
+                }
+                for (let i=0; i<9; i++)
+                {
+                    let cmd = ["x1", graphX + graphW * i/9.0, "y1", graphY - (arr[i] / 9.0) * graphH, "x2", graphX + graphW * (i+1)/9.0, "y2", graphY - (arr[i+1] / 9.0) * graphH,"stroke-width",2,"stroke","black"];
+                    if (lineObj[i] == null)  lineObj[i] = addObj(svg, "line", cmd);
+                    else setAttributes(lineObj[i], cmd);
+                } 
+            }
+        
+            drawLine();
+
+            function drawAns()
+            {
+                var num = 2.0/290;
+                var arr = new Array(10);
+                for (let i=0; i<10; i++)
+                {
+                    arr[i] = Math.floor(num);
+                    num -= Math.floor(num);
+                    num *= 10;
+                }
+                for (let i=0; i<9; i++)
+                {
+                    let cmd = ["x1", graphX + graphW * i/9.0, "y1", graphY - (arr[i] / 9.0) * graphH, "x2", graphX + graphW * (i+1)/9.0, "y2", graphY - (arr[i+1] / 9.0) * graphH,"stroke-width",2,"stroke","#AAAAAA"];
+                    addObj(svg, "line", cmd);
+                } 
+            }
+
+            drawAns();
+
+            function click_btn(evt, num)
+            {
+                if (num == 0) subMonth();
+                else if (num == 1) addMonth();
+                else if (num == 2) subDate();
+                else if (num == 3) addDate();
+
+                drawLine();
+                if (date.getMonth() + 1 == 2 && date.getDate() == 29) window.setTimeout(function() {alert("congratulations!");}, 100); 
+            }
+
+            function reset_click()
+            {
+                date = today;
+                drawLine();
+            }
+            
+        </script>
+        <text x="800" y="100" text-anchor="middle" font-size="60" fill="black"
+        cursor="default" style="user-select:none; -webkit-user-select:none;
+        -moz-user-select:none; -ms-user-select:none;">spiky</text>
+        <circle cx="400" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 0)"/>
+        <circle cx="600" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 1)"/>
+        <circle cx="800" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 2)"/>
+        <circle cx="1000" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 3)"/>
+        
+        <rect x="1140" y="740" width="120" height="120" fill="#DDDDDD" onclick="reset_click()" stroke="black"
+            id="reset_btn">
+        </rect>
+        <text x="1200" y="810" text-anchor="middle" font-size="30" fill="black" onclick="reset_click()"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">
+            RESET
+        </text>
+    </svg>
+</body>
+</html>
