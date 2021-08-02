@@ -73,7 +73,6 @@
     <svg id="svg" viewBox="0 0 1600 900">
         <rect x="0" y="0" width="1600" height="900" fill="#CCFFCC"/>
         <script>
-            var date = new Date('2021-08-02T03:24:00');
 
             var svg = document.getElementById("svg");
             
@@ -120,9 +119,14 @@
                 return (date.getMonth() + 1) / date.getDate() * 1.0;
             }
             
-            const today = new Date('2021-08-03T03:24:00')
-            var date = today;
+            let date = new Date();
             
+            function resetDate()
+            {
+                date = new Date('2021-08-03T03:24:00');
+            }
+
+            resetDate();
 
             function addMonth()
             {
@@ -164,6 +168,9 @@
                     arr[i] = Math.floor(num);
                     num -= Math.floor(num);
                     num *= 10;
+                    num *= Math.pow(10,10);
+                    num = Math.round(num);
+                    num /= Math.pow(10,10);
                 }
                 for (let i=0; i<9; i++)
                 {
@@ -207,7 +214,7 @@
 
             function reset_click()
             {
-                date = today;
+                resetDate();
                 drawLine();
             }
             
