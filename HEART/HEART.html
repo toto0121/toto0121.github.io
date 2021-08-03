@@ -1,0 +1,74 @@
+<html>
+<head>
+  <title>HEART</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <svg id="svg1" viewBox="0 0 800 450">
+        <rect x = "0" y = "0" width = "800" height = "450" fill = "#B0B0B0" stroke = "none"></rect>
+        
+    </svg>
+    <script>
+        function setAttributes(obj, cmd) {
+            for (var i=0; i+1<cmd.length; i+=2) {
+                obj.setAttribute(cmd[i], cmd[i+1]);
+            }
+        }
+
+        function addObj(parent, objtype, cmd) {
+            obj = document.createElementNS('http://www.w3.org/2000/svg',objtype);
+            setAttributes(obj, cmd);
+            parent.appendChild(obj);
+            return obj;
+        }
+
+        function addImageObj(parent, cmd, path) {
+            const obj = addObj(parent, "image", cmd);
+            obj.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", path);
+            return obj;
+        }
+        
+        const svg = document.getElementById("svg1");
+        const cards = new Array(11);
+        const heart = new Array(5);
+        let str = "";
+
+        for (let i=0; i<3; i++) cards[i] = addImageObj(svg,["x",270+80*i,"y",100,"width",60,"onclick","flip("+i+")"],"card1.jpg");
+        for (let i=0; i<3; i++) cards[i+3] = addImageObj(svg,["x",270+80*i,"y",200,"width",60,"onclick","flip("+(i+3)+")"],"card2.jpg");
+        for (let i=0; i<5; i++) cards[i+6] = addImageObj(svg,["x",190 + 80*i,"y",300,"width",60,"onclick","flip("+(i+6)+")"],"card3.jpg");
+        for (let i=0; i<5; i++) {
+            heart[i] = addObj(svg,"text",["x",250+25*i,"y",80,"font-size",35]);
+            heart[i].textContent = "HEART".charAt(i);
+        }
+        addObj(svg, "text", ["x",375,"y",80,"font-size",35]).textContent = "をめくれ";
+
+        const uraPath = ["O","X","X","X","W","X","X","H","X","X","X"];
+        const ura = "ONETWOTHREE"
+        const omotePath = [1,1,1,2,2,2,3,3,3,3,3];
+        const stat = [0,0,0,0,0,0,0,0,0,0,0];
+
+        function flip(id) {
+            if (stat[id]==0) {
+                cards[id].setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", uraPath[id]+".png");
+                str += ura.charAt(id);
+                stat[id] = 1;
+            }
+            else {
+                cards[id].setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "card" + omotePath[id]+".jpg");
+                str += omotePath[id];
+                stat[id] = 0;
+            }
+            if("HE1RT".indexOf(str)!=0) {
+                for (let i=0; i<5; i++) heart[i].setAttribute("fill","black");
+                str = "";
+            }
+            else
+            {
+                for (let i=0; i<str.length; i++) heart[i].setAttribute("fill", "red");
+            }
+            if (str.length == 5) alert("clear");
+        }
+    </script>
+    
+</body>
+</html>
