@@ -150,7 +150,7 @@
             
             function getNum()
             {
-                return (date.getMonth() + 1) / date.getDate() * 1.0;
+                return Math.floor((date.getMonth() + 1) * 100000000 / date.getDate());
             }
             
             const graphW = 1000;
@@ -161,16 +161,12 @@
 
             function drawLine()
             {
-                var num = getNum() / 10.0;
+                var num = getNum();
                 var arr = new Array(10);
-                for (let i=0; i<10; i++)
+                for (let i=9; i>=0; i--)
                 {
-                    arr[i] = Math.floor(num);
-                    num -= Math.floor(num);
-                    num *= 10;
-                    num *= Math.pow(10,10);
-                    num = Math.round(num);
-                    num /= Math.pow(10,10);
+                    arr[i] = num % 10;
+                    num = Math.floor(num / 10);
                 }
                 for (let i=0; i<9; i++)
                 {
@@ -209,13 +205,39 @@
                 else if (num == 3) addDate();
 
                 drawLine();
-                if (date.getMonth() + 1 == 2 && date.getDate() == 29) window.setTimeout(function() {alert("congratulations!");}, 100); 
+                let clearObj = document.getElementById("clear");
+                if (date.getMonth() + 1 == 2 && date.getDate() == 29)
+                { 
+                    clearObj.setAttribute("display", "inline");
+                } 
+                else
+                {
+                    clearObj.setAttribute("display", "none");
+                }
             }
 
             function reset_click()
             {
                 resetDate();
                 drawLine();
+            }
+
+            function tweet()
+            {
+                var EUC = encodeURIComponent;
+                var twitter_url = "http://twitter.com/intent/tweet?text=";
+                var URL = location.href;
+                //var connection = 0;
+                var message = "web謎解き spiky の謎を解き明かした！";
+
+                //あらかじめ設定されたツイート内容と現在いるページのURLを取得してツイートします。
+                message += URL + "\n\n#web謎解き #とと謎spiky";
+
+                if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+                    location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
+                }else{
+                    window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
+                }
             }
             
         </script>
@@ -234,6 +256,25 @@
             cursor="default" style="user-select:none; -webkit-user-select:none;
             -moz-user-select:none; -ms-user-select:none;">
             RESET
+        </text>
+        <g id="clear" display="none">
+            <text x="50" y="100" text-anchor="left" font-size="50" fill="red" cursor="default" 
+             style="user-select:none; -webkit-user-select:none;
+             -moz-user-select:none; -ms-user-select:none;">congratulations!</text>
+            <g onclick="tweet()">
+            <rect x="165" y="120" width="150" height="50" fill="#00BFFF" rx="5" ry="5"></rect>
+            <path fill="#FFFFFF" transform="translate(165,118) scale(0.14)" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/>
+            <text x="218" y="155" text-anchor="start" font-size="24" fill="white" cursor="default" 
+             style="user-select:none; -webkit-user-select:none;
+             -moz-user-select:none; -ms-user-select:none;">TWEET</text>
+            </g>
+        </g>
+        <text x="1580" y="50" text-anchor="end" font-size="20" fill="black"
+        style="user-select:none; -webkit-user-select:none;
+        -moz-user-select:none; -ms-user-select:none;">
+            <tspan x="1580" dy="0">web謎解き spiky 2021年8月3日公開</tspan>
+            <tspan x="1580" dy="30">制作 とと (@to_to_0121)</tspan>
+            <tspan x="1570" dy="30">#とと謎spiky</tspan>
         </text>
     </svg>
 </body>
