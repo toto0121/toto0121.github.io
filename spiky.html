@@ -199,6 +199,8 @@
 
             function click_btn(evt, num)
             {
+                document.getElementById("btn" + num).setAttribute("fill", "#AAAAAA");
+
                 if (num == 0) subMonth();
                 else if (num == 1) addMonth();
                 else if (num == 2) subDate();
@@ -218,8 +220,18 @@
 
             function reset_click()
             {
+                document.getElementById("reset_btn").setAttribute("fill", "#AAAAAA");
                 resetDate();
                 drawLine();
+            }
+
+            function release_btn()
+            {
+                for (let i=0; i<=3; i++)
+                {
+                    document.getElementById("btn" + i).setAttribute("fill", "#DDDDDD");
+                }
+                document.getElementById("reset_btn").setAttribute("fill", "#DDDDDD");
             }
 
             function tweet()
@@ -244,19 +256,22 @@
         <text x="800" y="100" text-anchor="middle" font-size="60" fill="black"
         cursor="default" style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">spiky</text>
-        <circle cx="400" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 0)"/>
-        <circle cx="600" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 1)"/>
-        <circle cx="800" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 2)"/>
-        <circle cx="1000" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 3)"/>
+        <circle id="btn0" cx="400" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 0)" onmouseup="release_btn()" onmouseout="release_btn()"/>
+        <circle id="btn1" cx="600" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 1)" onmouseup="release_btn()" onmouseout="release_btn()"/>
+        <circle id="btn2" cx="800" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 2)" onmouseup="release_btn()" onmouseout="release_btn()"/>
+        <circle id="btn3" cx="1000" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 3)" onmouseup="release_btn()" onmouseout="release_btn()"/>
         
-        <rect x="1140" y="740" width="120" height="120" fill="#DDDDDD" onclick="reset_click()" stroke="black"
+        <g onmousedown="reset_click()" onmouseup="release_btn()" onmouseout="release_btn()">
+            <rect x="1140" y="740" width="120" height="120" fill="#DDDDDD" stroke="black" 
             id="reset_btn">
-        </rect>
-        <text x="1200" y="810" text-anchor="middle" font-size="30" fill="black" onclick="reset_click()"
-            cursor="default" style="user-select:none; -webkit-user-select:none;
-            -moz-user-select:none; -ms-user-select:none;">
-            RESET
-        </text>
+            </rect>
+            <text x="1200" y="810" text-anchor="middle" font-size="30" fill="black"
+                cursor="default" style="user-select:none; -webkit-user-select:none;
+                -moz-user-select:none; -ms-user-select:none;">
+                RESET
+            </text>
+        </g>
+        
         <g id="clear" display="none">
             <text x="50" y="100" text-anchor="left" font-size="50" fill="red" cursor="default" 
              style="user-select:none; -webkit-user-select:none;
