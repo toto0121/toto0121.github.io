@@ -1,0 +1,304 @@
+<!--
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+
+
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<html>
+<head>
+  <title>spiky</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <svg id="svg" viewBox="0 0 900 1800">
+        <rect x="0" y="0" width="900" height="1800" fill="#CCFFCC"/>
+        <script>
+
+            if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+                
+            }
+            else
+            {
+                
+            }
+
+            var svg = document.getElementById("svg");
+            
+            
+            function setAttributes(obj, cmd) {
+                let len = cmd.length;
+                let i=0;
+                while (i+1 < len)
+                {
+                    obj.setAttribute(cmd[i], cmd[i+1]);
+                    i += 2;
+                }
+            }
+
+            function addObj(parent, objtype, cmd) {
+                obj = document.createElementNS('http://www.w3.org/2000/svg',objtype);
+                setAttributes(obj, cmd);
+                parent.appendChild(obj);
+                return obj;
+            }
+
+            function addMonth()
+            {
+                date.setMonth(date.getMonth() + 1);
+            }
+
+            function subMonth()
+            {
+                date.setMonth(date.getMonth() - 1);
+            }
+
+            function addDate()
+            {
+                date.setDate(date.getDate() + 1);
+            }
+
+            function subDate()
+            {
+                date.setDate(date.getDate() - 1);
+            }
+            
+            function getNum()
+            {
+                return (date.getMonth() + 1) / date.getDate() * 1.0;
+            }
+            
+            let date = new Date();
+            
+            function resetDate()
+            {
+                date = new Date('2021-08-07T03:24:00');
+            }
+
+            resetDate();
+
+            function addMonth()
+            {
+                date.setMonth(date.getMonth() + 1);
+            }
+
+            function subMonth()
+            {
+                date.setMonth(date.getMonth() - 1);
+            }
+
+            function addDate()
+            {
+                date.setDate(date.getDate() + 1);
+            }
+
+            function subDate()
+            {
+                date.setDate(date.getDate() - 1);
+            }
+            
+            function getNum()
+            {
+                return Math.floor((date.getMonth() + 1) * 100000000 / date.getDate());
+            }
+            
+            const graphW = 1000 * 0.8;
+            const graphH = 550 * 0.8;
+            const graphX = 50;
+            const graphY = 1000;
+            let lineObj = new Array(10);
+
+            function drawLine()
+            {
+                var num = getNum();
+                var arr = new Array(10);
+                for (let i=9; i>=0; i--)
+                {
+                    arr[i] = num % 10;
+                    num = Math.floor(num / 10);
+                }
+                for (let i=0; i<9; i++)
+                {
+                    let cmd = ["x1", graphX + graphW * i/9.0, "y1", graphY - (arr[i] / 9.0) * graphH, "x2", graphX + graphW * (i+1)/9.0, "y2", graphY - (arr[i+1] / 9.0) * graphH,"stroke-width",2,"stroke","black"];
+                    if (lineObj[i] == null)  lineObj[i] = addObj(svg, "line", cmd);
+                    else setAttributes(lineObj[i], cmd);
+                } 
+            }
+        
+            drawLine();
+
+            function drawAns()
+            {
+                var num = 2.0/290;
+                var arr = new Array(10);
+                for (let i=0; i<10; i++)
+                {
+                    arr[i] = Math.floor(num);
+                    num -= Math.floor(num);
+                    num *= 10;
+                }
+                for (let i=0; i<9; i++)
+                {
+                    let cmd = ["x1", graphX + graphW * i/9.0, "y1", graphY - (arr[i] / 9.0) * graphH, "x2", graphX + graphW * (i+1)/9.0, "y2", graphY - (arr[i+1] / 9.0) * graphH,"stroke-width",2,"stroke","#888888"];
+                    addObj(svg, "line", cmd);
+                } 
+            }
+
+            drawAns();
+
+            function click_btn(evt, num)
+            {
+                document.getElementById("btn" + num).setAttribute("fill", "#AAAAAA");
+
+                if (num == 0) subMonth();
+                else if (num == 1) addMonth();
+                else if (num == 2) subDate();
+                else if (num == 3) addDate();
+
+                drawLine();
+                let clearObj = document.getElementById("clear");
+                if (date.getMonth() + 1 == 2 && date.getDate() == 29)
+                { 
+                    clearObj.setAttribute("display", "inline");
+                } 
+                else
+                {
+                    clearObj.setAttribute("display", "none");
+                }
+            }
+
+            function reset_click()
+            {
+                document.getElementById("reset_btn").setAttribute("fill", "#AAAAAA");
+                resetDate();
+                drawLine();
+            }
+
+            function release_btn()
+            {
+                for (let i=0; i<=3; i++)
+                {
+                    document.getElementById("btn" + i).setAttribute("fill", "#DDDDDD");
+                }
+                document.getElementById("reset_btn").setAttribute("fill", "#DDDDDD");
+            }
+
+            function tweet()
+            {
+                var EUC = encodeURIComponent;
+                var twitter_url = "http://twitter.com/intent/tweet?text=";
+                var URL = location.href;
+                //var connection = 0;
+                var message = "web謎解き spiky の謎を解き明かした！";
+
+                //あらかじめ設定されたツイート内容と現在いるページのURLを取得してツイートします。
+                message += URL + "\n\n#web謎解き #とと謎spiky";
+
+                if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+                    location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
+                }else{
+                    window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
+                }
+            }
+            
+        </script>
+        <text x="450" y="250" text-anchor="middle" font-size="110" fill="black"
+        cursor="default" style="user-select:none; -webkit-user-select:none;
+        -moz-user-select:none; -ms-user-select:none;">spiky</text>
+        <circle id="btn0" cx="150" cy="1350" r="60" stroke="black" fill="#DDDDDD" ontouchstart="click_btn(evt, 0)" ontouchend="release_btn()"/>
+        <circle id="btn1" cx="350" cy="1350" r="60" stroke="black" fill="#DDDDDD" ontouchstart="click_btn(evt, 1)" ontouchend="release_btn()"/>
+        <circle id="btn2" cx="550" cy="1350" r="60" stroke="black" fill="#DDDDDD" ontouchstart="click_btn(evt, 2)" ontouchend="release_btn()"/>
+        <circle id="btn3" cx="750" cy="1350" r="60" stroke="black" fill="#DDDDDD" ontouchstart="click_btn(evt, 3)" ontouchend="release_btn()"/>
+        
+        <g ontouchstart="reset_click()" ontouchend="release_btn()">
+            <rect x="390" y="1500" width="120" height="120" fill="#DDDDDD" stroke="black" 
+            id="reset_btn">
+            </rect>
+            <text x="450" y="1570" text-anchor="middle" font-size="30" fill="black"
+                cursor="default" style="user-select:none; -webkit-user-select:none;
+                -moz-user-select:none; -ms-user-select:none;">
+                RESET
+            </text>
+        </g>
+        
+        <g id="clear" display="inline">
+            <text x="450" y="1120" text-anchor="middle" font-size="70" fill="red" cursor="default" 
+             style="user-select:none; -webkit-user-select:none;
+             -moz-user-select:none; -ms-user-select:none;">congratulations!</text>
+            <g onclick="tweet()">
+            <rect x="350" y="1160" width="200" height="75" fill="#00BFFF" rx="5" ry="5"></rect>
+            <path fill="#FFFFFF" transform="translate(350,1168) scale(0.15)" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/>
+            <text x="470" y="1210" text-anchor="middle" font-size="35" fill="white" cursor="default" 
+             style="user-select:none; -webkit-user-select:none;
+             -moz-user-select:none; -ms-user-select:none;">TWEET</text>
+            </g>
+        </g>
+        <text x="880" y="50" text-anchor="end" font-size="20" fill="black"
+        style="user-select:none; -webkit-user-select:none;
+        -moz-user-select:none; -ms-user-select:none;">
+            <tspan x="880" dy="0">web謎解き spiky 2021年8月7日公開</tspan>
+            <tspan x="880" dy="30">制作 とと (@to_to_0121)</tspan>
+            <tspan x="870" dy="30">#とと謎spiky</tspan>
+        </text>
+    </svg>
+</body>
+</html>
