@@ -76,7 +76,7 @@
 
             var URL = "https://toto0121.github.io/spiky.html";
             document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
-            document.addEventListener("touchstart", function(e){ e.preventDefault();}, { passive: false });
+            
 
             if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
                 
@@ -211,6 +211,7 @@
 
             function click_btn(evt, num)
             {
+                evt.preventDefault();
                 document.getElementById("btn" + num).setAttribute("fill", "#AAAAAA");
 
                 if (num == 0) subMonth();
