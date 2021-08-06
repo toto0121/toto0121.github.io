@@ -261,35 +261,50 @@
                     window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
                 }
             }
+
+            function clk_q()
+            {
+                var inst = document.getElementById("instruction");
+                if(inst.getAttribute("display") == "none") inst.setAttribute("display", "inline");
+                else close_inst();
+            }
+
+            function close_inst()
+            {
+                document.getElementById("instruction").setAttribute("display", "none");
+            }
             
         </script>
         <text x="800" y="100" text-anchor="middle" font-size="60" fill="black"
         cursor="default" style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">spiky</text>
-        <circle id="btn0" cx="400" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 0)" onmouseup="release_btn()" onmouseout="release_btn()"/>
-        <circle id="btn1" cx="600" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 1)" onmouseup="release_btn()" onmouseout="release_btn()"/>
-        <circle id="btn2" cx="800" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 2)" onmouseup="release_btn()" onmouseout="release_btn()"/>
-        <circle id="btn3" cx="1000" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 3)" onmouseup="release_btn()" onmouseout="release_btn()"/>
-        
-        <g onmousedown="reset_click()" onmouseup="release_btn()" onmouseout="release_btn()">
+
+        <g cursor="pointer">
+            <circle id="btn0" cx="400" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 0)" onmouseup="release_btn()" onmouseout="release_btn()"/>
+            <circle id="btn1" cx="600" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 1)" onmouseup="release_btn()" onmouseout="release_btn()"/>
+            <circle id="btn2" cx="800" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 2)" onmouseup="release_btn()" onmouseout="release_btn()"/>
+            <circle id="btn3" cx="1000" cy="800" r="60" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 3)" onmouseup="release_btn()" onmouseout="release_btn()"/>
+        </g>
+
+        <g onmousedown="reset_click()" onmouseup="release_btn()" onmouseout="release_btn()" cursor="pointer">
             <rect x="1140" y="740" width="120" height="120" fill="#DDDDDD" stroke="black" 
             id="reset_btn">
             </rect>
             <text x="1200" y="810" text-anchor="middle" font-size="30" fill="black"
-                cursor="default" style="user-select:none; -webkit-user-select:none;
+                style="user-select:none; -webkit-user-select:none;
                 -moz-user-select:none; -ms-user-select:none;">
                 RESET
             </text>
         </g>
         
         <g id="clear" display="none">
-            <text x="50" y="100" text-anchor="left" font-size="50" fill="red" cursor="default" 
+            <text x="50" y="400" text-anchor="left" font-size="50" fill="red" cursor="default" 
              style="user-select:none; -webkit-user-select:none;
              -moz-user-select:none; -ms-user-select:none;">congratulations!</text>
-            <g onclick="tweet()">
-            <rect x="165" y="120" width="150" height="50" fill="#00BFFF" rx="5" ry="5"></rect>
-            <path fill="#FFFFFF" transform="translate(165,118) scale(0.14)" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/>
-            <text x="218" y="155" text-anchor="start" font-size="24" fill="white" cursor="default" 
+            <g onclick="tweet()" cursor="pointer">
+            <rect x="165" y="420" width="150" height="50" fill="#00BFFF" rx="5" ry="5"></rect>
+            <path fill="#FFFFFF" transform="translate(165,418) scale(0.14)" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/>
+            <text x="218" y="455" text-anchor="start" font-size="24" fill="white"
              style="user-select:none; -webkit-user-select:none;
              -moz-user-select:none; -ms-user-select:none;">TWEET</text>
             </g>
@@ -301,6 +316,30 @@
             <tspan x="1580" dy="30">制作 とと (@to_to_0121)</tspan>
             <tspan x="1570" dy="30">#とと謎spiky</tspan>
         </text>
+
+        <g cursor="pointer" onclick="clk_q()">
+            <circle cx="100" cy="100" r="60" stroke-width="5" stroke="#888888" fill="#CCFFCC"></circle>
+            <text x="100" y="130" text-anchor="middle" font-size="80" fill="#888888"
+            style="user-select:none; -webkit-user-select:none;
+                -moz-user-select:none; -ms-user-select:none;">?</text>
+        </g>
+
+        <g id="instruction" display="none">
+            <rect x="200" y="200" width="1200" height="500" fill="#DDDDDD" stroke="#222222" stroke-width="10"></rect>
+            <text x="800" y="345" text-anchor="middle" font-size="40" fill="black"
+            style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">
+                <tspan x="800" dy="0" font-size="60">what's this page?</tspan>
+                <tspan x="800" dy="100">ボタンを押すと、webページに変化が現れます。</tspan>
+                <tspan x="800" dy="70">その変化の法則を見極め、クリア条件を推測してください。</tspan>
+                <tspan x="800" dy="70">見事クリアできれば、"congratulations"と表示されます。</tspan>
+            </text>
+            <g id="close" cursor="pointer" onclick="close_inst()">
+                <rect x="1300" y="200" width="100" height="100" fill="#EEEEEE" stroke="#222222" stroke-width="3"></rect>
+                <line x1="1320" y1="220" x2="1380" y2="280" stroke="black" stroke-width="3"></line>
+                <line x1="1320" y1="280" x2="1380" y2="220" stroke="black" stroke-width="3"></line>
+            </g>
+        </g>
     </svg>
 </body>
 </html>
