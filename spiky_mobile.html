@@ -67,7 +67,7 @@
 <html>
 <head>
   <title>spiky</title>
-  <meta charset="UTF-8" content="user-scalable=no">
+  <meta charset="UTF-8">
 </head>
 <body>
     <svg id="svg" viewBox="0 0 900 1600">
@@ -76,6 +76,7 @@
 
             var URL = "https://toto0121.github.io/spiky.html";
             document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
+            document.addEventListener("touchstart", function(e){ e.preventDefault();}, { passive: false });
 
             if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
                 
