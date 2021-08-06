@@ -89,7 +89,7 @@
             }
             else
             {
-                window.location.href = URL;
+                //window.location.href = URL;
             }
 
             var svg = document.getElementById("svg");
@@ -270,6 +270,18 @@
                     window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
                 }
             }
+
+            function clk_q()
+            {
+                var inst = document.getElementById("instruction");
+                if(inst.getAttribute("display") == "none") inst.setAttribute("display", "inline");
+                else close_inst();
+            }
+
+            function close_inst()
+            {
+                document.getElementById("instruction").setAttribute("display", "none");
+            }
             
         </script>
         <text x="450" y="250" text-anchor="middle" font-size="110" fill="black"
@@ -310,6 +322,33 @@
             <tspan x="880" dy="30">制作 とと (@to_to_0121)</tspan>
             <tspan x="870" dy="30">#とと謎spiky</tspan>
         </text>
+
+        <g cursor="pointer" ontouchstart="clk_q()">
+                <circle cx="100" cy="100" r="60" stroke-width="5" stroke="#888888" fill="#CCFFCC"></circle>
+                <text x="100" y="130" text-anchor="middle" font-size="80" fill="#888888"
+                style="user-select:none; -webkit-user-select:none;
+                    -moz-user-select:none; -ms-user-select:none;">?</text>
+            </g>
+    
+            <g id="instruction" display="none">
+                <rect x="100" y="200" width="700" height="800" fill="#DDDDDD" stroke="#222222" stroke-width="10"></rect>
+                <text x="800" y="365" text-anchor="middle" font-size="40" fill="black"
+                style="user-select:none; -webkit-user-select:none;
+                -moz-user-select:none; -ms-user-select:none;">
+                    <tspan x="460" dy="0" font-size="60">what's this page?</tspan>
+                    <tspan x="460" dy="100">ボタンを押すと、</tspan>
+                    <tspan x="460" dy="80">webページに変化が現れます。</tspan>
+                    <tspan x="460" dy="80">その変化の法則を見極め、</tspan>
+                    <tspan x="460" dy="80">クリア条件を推測してください。</tspan>
+                    <tspan x="460" dy="80">見事クリアできれば、</tspan>
+                    <tspan x="460" dy="80">"congratulations"と表示されます。</tspan>
+                </text>
+                <g id="close" cursor="pointer" ontouchstart="close_inst()">
+                    <rect x="700" y="200" width="100" height="100" fill="#EEEEEE" stroke="#222222" stroke-width="3"></rect>
+                    <line x1="720" y1="220" x2="780" y2="280" stroke="black" stroke-width="3"></line>
+                    <line x1="720" y1="280" x2="780" y2="220" stroke="black" stroke-width="3"></line>
+                </g>
+            </g>
     </svg>
 </body>
 </html>
