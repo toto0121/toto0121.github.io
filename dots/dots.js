@@ -1,7 +1,7 @@
 var svg = document.getElementById("svg");
 
             if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
-                window.location.href = "https://toto0121.github.io/spiky_mobile.html";
+                //window.location.href = "https://toto0121.github.io/spiky_mobile.html";
             }
             
             window.addEventListener('load', init);
