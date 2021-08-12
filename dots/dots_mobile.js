@@ -116,7 +116,7 @@ var svg = document.getElementById("svg");
             textR.style.left = (width * 0.5 - height * 0.056 + 6) + 'px';
             textR.style.fontSize = (height * 0.04) + "px";
         }
-        setTweetButton();
+        
         setGUI();
             
 
