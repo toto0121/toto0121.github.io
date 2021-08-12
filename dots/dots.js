@@ -1,18 +1,16 @@
 var svg = document.getElementById("svg");
 
     if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
-        //window.location.href = "https://toto0121.github.io/spiky_mobile.html";
+        // SCRIPTタグの生成
+        var el = document.createElement("script");
+        
+        // SCRIPTタグのSRC属性に読み込みたいファイルを指定
+        el.src = "dots_mobile.js";
+        
+        // BODY要素の最後に追加
+        document.body.appendChild(el);
     }
-// SCRIPTタグの生成
-var el = document.createElement("script");
- 
-// SCRIPTタグのSRC属性に読み込みたいファイルを指定
-el.src = "dots_mobile.js";
- 
-// BODY要素の最後に追加
-document.body.appendChild(el);
-
-    //window.addEventListener('load', init);
+    else window.addEventListener('load', init);
 
     function init() {
 
@@ -124,7 +122,7 @@ document.body.appendChild(el);
             textR.style.left = (width * 0.5 - height * 0.056 + 6) + 'px';
             textR.style.fontSize = (height * 0.04) + "px";
         }
-        
+
         setGUI();
             
 
