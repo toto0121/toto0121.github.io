@@ -1,10 +1,18 @@
 var svg = document.getElementById("svg");
 
-            if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
-                //window.location.href = "https://toto0121.github.io/spiky_mobile.html";
-            }
-            
-            window.addEventListener('load', init);
+    if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+        //window.location.href = "https://toto0121.github.io/spiky_mobile.html";
+    }
+// SCRIPTタグの生成
+var el = document.createElement("script");
+ 
+// SCRIPTタグのSRC属性に読み込みたいファイルを指定
+el.src = "dots_mobile.js";
+ 
+// BODY要素の最後に追加
+document.body.appendChild(el);
+
+    //window.addEventListener('load', init);
 
     function init() {
 
@@ -93,7 +101,7 @@ var svg = document.getElementById("svg");
             //text2.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
             textR.style.width = 100;
             textR.style.height = 100;
-            //text2.style.backgroundColor = "blue";
+            //textR.style.backgroundColor = "blue";
             textR.innerHTML = "RESET";
             textR.style.userSelect = "none";
             textR.style.pointerEvents = "none";
@@ -104,7 +112,7 @@ var svg = document.getElementById("svg");
             if (textC != null)
             {
                 textC.style.top = (height * 0.15) + 'px';
-                textC.style.left = (width * 0.5 - height * 0.3) + 'px';
+                textC.style.left = (width * 0.5 - height * 0.26) + 'px';
                 textC.style.fontSize = (height / 12) + "px";
             }
             if (btnT != null)
@@ -112,10 +120,11 @@ var svg = document.getElementById("svg");
                 btnT.style.left = (width * 0.5 - 23) + "px";
                 btnT.style.top = (height * 0.28) + "px";
             }
-            textR.style.top = (height * 0.785) + 'px';
-            textR.style.left = (width * 0.5 - height * 0.05) + 'px';
+            textR.style.top = (height * 0.777 + 8) + 'px';
+            textR.style.left = (width * 0.5 - height * 0.056 + 6) + 'px';
             textR.style.fontSize = (height * 0.04) + "px";
         }
+        
         setGUI();
             
 
