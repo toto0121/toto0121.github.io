@@ -28,6 +28,7 @@ var svg = document.getElementById("svg");
       // カメラを作成
       let camera = new THREE.PerspectiveCamera(45, width / height);
       camera.position.set(0, 0, +1000);
+      camera.updateProjectionMatrix();
 
       //背景を作成
         const planeGeometry = new THREE.PlaneGeometry(2000, 1000);
