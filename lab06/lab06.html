@@ -1,0 +1,194 @@
+<html>
+<head>
+  <title>laboratory -06-</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <svg id="svg1" viewBox="0 0 800 450">
+        <rect x = "0" y = "0" width = "800" height = "450" fill = "#B0B0B0" stroke = "none"></rect>
+        <rect x = "90" y = "20" width = "385" height = "270" fill = "#CCCCCC" stroke = "#000000"></rect>
+        <path id = "smoke" fill = "#FFFFFF" display = "none" d = "M 650 250 C 660 230, 660 225, 680 220 S 700 195 ,680 180 S 700 170, 710 145 S 680 80, 650 80 S 600 80, 600 100 
+        S 650 100, 650 130 S 620 150 620 170 S 660 200 650 250" stroke-width = "0.5" stroke = "#000000"></path>
+        <symbol id ="cup">
+            <g id = "liquid">
+                <rect x = "0" y = "60" width = "110" height = "90" stroke = "#none" stroke-width = "1"></rect>
+            </g> 
+            <g stroke-width = "4" stroke = "black">
+                <line x2 = "2" y2 ="0" x1 = "2"  y1 = "150" ></line>
+                <line x2 = "0" y2 ="150" x1 = "112"  y1 = "150"></line>
+                <line x2 = "110" y2 ="0" x1 = "110"  y1 = "150"></line>
+                <line x2 = "90" y2 ="140" x1 = "110"  y1 = "140" stroke-width = "2"></line>
+                <line x2 = "90" y2 ="130" x1 = "110"  y1 = "130" stroke-width = "2"></line>
+                <line x2 = "70" y2 ="120" x1 = "110"  y1 = "120"></line>
+                <line x2 = "90" y2 ="110" x1 = "110"  y1 = "110" stroke-width = "2"></line>
+                <line x2 = "90" y2 ="100" x1 = "110"  y1 = "100" stroke-width = "2"></line>
+                <line x2 = "70" y2 ="90" x1 = "110"  y1 = "90"></line>
+            </g>       
+        </symbol>
+        <g onmousemove="tooltip(evt)" onmouseout="tooltipHide()">
+            <g transform="translate(30,0)">
+                <use xlink:href = "#cup" id = "liq1" transform = "translate(50,330) scale(0.5)" fill = "#FF0000" onclick="click(1)"></use>
+                <use xlink:href = "#cup" id = "liq2" transform = "translate(120,330) scale(0.5)" fill = "#0000FF" onclick="click(2)"></use>
+                <use xlink:href = "#cup" transform = "translate(190,330) scale(0.5)" fill = "#00FF00" onclick="click(3)"></use>
+                <use xlink:href = "#cup" transform = "translate(260,330) scale(0.5)" fill = "#FFFF00" onclick="click(4)"></use>
+                <use xlink:href = "#cup" transform = "translate(330,330) scale(0.5)" fill = "#000000" onclick="click(5)"></use>
+                <use xlink:href = "#cup" transform = "translate(400,330) scale(0.5)" fill = "#FFFFFF" onclick="click(6)"></use>
+            </g>
+            
+            <use xlink:href = "#cup" transform = "translate(600,240)" fill = "#B0B0B0" id = "ans"></use> 
+            <g transform = "translate(0,7)">
+                <use xlink:href = "#cup" transform = "translate(105,40) scale(0.3)" fill = "#000000"></use>
+                <use xlink:href = "#cup" transform = "translate(165,40) scale(0.3)" fill = "#FFFFFF"></use>
+                <use xlink:href = "#cup" transform = "translate(225,40) scale(0.3)" fill = "#FF7F7F"></use>
+                <use xlink:href = "#cup" transform = "translate(305,40) scale(0.3)" fill = "#00FF00"></use>
+                <use xlink:href = "#cup" transform = "translate(365,40) scale(0.3)" fill = "#0000FF"></use>
+                <use xlink:href = "#cup" transform = "translate(425,40) scale(0.3)" fill = "#00AA00"></use>
+                <use xlink:href = "#cup" transform = "translate(105,110) scale(0.3)" fill = "#FF0000"></use>
+                <use xlink:href = "#cup" transform = "translate(165,110) scale(0.3)" fill = "#FFFF00"></use>
+                <use xlink:href = "#cup" transform = "translate(225,110) scale(0.3)" fill = "#550000"></use>
+                <use xlink:href = "#cup" transform = "translate(305,110) scale(0.3)" fill = "#FFFF00"></use>
+                <use xlink:href = "#cup" transform = "translate(365,110) scale(0.3)" fill = "#FFFFFF"></use>
+                <use xlink:href = "#cup" transform = "translate(425,110) scale(0.3)" fill = "#000000"></use>
+                <use xlink:href = "#cup" transform = "translate(225,180) scale(0.3)" fill = "#AA55AA"></use>
+                <use xlink:href = "#cup" transform = "translate(425,180) scale(0.3)" fill = "#7FFF00"></use>
+            </g>
+        </g>
+        <g style="user-select:none; -webkit-user-select:none;
+        -moz-user-select:none; -ms-user-select:none;" transform = "translate(0,7)">
+            <text x = "152" y = "70" font-size = "20" text-anchor = "middle">+</text>
+            <text x = "212" y = "70" font-size = "20" text-anchor = "middle">→</text>
+            <text x = "352" y = "70" font-size = "20" text-anchor = "middle">+</text>
+            <text x = "412" y = "70" font-size = "20" text-anchor = "middle">→</text>
+            <text x = "152" y = "140" font-size = "20" text-anchor = "middle">+</text>
+            <text x = "212" y = "140" font-size = "20" text-anchor = "middle">→</text>
+            <text x = "352" y = "140" font-size = "20" text-anchor = "middle">+</text>
+            <text x = "412" y = "140" font-size = "20" text-anchor = "middle">→</text>
+            <text x = "242" y = "105" font-size = "20" text-anchor = "middle">+</text>
+            <text x = "244.5" y = "160" font-size = "20" text-anchor = "middle" rotate = "90">→</text>
+            <text x = "442" y = "105" font-size = "20" text-anchor = "middle">+</text>
+            <text x = "444.5" y = "160" font-size = "20" text-anchor = "middle" rotate = "90">→</text>
+            <text x = "122" y = "43" font-size = "15" text-anchor = "middle">①</text>
+            <text x = "182" y = "43" font-size = "15" text-anchor = "middle">②</text>
+            <text x = "122" y = "113" font-size = "15" text-anchor = "middle">③</text>
+            <text x = "182" y = "113" font-size = "15" text-anchor = "middle">④</text>
+            <text x = "322" y = "43" font-size = "15" text-anchor = "middle">⑤</text>
+            <text x = "382" y = "43" font-size = "15" text-anchor = "middle">⑥</text>
+            <text x = "322" y = "113" font-size = "15" text-anchor = "middle">④</text>
+            <text x = "382" y = "113" font-size = "15" text-anchor = "middle">②</text>
+            <text x = "290" y = "261" font-size = "15" text-anchor = "middle">Password : ①②③④⑤⑥</text>
+        </g>
+        <g>
+            <rect id = "tip" width = "164" height = "30" fill = "#EEEEEE" stroke = "#000000" display = "none"></rect>
+            <text id = "tipText" font-size="15" x = "100" y = "100" height = "100" text-anchor = "middle" display = "none"
+                style="user-select:none; -webkit-user-select:none;-moz-user-select:none; -ms-user-select:none;">aaa</text>
+        </g>
+    </svg>
+    <script>
+        var svg = document.getElementById("svg1");
+        var tip = document.getElementById("tip");
+        var tipText = document.getElementById("tipText");
+        console.log("yeah");
+        function tooltip(evt)
+        {
+            var pt = svg.createSVGPoint();
+            pt.x = evt.clientX;
+            pt.y = evt.clientY;
+            var svgP = pt.matrixTransform(svg.getScreenCTM().inverse());
+            var colorCode = evt.target.getAttribute("fill");
+            var colorR = Math.round(parseInt(colorCode.substr(1,2), 16) / 2.550) / 100.0;          
+            var colorG = Math.round(parseInt(colorCode.substr(3,2), 16) / 2.550) / 100.0;          
+            var colorB = Math.round(parseInt(colorCode.substr(5,2), 16) / 2.550) / 100.0;                      
+            if (colorCode != "#B0B0B0") 
+            {
+                tip.setAttribute("display", "inline");
+                tipText.setAttribute("display", "inline");
+            }
+            tip.setAttribute("x", svgP.x);
+            tip.setAttribute("y", svgP.y - 40);
+            tipText.setAttribute("x", svgP.x + 82);
+            tipText.setAttribute("y", svgP.y - 20);
+            tipText.textContent = "R:" + colorR + " G:" + colorG + " B:" + colorB;
+        }
+        function tooltipHide()
+        {
+            
+            tip.setAttribute("display", "none");
+            tipText.setAttribute("display", "none");
+        }
+
+        var s = 0;
+        const r = [1, 0, 0, 1, 0, 1];
+        const g = [0, 0, 1, 1, 0, 1];
+        const b = [0, 1, 0, 0, 0, 1];
+        var ansObj = document.getElementById("ans");
+        function click(n)
+        {
+            s += n;
+            var _s = 0;
+            var digit = 0;
+            var smokeColor = ["#000000", "#FFFFFF", "#BBBBBB", "#555555"];
+            var smoke = document.getElementById("smoke");
+            if (s == 70)
+            {
+                setTimeout(function(){smoke.setAttribute("display", "inline")}, 701);
+                setTimeout(function(){smoke.setAttribute("fill", smokeColor[0])}, 701);
+                setTimeout(function(){smoke.setAttribute("display", "none")}, 1400)
+            }
+            while (s > 0)
+            {
+                var mod = s % 10;
+                if (mod > 0 && mod < 7)
+                {
+                    _s += mod * (10 ** digit);
+                    digit++;
+                }
+                else
+                {
+                    smoke.setAttribute("display", "inline");
+                    smoke.setAttribute("fill", smokeColor[mod % 6]);
+                    setTimeout(function(){smoke.setAttribute("display", "none")}, 700)
+                }
+                s = Math.floor(s/10);
+            }
+            s = _s;
+            console.log(s);
+            var num = 0;
+            var r_val = 0, g_val = 0, b_val = 0;
+            
+            while (_s > 0)
+            {
+                var mod = _s% 10;
+                
+                if (mod> 0 && mod < 7)
+                {
+                    r_val += r[mod - 1];
+                    g_val += g[mod - 1];
+                    b_val += b[mod - 1];
+                    num++;
+                }
+                
+                _s = Math.floor(_s/10);
+            }
+            r_val = Math.floor(r_val * 255.0 / num);
+            g_val = Math.floor(g_val * 255.0 / num);
+            b_val = Math.floor(b_val * 255.0 / num);
+            if (s == 0) 
+            {
+                ansObj.setAttribute("fill", "#B0B0B0");
+                ansObj.setAttribute("stroke", "none");
+            }
+            else
+            {
+                
+                var r_hex = ("0" + r_val.toString(16)).slice(-2);
+                var g_hex = ("0" + g_val.toString(16)).slice(-2);
+                var b_hex = ("0" + b_val.toString(16)).slice(-2);
+                ansObj.setAttribute("fill", "#" + r_hex + g_hex + b_hex);
+                ansObj.setAttribute("stroke", "#000000");
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
