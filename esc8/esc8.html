@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+
+
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<html>
+<head>
+  <title>escape -8-</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <svg viewBox="-150 -80 900 600">
+        <rect x="-150" y="-80" width="900" height="600" fill="#CCFFCC"/>
+        <script>
+            var black = [1, 1];
+            var red = [1, 4];
+            var blue = 12;
+            function isWall(pos){
+                if(pos[0]==black[0] && pos[1]==black[1]) return true;
+                if(pos[0]==red[0] && pos[1]==red[1]) return true;
+                if(pos[0]<1 || pos[0]>9 || pos[1]<1 || pos[1]>9) return true;
+                if(pos[0]*pos[1]%10 == 8) return true;
+                if(pos[0] == 9 && pos[1] == 9) return true;
+                return false;
+            }
+            function reset_click() {
+              btn = document.getElementById("reset_btn");
+              btn.setAttribute("fill", "#555555");
+              window.setTimeout(function(){btn.setAttribute("fill", "#DDDDDD");}, 200);
+              black = [1, 1];
+              red = [1, 4];
+              blue = 12;
+              document.getElementById("black_txt").textContent = black[0] * black[1];
+              document.getElementById("red_txt").textContent = red[0] * red[1];
+              document.getElementById("blue_txt").textContent = blue;
+            }
+            function btn_release(evt){
+                evt.target.setAttribute("fill", "#DDDDDD");
+            }
+            function click_btn(evt, n){
+                evt.target.setAttribute("fill", "#555555");
+                window.setTimeout(function(){btn_release(evt)}, 200);
+                if (blue <= 0) return;
+                blue -= 1;
+                document.getElementById("blue_txt").textContent = blue;
+                var obj = black;
+                if(n>3){
+                    n -= 4;
+                    obj = red;
+                }
+                switch(n){
+                    case 0:
+                    var pos = [obj[0], obj[1]-1];
+                    while(true)
+                    {
+                        if(isWall(pos)) break;
+                        obj[1] -= 1;
+                        pos[1] -= 1;
+                    }
+                    break;
+                    case 1:
+                    var pos = [obj[0], obj[1]+1];
+                    while(true)
+                    {
+                        if(isWall(pos)) break;
+                        obj[1] += 1;
+                        pos[1] += 1;
+                    }
+                    break;
+                    case 2:
+                    var pos = [obj[0]-1, obj[1]];
+                    while(true)
+                    {
+                        if(isWall(pos)) break;
+                        obj[0] -= 1;
+                        pos[0] -= 1;
+                    }
+                    break;
+                    case 3:
+                    var pos = [obj[0]+1, obj[1]];
+                    while(true)
+                    {
+                        if(obj == red && obj[0] == 9 && obj[1] == 6)
+                        {
+                            window.setTimeout(function(){alert("Congratulations!!\nPassword : Wall8");}, 200);
+                            break;
+                        }
+                        if(isWall(pos)) break;
+                        obj[0] += 1;
+                        pos[0] += 1;
+                    }
+                    break;
+                }
+                if(obj == black) document.getElementById("black_txt").textContent = black[0] * black[1];
+                else document.getElementById("red_txt").textContent = red[0] * red[1];
+            }
+        </script>
+        <text x="300" y="0" text-anchor="middle" font-size="60" fill="black"
+        cursor="default" style="user-select:none; -webkit-user-select:none;
+        -moz-user-select:none; -ms-user-select:none;">ESCAPE -8-</text>
+        <rect x="210" y="30" width="180" height="180" stroke="black" fill="#DDDDDD"/>
+        <rect x="270" y="50" width="60" height="60" stroke="black" fill="#FFFFFF"/>
+        <rect x="270" y="130" width="60" height="60" stroke="black" fill="#FFFFFF"/>
+        <line x1="160" y1="100" x2="200" y2="100" stroke-width="2" stroke="red"/>
+        <line x1="190" y1="95" x2="200" y2="100" stroke-width="2" stroke="red"/>
+        <line x1="190" y1="105" x2="200" y2="100" stroke-width="2" stroke="red"/>
+        <line x1="398" y1="140" x2="438" y2="140" stroke-width="2" stroke="red"/>
+        <line x1="428" y1="135" x2="438" y2="140" stroke-width="2" stroke="red"/>
+        <line x1="428" y1="145" x2="438" y2="140" stroke-width="2" stroke="red"/>
+        <text x="300" y="90" text-anchor="middle" font-size="30" fill="black" id="black_txt"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">1</text>
+        <text x="300" y="170" text-anchor="middle" font-size="30" fill="red" id="red_txt"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">4</text>
+        <circle cx="210" cy="255" r="25" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 0)"/>
+        <circle cx="270" cy="255" r="25" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 1)"/>
+        <circle cx="330" cy="255" r="25" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 2)"/>
+        <circle cx="390" cy="255" r="25" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 3)"/>
+        <circle cx="210" cy="315" r="25" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 4)"/>
+        <circle cx="270" cy="315" r="25" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 5)"/>
+        <circle cx="330" cy="315" r="25" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 6)"/>
+        <circle cx="390" cy="315" r="25" stroke="black" fill="#DDDDDD" onmousedown="click_btn(evt, 7)"/>
+        
+        <rect x="100" y="255" width="60" height="60" stroke="black" fill="#FFFFFF"/>
+        <text x="130" y="295" text-anchor="middle" font-size="30" fill="blue" id="blue_txt"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">12</text>
+        
+        <rect x="440" y="260" width="80" height="50" fill="#DDDDDD" onclick="reset_click()" stroke="black"
+            id="reset_btn">
+        </rect>
+        <text x="480" y="293" text-anchor="middle" font-size="20" fill="black" onclick="reset_click()"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">
+            RESET
+        </text>
+    </svg>
+</body>
+</html>
