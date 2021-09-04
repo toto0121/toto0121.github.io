@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!-- 
+
+
+    !!!! WARNING !!!!
+
+    以下にはこの謎の著しいネタバレが含まれます。
+
+    ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+    絶対におやめください。
+
+    !!!! WARNING !!!!
+
+
+
+
+
+    !!!! WARNING !!!!
+
+    以下にはこの謎の著しいネタバレが含まれます。
+
+    ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+    絶対におやめください。
+
+    !!!! WARNING !!!!
+
+
+
+
+
+
+
+
+    !!!! WARNING !!!!
+
+    以下にはこの謎の著しいネタバレが含まれます。
+
+    ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+    絶対におやめください。
+
+    !!!! WARNING !!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<html>
+<head>
+  <title>unlock -88-</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <svg viewBox="-380 -200 1200 900" onload="draw(36, 0)">
+      <rect x="-380" y="-200" width="1200" height="900" fill="#FFFFBB"/>
+      <script>
+          var col = "#F49999";
+          function square_click(evt) {
+              var square = evt.target;
+              if (col == "#F49999") col = "#999999";
+              else col = "#F44D61";
+              var svg_r = document.getElementById("r");
+              svg_r.setAttribute("fill", col);
+
+          }
+          var seg = [119,36,93,109,46,107,123,37,127,111];
+          var sum = 1;
+          var xor = 0;
+          function popup() {
+              if(sum == 8 && xor == 127) alert("Congratulations!!\nPassword : 128x10");
+          }
+          function rect_click(num) {
+              sum += num;
+              sum %= 10;
+              xor ^= seg[num];
+              draw(seg[sum], xor);
+              if(sum == 8) document.getElementById("circle_sum").setAttribute("fill", "#55FF55");
+              else document.getElementById("circle_sum").setAttribute("fill", "#AAAAAA");
+              if(xor == 127) document.getElementById("circle_xor").setAttribute("fill", "#55FF55");
+              else document.getElementById("circle_xor").setAttribute("fill", "#AAAAAA");
+              if(sum == 8 && xor == 127) window.setTimeout(function(){popup()}, 500);
+          }
+          function reset_click() {
+              btn = document.getElementById("reset_btn");
+              btn.setAttribute("fill", "#555555");
+              window.setTimeout(function(){btn_release(btn)}, 200);
+              sum = 1;
+              xor = 0;
+              draw(36, 0);
+              document.getElementById("circle_sum").setAttribute("fill", "#AAAAAA");
+              document.getElementById("circle_xor").setAttribute("fill", "#AAAAAA");
+          }
+          function btn_release(btn){
+                btn.setAttribute("fill", "#AAAAAA");
+          }
+          function seg_color(num) {
+              if (num == 0) return "#AAAAAA";
+              else return "#222222";
+          }
+          function draw(a, b) {
+              var n = a ^ b;
+              document.getElementById("cu").setAttribute("fill", seg_color(n % 2));
+              document.getElementById("lu").setAttribute("fill", seg_color((n >> 1) % 2));
+              document.getElementById("ru").setAttribute("fill", seg_color((n >> 2) % 2));
+              document.getElementById("cc").setAttribute("fill", seg_color((n >> 3) % 2));
+              document.getElementById("ld").setAttribute("fill", seg_color((n >> 4) % 2));
+              document.getElementById("rd").setAttribute("fill", seg_color((n >> 5) % 2));
+              document.getElementById("cd").setAttribute("fill", seg_color((n >> 6) % 2));
+              document.getElementById("1cu").setAttribute("fill", seg_color(a % 2));
+              document.getElementById("1lu").setAttribute("fill", seg_color((a >> 1) % 2));
+              document.getElementById("1ru").setAttribute("fill", seg_color((a >> 2) % 2));
+              document.getElementById("1cc").setAttribute("fill", seg_color((a >> 3) % 2));
+              document.getElementById("1ld").setAttribute("fill", seg_color((a >> 4) % 2));
+              document.getElementById("1rd").setAttribute("fill", seg_color((a >> 5) % 2));
+              document.getElementById("1cd").setAttribute("fill", seg_color((a >> 6) % 2));
+              document.getElementById("2cu").setAttribute("fill", seg_color(b % 2));
+              document.getElementById("2lu").setAttribute("fill", seg_color((b >> 1) % 2));
+              document.getElementById("2ru").setAttribute("fill", seg_color((b >> 2) % 2));
+              document.getElementById("2cc").setAttribute("fill", seg_color((b >> 3) % 2));
+              document.getElementById("2ld").setAttribute("fill", seg_color((b >> 4) % 2));
+              document.getElementById("2rd").setAttribute("fill", seg_color((b >> 5) % 2));
+              document.getElementById("2cd").setAttribute("fill", seg_color((b >> 6) % 2));
+          }
+      </script>
+    <g transform="translate(-40,0)">
+    <polygon fill="#F44D61" id = "cu" onclick="rect_click(1)"
+    points="95,10 110,25 190,25 205,10 190,-5 110,-5"/>
+    <polygon fill="#F44D61" id = "lu" onclick="rect_click(2)"
+    points="90,15 75,30 75,110 90,125 105,110 105,30"/>
+    <polygon fill="#F44D61" id = "ru" onclick="rect_click(3)"
+    points="210,15 195,30 195,110 210,125 225,110 225,30"/>
+    <polygon fill="#F44D61" id = "cc" onclick="rect_click(4)"
+    points="95,130 110,145 190,145 205,130 190,115 110,115"/>
+    <polygon fill="#F44D61" id = "ld" onclick="rect_click(5)"
+    points="90,135 75,150 75,230 90,245 105,230 105,150"/>
+    <polygon fill="#F44D61" id = "rd" onclick="rect_click(6)"
+    points="210,135 195,150 195,230 210,245 225,230 225,150"/>
+    <polygon fill="#F44D61" id = "cd" onclick="rect_click(7)"
+    points="95,250 110,265 190,265 205,250 190,235 110,235"/>
+    <circle cx="320" cy="70" r="25" id = "circle_sum" fill = "#AAAAAA"
+    stroke="#555555" stroke-width="2"></circle>
+    <circle cx="320" cy="190" r="25" id = "circle_xor" fill = "#AAAAAA"
+    stroke="#555555" stroke-width="2"></circle>
+    <line x1="320" y1="96" x2="320" y2="164" stroke="#888888" stroke-width="2"></line>
+    <line x1="320" y1="130" x2="250" y2="130" stroke="#888888" stroke-width="2"></line>
+    <line x1="346" y1="70" x2="370" y2="70" stroke="#888888" stroke-width="2"></line>
+    <line x1="346" y1="190" x2="370" y2="190" stroke="#888888" stroke-width="2"></line>
+    <polygon fill="#F44D61" id = "1cu" 
+    points="395,22 401,28 433,28 439,22 433,16 401,16"/>
+    <polygon fill="#F44D61" id = "1lu" 
+    points="393,24 387,30 387,62 393,68 399,62 399,30"/>
+    <polygon fill="#F44D61" id = "1ru" 
+    points="441,24 435,30 435,62 441,68 447,62 447,30"/>
+    <polygon fill="#F44D61" id = "1cc"
+    points="395,70 401,76 433,76 439,70 433,64 401,64"/>
+    <polygon fill="#F44D61" id = "1ld" 
+    points="393,72 387,78 387,110 393,116 399,110 399,78"/>
+    <polygon fill="#F44D61" id = "1rd" 
+    points="441,72 435,78 435,110 441,116 447,110 447,78"/>
+    <polygon fill="#F44D61" id = "1cd" 
+    points="395,118 401,124 433,124 439,118 433,112 401,112"/>
+    <polygon fill="#F44D61" id = "2cu" 
+    points="395,142 401,148 433,148 439,142 433,136 401,136"/>
+    <polygon fill="#F44D61" id = "2lu" 
+    points="393,144 387,150 387,182 393,188 399,182 399,150"/>
+    <polygon fill="#F44D61" id = "2ru" 
+    points="441,144 435,150 435,182 441,188 447,182 447,150"/>
+    <polygon fill="#F44D61" id = "2cc"
+    points="395,190 401,196 433,196 439,190 433,184 401,184"/>
+    <polygon fill="#F44D61" id = "2ld" 
+    points="393,192 387,198 387,230 393,236 399,230 399,198"/>
+    <polygon fill="#F44D61" id = "2rd" 
+    points="441,192 435,198 435,230 441,236 447,230 447,198"/>
+    <polygon fill="#F44D61" id = "2cd" 
+    points="395,238 401,244 433,244 439,238 433,232 401,232"/>
+    </g>
+
+    <rect x="155" y="310" width="120" height="70" fill="#AAAAAA" onclick="reset_click()"
+    id="reset_btn"></rect>
+    <text x="225" y="-70" text-anchor="middle" font-size="80" fill="black"
+    cursor="default" style="user-select:none; -webkit-user-select:none;
+    -moz-user-select:none; -ms-user-select:none;" >
+    UNLOCK -88-
+    </text>
+    <text x="215" y="355" text-anchor="middle" font-size="30" fill="black" onclick="reset_click()"
+    cursor="default" style="user-select:none; -webkit-user-select:none;
+    -moz-user-select:none; -ms-user-select:none;">
+    RESET</text>
+  </svg>
+</body>
+</html>
