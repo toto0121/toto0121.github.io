@@ -1,0 +1,69 @@
+<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185296319-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-185296319-1');
+    </script>
+    
+  <title>FEVER_FEVER</title>
+  <meta charset="UTF-8">
+</head>
+<body bgcolor = "black">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+
+    <script src="firebaseInit.js">
+    </script>
+    <script src="url.js"></script>
+    <script>
+        var db = firebase.firestore();
+        var ref = db.collection('feverfever').doc('fever');
+        ref.update({
+            hint2: 1
+        });
+        
+        function tweetpost(){
+            var EUC = encodeURIComponent;
+            var twitter_url = "http://twitter.com/intent/tweet?text=";
+            //var connection = 0;
+            var message = "★☆の謎を解き明かした！\n\n宝箱の中身は...\n\n\\\\\\ 7を増やすヒント 2 ///\n\n";
+
+            //あらかじめ設定されたツイート内容と現在いるページのURLを取得してツイートします。
+            message += URL + "\n\n#FEVER_FEVER";
+
+            if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+                location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
+            }else{
+                window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
+            }
+        }
+    </script>
+    <div style="text-align: center">
+    <svg viewBox="-300 -500 600 1000" height="100%">
+        <g transform="translate(0,-50)">
+            <text x="0" y="-300" fill="white" font-size="40" text-anchor="middle">おめでとう！</text>
+            <text x="0" y="-200" fill="white" font-size="40" text-anchor="middle">★☆の謎を解き明かした！</text>
+            <text x="0" y="-100" fill="white" font-size="40" text-anchor="middle">宝箱の中身は...</text>
+            <text x="0" y="20" fill="white" font-size="60" text-anchor="middle" stroke = "#c1ab05" stroke-width="6">7を増やすヒント 2</text>
+            <text x="0" y="20" fill="white" font-size="60" text-anchor="middle">7を増やすヒント 2</text>
+            <g onclick="tweetpost()" id = "twt" display="inline" transform = "translate(-340,350) scale(1.5)">
+                <rect x="200" y="0" width="50" height="50" fill="#FFFFFF"></rect>
+                <path fill="#000000" transform="translate(190,-10) scale(0.18)" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/>
+            </g>
+            <image href="feverBoard2.png" x="-190" y="80"></image>
+        </g>
+        
+    </svg>
+    </div>
+</body>
+</html>

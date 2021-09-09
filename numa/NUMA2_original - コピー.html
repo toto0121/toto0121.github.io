@@ -1,0 +1,527 @@
+<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185296319-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-185296319-1');
+    </script>
+    
+  <title>NUMA2</title>
+  <meta charset="UTF-8">
+</head>
+<body bgcolor = "black">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyD_-pmrxQTPgMjuPQP2YfKq8KeKS6NaIpk",
+        authDomain: "numslot-fc01b.firebaseapp.com",
+        projectId: "numslot-fc01b",
+        storageBucket: "numslot-fc01b.appspot.com",
+        messagingSenderId: "1079079678779",
+        appId: "1:1079079678779:web:bb83b534171813cf9b3d1e",
+        measurementId: "G-5BT663Y551"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
+
+    <div style="text-align: center">
+    <svg id="svg1" viewBox="-300 -500 600 1000" height="100%">
+        <rect x = "-300" y = "-500" width = "600" height = "1000" fill = "#000000" stroke = "none"></rect>
+        
+        <text x="0" y="-400" text-anchor="middle" font-size="60" fill="white"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;" id = "title">
+            FEVER×FEVER
+        </text>
+        
+        
+
+
+        <text id="rare" x="0" y="-73" text-anchor="middle" style="user-select:none; -webkit-user-select:none;
+        -moz-user-select:none; -ms-user-select:none;"></text>
+
+        
+        <rect x = "-300" y ="-500" width = "600" height = "1000" fill = "none" stroke = "white" stroke-width = "5"></rect>
+        <rect x = "-250" y ="0" width = "50" height = "50" fill = "#FFFFFF" stroke = "#c1ab05" stroke-width="4" onmousedown = "slotStart()"></rect>
+        <rect id = "screen" x = "-250" y ="-350" width = "500" height = "300" fill = "#111111" stroke = "#c1ab05" stroke-width = "6"></rect>
+        <rect x = "-238" y ="-155" width = "476" height = "50" fill = "#FFFFFF" stroke = "#c1ab05" stroke-width="4"></rect>
+        <g id="slot"></g>
+        <text id="hint" x="0" y="-123" text-anchor="middle"  font-size="25" xml:space = "preserve">x/77_🤡🍌🍇🍊🍈🍎🍒7</text>
+        <g onclick="tweetpost()" id = "twt" display="inline">
+            <rect x="200" y="0" width="50" height="50" fill="#FFFFFF" stroke = "#c1ab05" stroke-width="4"></rect>
+            <path fill="#000000" transform="translate(190,-10) scale(0.18)" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/>
+        </g>
+
+        <polygon points = "185,-10 175,60 -175,60 -185,-10" fill = "#FFFFFF" stroke = "#c1ab05" stroke-width="4"></polygon>
+        
+
+
+    </svg>
+    </div>
+    <script>
+        const db = firebase.firestore();
+        const svg = document.getElementById("svg1");
+        let prob = 0;
+        const emoji = ["🤡","🍌","🍇","🍊","🍈","🍎","🍒","7"];
+        let isFever = -1;
+        let noNoiseHint;
+        let noNoiseHintNum;
+        let noiseHint;
+        let hintNum;
+        
+
+        db.collection("feverfever").doc("fever")
+    .onSnapshot(function(doc) {
+        var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+        console.log(source, " data: ", doc.data());
+        prob = doc.data().prob;
+        if(doc.data().fever == "true" && isFever == 0)
+        {
+            isFever = 1;
+            setAttributes(document.getElementById("title"),["fill","red","stroke","white","font-weight","bold","stroke-width",4]);
+            document.getElementById("screen").setAttribute("fill", "#C00000");
+            document.getElementById("hint").textContent = rareComment[rare] + "_" + noNoiseHintNum + "/" + hints[rare].length + "_" + noNoiseHint;
+            window.setTimeout(function() {
+                isFever = 0;
+                setAttributes(document.getElementById("title"),["fill","white","stroke","none","font-weight","none"]);
+                document.getElementById("screen").setAttribute("fill", "#111111");
+                document.getElementById("hint").textContent = rareComment[rare] + "_" + hintNum + "/" + hints[rare].length + "_" + noiseHint;
+            }, 7700);
+        }
+        else
+        {
+            isFever = 0;
+        }
+    });
+        function setAttributes(obj, cmd) {
+            for (var i=0; i+1<cmd.length; i+=2) {
+                obj.setAttribute(cmd[i], cmd[i+1]);
+            }
+        }
+        function addObj(parent, objtype, cmd) {
+            obj = document.createElementNS('http://www.w3.org/2000/svg',objtype);
+            setAttributes(obj, cmd);
+            parent.appendChild(obj);
+            return obj;
+        }
+
+        for (let i=0; i<49; i++)
+        {
+            let x = i%7;
+            let y = Math.floor(i/7);
+            addObj(svg, "rect", ["x", -175 + 50 * x, "y", 100 + 50*y, "width", 49,"height",49, "fill", "#555555", "stroke", "#000000", "onmousedown", "clkBtnUp(" + x + "," + y + ")", "id", "u" + i]);  
+        }
+
+        for (let i=0; i<7; i++)
+        {
+            addObj(svg, "circle", ["cx", -150 + 50 * i, "cy", 25, "r",20, "fill", "#555555", "stroke", "#000000", "onmousedown", "clkBtnDown(" + i + ")", "id", "d" + i, "stroke-width",2]);  
+        }
+
+        const w=53;
+        for (let i=0; i<9; i++)
+        {
+            addObj(slot, "rect", ["x",-w*4.5+w*i+2.5,"y",-290,"width",w-5,"height",80,"fill", "#FFFFFF","stroke","#c1ab05", "stroke-width", 4]);
+            addObj(slot, "text", ["x",-w*4+w*i,"y",-235,"text-anchor","middle","font-size","40", "id", "num"+i]).textContent = "🍎";
+        }
+
+
+        const bitmap = [];
+        for (let i=0; i<7; i++) bitmap.push([0,0,0,0,0,0,0]);
+        const mulArr = [1,1,1,1,1,1,1];
+        const slotArr = [0,0,0,1,0,1,0,1,0];
+        const primeArr = [2,3,5,7,11,13,17];
+        let mul = 1;
+        var time = 0;
+        var rare;
+        var rareComment = ["☆","☆☆","☆☆☆","☆☆☆☆","★",
+            "★☆","★☆☆","★☆☆☆","★☆☆☆☆","★★","★★☆","★★☆☆","★★☆☆☆"];
+        var num_str;
+        var hints = [
+            new Array(77),
+            new Array(77),
+            new Array(77),
+            new Array(77),
+            new Array(77),
+            new Array(77),
+            new Array(77),
+            new Array(77),
+            new Array(77),
+            "url"
+        ];
+        hints[3].forEach(e => {e="aaa"});
+        function slotStart() {
+            document.getElementById("twt").setAttribute("display","inline");
+            var digit = 1;
+            num_str = [];
+            var hintMul = 0;
+
+            for (let i=0; i<9; i++)
+            {
+                hintMul *= 10;
+                let n;
+                if (Math.random() < prob * slotArr[i])
+                {
+                    num_str.push("7");
+                    setAttributes(document.getElementById("num" + i),["fill","red","font-weight","bold"]);
+                    hintMul += 7;
+                } 
+                else 
+                {
+                    n = Math.floor(Math.random() * 6.999);
+                    num_str.push(emoji[n]);
+                    setAttributes(document.getElementById("num" + i),["fill","black","font-weight","none"]);
+                    hintMul += n;
+                }
+            }
+            
+            for (let i=0; i<9; i++) document.getElementById("num" + i).textContent = num_str[i];
+
+            rare = 0;
+            for (var i=0; i<9; i++)
+            {
+                if (num_str[i]=="7") rare++;
+            }
+            //rare = 12;
+            
+            hintNum = 1;
+            
+            for (let i=0; i<7; i++)
+            {
+                hintNum *= Math.pow(primeArr[i],mulArr[i]);
+                hintNum %= 77;
+                if (hintNum == 0) hintNum = 77;
+                noNoiseHintNum = hintNum;
+            }
+
+            noNoiseHint = hints[rare][hintNum];
+            noiseHint = noNoiseHint;
+            if (num_str.indexOf(emoji[0]) >= 0)
+            {
+
+            }
+            if (num_str.indexOf(emoji[1]) >= 0)
+            {
+
+            }
+            if (num_str.indexOf(emoji[2]) >= 0)
+            {
+
+            }
+            if (num_str.indexOf(emoji[3]) >= 0)
+            {
+
+            }
+            if (num_str.indexOf(emoji[4]) >= 0)
+            {
+
+            }
+            if (num_str.indexOf(emoji[5]) >= 0)
+            {
+
+            }
+            if (num_str.indexOf(emoji[6]) >= 0)
+            {
+
+            }
+            if (num_str.indexOf(emoji[7]) >= 0)
+            {
+
+            }
+            hintNum *= hintMul;
+
+            if (isFever == 1)
+            {
+                document.getElementById("hint").textContent = rareComment[rare] + "_" + noNoiseHintNum + "/" + hints[rare].length + "_" + noNoiseHint;
+            }
+            else
+            {
+                document.getElementById("hint").textContent = rareComment[rare] + "_" + hintNum + "/" + hints[rare].length + "_" + noiseHint;
+            }
+            
+            if (rare < 12)
+            {
+                document.getElementById("hint").setAttribute("font-size", 25);
+            }
+            else
+            {
+                document.getElementById("hint").setAttribute("font-size", 12);
+            }
+            
+            
+            
+        }
+
+        function clkBtnUp(x,y)
+        {
+            bitmap[x][y] = 1 - bitmap[x][y];
+            let color;
+            if (bitmap[x][y] == 0) color = "#555555";
+            else color = "#FFFFFF";
+            document.getElementById("u" + (x + y * 7)).setAttribute("fill", color);
+            slotArr[0] = synmetry();
+            slotArr[1] = sevenOn();
+            slotArr[2] = isConnected();
+            slotArr[3] = noOnBlock();
+            slotArr[4] = noOffBlock();
+            slotArr[5] = noOnLine(); 
+            slotArr[6] = noOffLine(); 
+            slotArr[7] = noT(1);
+            slotArr[8] = noT(0); 
+        }
+
+        function synmetry()
+        {
+            let point=true, mirrorx=true, mirrory=true, mirrorxy=true, mirroryx=true;
+            for (let x=0; x<7; x++)
+            {
+                for (let y=0; y<7; y++)
+                {
+                    if (bitmap[x][y] != bitmap[6-x][6-y]) point = false;
+                    if (bitmap[x][y] != bitmap[6-x][y]) mirrory = false;
+                    if (bitmap[x][y] != bitmap[x][6-y]) mirrorx = false;
+                    if (bitmap[x][y] != bitmap[y][x]) mirrorxy = false;
+                    if (bitmap[x][y] != bitmap[6-y][6-x]) mirroryx = false;
+                }
+            }
+            if (!point && !mirrorx && !mirrory && !mirrorxy && !mirroryx) return 1;
+            else return 0;
+        }
+
+        function sevenOn()
+        {
+            let count = 0;
+            for (let x=0; x<7; x++)
+            {
+                for (let y=0; y<7; y++)
+                {
+                    if (bitmap[x][y] == 1) count++;
+                }
+            } 
+            if (count % 10 == 7) return 1;
+            else return 0;
+        }
+
+        function isConnected()
+        {
+            let copymap = [];
+            let px=-1, py=-1;
+            for (let x=0;x<7;x++)
+            {
+                copymap.push(new Array(7));
+                for (let y=0; y<7; y++)
+                {
+                    copymap[x][y] = bitmap[x][y];
+                    if (copymap[x][y] == 1) 
+                    {
+                        px=x;
+                        py=y;
+                    }
+                }
+            }
+            if (px<0) return false;
+            search(copymap,px,py);
+            let ret = true;
+            for (let x=0; x<7; x++) for(let y=0; y<7; y++) if(copymap[x][y] == 1) ret = false;
+            return ret;
+        }
+
+        function search(map,px,py)
+        {
+            console.log (px+" "+py);
+            map[px][py] = 0;
+            if (px>0) if(map[px-1][py]==1) search(map,px-1,py);
+            if (px<6) if(map[px+1][py]==1) search(map,px+1,py);
+            if (py>0) if(map[px][py-1]==1) search(map,px,py-1);
+            if (py<6) if(map[px][py+1]==1) search(map,px,py+1);
+        }
+
+        function noOnBlock()
+        {
+            let noBlock = true;
+            for (let x=0; x<6; x++)
+            {
+                for (let y=0; y<6; y++)
+                {
+                    if (bitmap[x][y] == 1 && bitmap[x+1][y] == 1 && bitmap[x][y+1] == 1 && bitmap[x+1][y+1] == 1) noBlock = false;
+                }
+            } 
+            if (noBlock) return 1;
+            else return 0;
+        }
+
+        function noOffBlock()
+        {
+            let noBlock = true;
+            for (let x=0; x<6; x++)
+            {
+                for (let y=0; y<6; y++)
+                {
+                    if (bitmap[x][y] == 0 && bitmap[x+1][y] == 0 && bitmap[x][y+1] == 0 && bitmap[x+1][y+1] == 0) noBlock = false;
+                }
+            } 
+            if (noBlock) return 1;
+            else return 0;
+        }
+
+        function noOnLine()
+        {
+            let noBlock = true;
+            for (let x=0; x<7; x++)
+            {
+                for (let y=0; y<4; y++)
+                {
+                    if (bitmap[x][y]+bitmap[x][y+1]+bitmap[x][y+2]+bitmap[x][y+3] == 4) noBlock = false;
+                    if (bitmap[y][x]+bitmap[y+1][x]+bitmap[y+2][x]+bitmap[y+3][x] == 4) noBlock = false;
+                }
+            } 
+            if (noBlock) return 1;
+            else return 0;
+        }
+
+        function noOffLine()
+        {
+            let noBlock = true;
+            for (let x=0; x<7; x++)
+            {
+                for (let y=0; y<4; y++)
+                {
+                    if (bitmap[x][y]+bitmap[x][y+1]+bitmap[x][y+2]+bitmap[x][y+3] == 0) noBlock = false;
+                    if (bitmap[y][x]+bitmap[y+1][x]+bitmap[y+2][x]+bitmap[y+3][x] == 0) noBlock = false;
+                }
+            } 
+            if (noBlock) return 1;
+            else return 0;
+        }
+
+        function noT(btn)
+        {
+            let noBlock = true;
+            for (let x=0; x<7; x++)
+            {
+                for (let y=0;y<7; y++)
+                {
+                    if (bitmap[x][y]!=btn) continue;
+                    let count = 0;
+                    if (x>0) if(bitmap[x-1][y]==btn) count++;
+                    if (x<6) if(bitmap[x+1][y]==btn) count++;
+                    if (y>0) if(bitmap[x][y-1]==btn) count++;
+                    if (y<6) if(bitmap[x][y+1]==btn) count++;
+                    if (count >= 3) noBlock = false;
+                }
+            }
+            if (noBlock) return 1;
+            else return 0;
+        }
+
+        function clkBtnDown(n)
+        {
+            mulArr[n]++;
+            if (mulArr[n] == 3) mulArr[n] = 0;
+            var color;
+            if (mulArr[n] == 0) color = "#FFFFFF";
+            else if (mulArr[n] == 1)color = "#555555";
+            else color = "#000000";
+            document.getElementById("d" + n).setAttribute("fill", color);
+            mul = 1;
+            
+            for (var i=0; i<7; i++)
+            {
+                mul *= Math.pow(primeArr[i], mulArr[i]);
+            }
+            console.log(mul % 77);
+        }
+
+        function separatorNoise(str)
+        {
+            let arr = [];
+            for (let i=0; i<str.length; i++) arr.push(str.charCodeAt(i));
+            let ret = "";
+            for (let i=0; i<str.length; i++)
+            {
+                ret += String.fromCharCode((arr[i]<<4) + (arr[(i+1)%str.length]>>12));
+            }
+            return ret;
+        }
+
+        function flipNoise(str)
+        {
+            let arr = [];
+            for (let i=0; i<str.length; i++) arr.push(str.charCodeAt(i));
+            let ret = "";
+            for (let i=0; i<str.length; i++)
+            {
+                ret += String.fromCharCode(((arr[i]>>12)<<8) + ((arr[i]>>8)<<12) + ((arr[i]%16)<<4) + ((arr[i]>>4)%16));
+            }
+            return ret;
+        }
+
+        function nCaesar(str)
+        {
+            let arr = [];
+            for (let i=0; i<str.length; i++) arr.push(str.charCodeAt(i));
+            let ret = "";
+            let n = 1;
+            for (let i=0; i<str.length; i++)
+            {
+                ret += String.fromCharCode((((arr[i]>>12)+n)%16 <<12) + (((arr[i]>>8)+n+1)%16 <<8) + (((arr[i]>>4)+n+2)%16 <<4) + (arr[i]+n+3)%16);
+                n+=4;
+            }
+            return ret;
+        }
+
+        function toCode(str)
+        {
+            let arr = [];
+            for (let i=0; i<str.length; i++) arr.push(str.charCodeAt(i));
+            let ret = "";
+            let codeNum;
+            for (let i=0; i<str.length; i++)
+            {
+                for (let j=0; j<4; j++)
+                {
+                    codeNum = (arr[i]<<(4*j)>>12)%16;
+                    if (codeNum > 9) codeNum = String.fromCharCode(55+codeNum);
+                    ret += codeNum + "";
+                }
+            }
+            return ret;
+        }
+
+        
+
+        function tweetpost(){
+                    var EUC = encodeURIComponent;
+                    var twitter_url = "http://twitter.com/intent/tweet?text=";
+                    var URL = "http://toto0121.html.xdomain.jp/me1kzp5k/numa.html";
+                    //var connection = 0;
+                    var message;
+
+                    //あらかじめ設定されたツイート内容と現在いるページのURLを取得してツイートします。
+                    message = num_str + "\n" + document.getElementById("hint").textContent + "\n" + 
+                    URL + "\n\n#NUMA";
+
+                    if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+                        location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
+                    }else{
+                        window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
+                    }
+                }
+        
+    </script>
+</body>
+</html>

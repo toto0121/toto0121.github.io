@@ -1,0 +1,62 @@
+<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185296319-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-185296319-1');
+    </script>
+    
+  <title>FEVER_FEVER</title>
+  <meta charset="UTF-8">
+</head>
+<body bgcolor = "black">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+
+    <script src = "firebaseInit.js"></script>
+    <script src="url.js"></script>
+    <script>
+        var _0x2a2a=['\x33\x34\x34\x38\x37\x30\x45\x75\x6a\x4c\x56\x77','\x32\x74\x75\x6a\x78\x65\x46','\x31\x65\x52\x72\x4b\x51\x48','\x32\x32\x37\x31\x31\x30\x4a\x66\x63\x41\x63\x70','\x31\x32\x36\x38\x30\x37\x71\x70\x47\x6b\x6b\x42','\x31\x51\x79\x66\x5a\x42\x5a','\x63\x6f\x6c\x6c\x65\x63\x74\x69\x6f\x6e','\x33\x30\x37\x38\x38\x35\x6d\x58\x57\x46\x73\x51','\x31\x38\x37\x34\x34\x33\x6a\x6c\x70\x4c\x6c\x66','\x33\x35\x38\x36\x36\x31\x68\x6d\x6a\x54\x61\x51','\x36\x6a\x42\x5a\x6c\x46\x52','\x64\x6f\x63','\x39\x39\x34\x33\x39\x43\x49\x48\x57\x4c\x6c'];var _0xc0a5=function(_0x57fb08,_0x3c6c83){_0x57fb08=_0x57fb08-0xf9;var _0x2a2a7d=_0x2a2a[_0x57fb08];return _0x2a2a7d;};var _0x174551=_0xc0a5;(function(_0x26836b,_0x2da785){var _0x2addaf=_0xc0a5;while(!![]){try{var _0x505187=-parseInt(_0x2addaf('\x30\x78\x66\x65'))*parseInt(_0x2addaf('\x30\x78\x66\x66'))+-parseInt(_0x2addaf('\x30\x78\x31\x30\x30'))*parseInt(_0x2addaf('\x30\x78\x66\x61'))+parseInt(_0x2addaf('\x30\x78\x66\x39'))+parseInt(_0x2addaf('\x30\x78\x31\x30\x32'))+parseInt(_0x2addaf('\x30\x78\x31\x30\x31'))*parseInt(_0x2addaf('\x30\x78\x31\x30\x33'))+-parseInt(_0x2addaf('\x30\x78\x66\x64'))*-parseInt(_0x2addaf('\x30\x78\x66\x62'))+parseInt(_0x2addaf('\x30\x78\x31\x30\x35'));if(_0x505187===_0x2da785)break;else _0x26836b['push'](_0x26836b['shift']());}catch(_0x4c9d78){_0x26836b['push'](_0x26836b['shift']());}}}(_0x2a2a,0x610a6));var db=firebase['\x66\x69\x72\x65\x73\x74\x6f\x72\x65'](),ref=db[_0x174551('\x30\x78\x31\x30\x34')]('\x66\x65\x76\x65\x72\x66\x65\x76\x65\x72')[_0x174551('\x30\x78\x66\x63')]('\x66\x65\x76\x65\x72');ref['\x75\x70\x64\x61\x74\x65']({'\x68\x65\x61\x6c\x32':0x1});
+        
+        function tweetpost(){
+            var EUC = encodeURIComponent;
+            var twitter_url = "http://twitter.com/intent/tweet?text=";
+            
+            //var connection = 0;
+            var message = "★の謎を解き明かした！\n\n宝箱の中身は...\n\n\\\\\\ フィーバー回数 +1 ///\n\n";
+
+            //あらかじめ設定されたツイート内容と現在いるページのURLを取得してツイートします。
+            message += URL + "\n\n#FEVER_FEVER";
+
+            if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+                location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
+            }else{
+                window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
+            }
+        }</script>
+    <div style="text-align: center">
+    <svg viewBox="-300 -500 600 1000" height="100%">
+        <g transform="translate(0,100)">
+            <text x="0" y="-300" fill="white" font-size="40" text-anchor="middle">おめでとう！</text>
+            <text x="0" y="-200" fill="white" font-size="40" text-anchor="middle">★の謎を解き明かした！</text>
+            <text x="0" y="-100" fill="white" font-size="40" text-anchor="middle">宝箱の中身は...</text>
+            <text x="0" y="20" fill="white" font-size="60" text-anchor="middle" stroke = "#c1ab05" stroke-width="6">フィーバー回数 +1</text>
+            <text x="0" y="20" fill="white" font-size="60" text-anchor="middle">フィーバー回数 +1</text>
+            <g onclick="tweetpost()" id = "twt" display="inline" transform = "translate(-340,90) scale(1.5)">
+                <rect x="200" y="0" width="50" height="50" fill="#FFFFFF"></rect>
+                <path fill="#000000" transform="translate(190,-10) scale(0.18)" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/>
+            </g>
+        </g>
+    </svg>
+    </div>
+</body>
+</html>
