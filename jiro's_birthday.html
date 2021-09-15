@@ -1,0 +1,300 @@
+<html>
+<head>
+  <title>happy birthday JIRO</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <svg id="svg1" viewBox="-450 -180 900 400">
+        <rect x = "-450" y = "-180" width = "900" height = "400" fill = "#C0F0B0" stroke = "none"></rect>
+                
+        <text x="-100" y="30" text-anchor="middle" font-size="40" fill="black" id = "turn"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">
+            14
+        </text>
+        
+        <text x="70" y="30" text-anchor="middle" font-size="40" fill="black" id = "num"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">
+            0
+        </text>
+
+        <text x="150" y="30" text-anchor="middle" font-size="40" fill="black"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">
+            / 29
+        </text>
+
+        <circle cx = "-250" cy ="-80" r = "30" id = "btn0" fill = "#bbbbbb" stroke = "black" onmousedown = "clkbtn(0)" onmouseup="rlsbtn(0)" onmouseout="rlsbtn(0)"></circle>
+        <circle cx = "-150" cy ="-80" r = "30" id = "btn1" fill = "#bbbbbb" stroke = "black" onmousedown = "clkbtn(1)" onmouseup="rlsbtn(1)" onmouseout="rlsbtn(1)"></circle>
+        <circle cx = "-50" cy ="-80" r = "30" id = "btn2" fill = "#bbbbbb" stroke = "black" onmousedown = "clkbtn(2)" onmouseup="rlsbtn(2)" onmouseout="rlsbtn(2)"></circle>
+        <circle cx = "50" cy ="-80" r = "30" id = "btn3" fill = "#bbbbbb" stroke = "black" onmousedown = "clkbtn(3)" onmouseup="rlsbtn(3)" onmouseout="rlsbtn(3)"></circle>
+        <circle cx = "150" cy ="-80" r = "30" id = "btn4" fill = "#bbbbbb" stroke = "black" onmousedown = "clkbtn(4)" onmouseup="rlsbtn(4)" onmouseout="rlsbtn(4)"></circle>
+        <circle cx = "250" cy ="-80" r = "30" id = "btn5" fill = "#bbbbbb" stroke = "black" onmousedown = "clkbtn(5)" onmouseup="rlsbtn(5)" onmouseout="rlsbtn(5)"></circle>
+        <circle cx = "-100" cy ="110" r = "30" id = "btn6" fill = "#bbbbbb" stroke = "black" onmousedown = "clkbtn(6)" onmouseup="rlsbtn(6)" onmouseout="rlsbtn(6)"></circle>
+        <circle cx = "0" cy ="110" r = "30" id = "btn7" fill = "#bbbbbb" stroke = "black" onmousedown = "clkbtn(7)" onmouseup="rlsbtn(7)" onmouseout="rlsbtn(7)"></circle>
+        <circle cx = "100" cy ="110" r = "30" id = "btn8" fill = "#bbbbbb" stroke = "black" onmousedown = "clkbtn(8)" onmouseup="rlsbtn(8)" onmouseout="rlsbtn(8)"></circle>
+        <rect x="200" y="80" width="100" height="60" id="btn9" fill = "#bbbbbb" stroke="black" onmousedown="clkbtn(9)" onmouseup="rlsbtn(9)" onmouseout="rlsbtn(9)"></rect>
+        <text x="-100" y="118" text-anchor="middle" font-size="20" fill="black"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;"
+            pointer-events="none">
+            195
+        </text>
+        <text x="0" y="118" text-anchor="middle" font-size="20" fill="black"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;"
+            pointer-events="none">
+            216
+        </text>
+        <text x="100" y="118" text-anchor="middle" font-size="20" fill="black"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;"
+            pointer-events="none">
+            245
+        </text>
+        <text x="250" y="118" text-anchor="middle" font-size="20" fill="black"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;"
+            pointer-events="none">
+            RESET
+        </text>
+        <g id="clear" display = "none" transform="translate(0,-100) scale(0.8)">
+            <rect x="-200" y="-60" width="400" height="150" fill="#f0e68c" stroke="black" stroke-width="2"></rect>
+            <text x="0" y="10" text-anchor="middle" font-size="40" fill="red"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">
+            Congratulations!
+            </text>
+            <text x="0" y="55" text-anchor="middle" font-size="20" fill="red"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">
+            and Happy Birthday!
+            </text>
+        </g>
+        
+    </svg>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+    <script>
+
+        let my_tekiya_count = -1;
+        let tekiya_grain = 0;
+
+        // Import the functions you need from the SDKs you need
+        //import { initializeApp } from "firebase/app";
+        //import { getAnalytics } from "firebase/analytics";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+        apiKey: "AIzaSyDd1kS8pbket83GtDdUZH-o46DaPRcXkvQ",
+        authDomain: "nazo-bf1e8.firebaseapp.com",
+        projectId: "nazo-bf1e8",
+        storageBucket: "nazo-bf1e8.appspot.com",
+        messagingSenderId: "673668908974",
+        appId: "1:673668908974:web:1b22ec18186b817f6bea3f",
+        measurementId: "G-4VMRQ5P03R"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        //const analytics = getAnalytics(app);
+
+        var db = firebase.firestore();
+
+        db.collection("agricola").doc("tekiya")
+        .onSnapshot((doc) => {
+            let tekiya_count = doc.data().count;
+            if (my_tekiya_count < 0) my_tekiya_count =  tekiya_count;
+            else {
+                tekiya_grain = tekiya_count - my_tekiya_count;
+                getScore();
+            }
+        });
+
+
+        function setAttributes(obj, cmd) {
+            for (var i=0; i+1<cmd.length; i+=2) {
+                obj.setAttribute(cmd[i], cmd[i+1]);
+            }
+        }
+
+        function addObj(parent, objtype, cmd) {
+            obj = document.createElementNS('http://www.w3.org/2000/svg',objtype);
+            setAttributes(obj, cmd);
+            parent.appendChild(obj);
+        }
+
+        let sheep=0, boar=0, cow=0;
+        let field=0;
+        let grain=0, vegetable=0;
+
+        let e195 = false, e216 = false, i245 = false;
+
+        let score_obj = document.getElementById("num");
+
+        let turn = 14;
+        let turn_obj = document.getElementById("turn");
+        turn_obj.textContent = turn;
+
+        
+
+        function clkbtn(num) {
+            let btn_obj = document.getElementById("btn" + num);
+            if (turn == 0 && num < 9) return;
+            if (num < 6) btn_obj.setAttribute("fill", "#888888");
+            switch(num)
+            {
+                case 0:
+                    if (sheep + boar + cow >= 9) break;
+                    if (e216)
+                    {
+                        sheep++;
+                    }
+                    else
+                    {
+                        if (boar * cow > 0) break;
+                        if (sheep > 0 && (boar + cow) > 0) break;
+                        sheep++;
+                    }
+                    break;
+                case 1:
+                    if (sheep + boar + cow >= 9) break;
+                    if (e216)
+                    {
+                        boar++;
+                    }
+                    else
+                    {
+                        if (sheep * cow > 0) break;
+                        if (boar > 0 && (sheep + cow) > 0) break;
+                        boar++;
+                    }
+                    break;
+                case 2:
+                    if (sheep + boar + cow >= 9) break;
+                    if (e216)
+                    {
+                        cow++;
+                    }
+                    else
+                    {
+                        if (boar * sheep > 0) break;
+                        if (cow > 0 && (boar + sheep) > 0) break;
+                        cow++;
+                    }
+                    break;
+                case 3:
+                    if (field < 7) field++;
+                    if (field < 7 && e195) field++;
+                    break;
+                case 4:
+                    grain++;
+                    if (i245)
+                    {
+                        grain++;
+                        vegetable++;
+                        db.collection("agricola").doc("tekiya").update({
+                            count : firebase.firestore.FieldValue.increment(1)
+                        });
+                    }
+                    break;
+                case 5:
+                    vegetable++;
+                    break;
+                case 6:
+                    if (e195)
+                    {
+                        turn++;
+                        break;
+                    }
+                    e195 = true;
+                    btn_obj.setAttribute("stroke-width", 5);
+                    btn_obj.setAttribute("fill", "#888888");
+                    break;
+                case 7:
+                    if (e216)
+                    {
+                        turn++;
+                        break;
+                    }
+                    e216 = true;
+                    btn_obj.setAttribute("stroke-width", 5);
+                    btn_obj.setAttribute("fill", "#888888");
+                    break;
+                case 8:
+                    if (i245)
+                    {
+                        turn++;
+                        break;
+                    }
+                    i245 = true;
+                    btn_obj.setAttribute("stroke-width", 5);
+                    btn_obj.setAttribute("fill", "#888888");
+                    break;
+                case 9:
+                    location.reload();
+            }
+            
+            getScore();
+
+            turn--;
+            turn_obj.textContent = turn;
+        }
+
+
+        function rlsbtn(num) {
+            let btn_obj = document.getElementById("btn" + num);
+            btn_obj.setAttribute("fill", "#bbbbbb");
+        }
+
+        function getScore()
+        {
+            let score = 0;
+            if (sheep > 0) score+=2;
+            if (sheep > 3) score++;
+            if (sheep > 5) score++;
+            if (sheep > 7) score++;
+            if (boar > 0) score+=2;
+            if (boar > 2) score++;
+            if (boar > 4) score++;
+            if (boar > 6) score++;
+            if (cow > 0) score+=2;
+            if (cow > 1) score++;
+            if (cow > 3) score++;
+            if (cow > 5) score++;
+            score += field;
+            if (field > 1) score+=2;
+            if (field > 2) score++;
+            if (field > 3) score++;
+            if (field > 4) score++;
+            if (grain + tekiya_grain > 0) score+=2;
+            if (grain + tekiya_grain > 3) score++;
+            if (grain + tekiya_grain > 5) score++;
+            if (grain + tekiya_grain > 7) score++;
+            if (vegetable > 0) score += 2;
+            if (vegetable > 1) score++;
+            if (vegetable > 2) score++;
+            if (vegetable > 3) score++;
+
+            score_obj.textContent = score;
+
+            if (score == 29)
+            {
+                document.getElementById("clear").setAttribute("display", "inline");
+            }
+        }
+
+        
+    </script>
+    
+</body>
+</html>
