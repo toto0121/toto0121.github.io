@@ -222,8 +222,8 @@
             });
 
             svg.addEventListener("touchmove", function(e) {
-                e.preventDefault()
                 if (touchBlockNum < 0) return;
+                e.preventDefault()
                 let touchPos = [e.changedTouches[0].pageX/winW * 900, e.changedTouches[0].pageY/winH * 1600];
                 dx = Math.round((touchPos[0] - touchStart[0]) / 100);
                 dy = Math.round((touchPos[1] - touchStart[1]) / 100);
@@ -249,7 +249,7 @@
                 winW = svg.getBoundingClientRect().width;
                 touchStart = [e.changedTouches[0].pageX/winW * 900, e.changedTouches[0].pageY/winH * 1600];
                 startTime = new Date();
-                document.getElementById("debug").textContent = "x: " + touchStart[0] + " y: " + touchStart[1];
+                //document.getElementById("debug").textContent = "x: " + touchStart[0] + " y: " + touchStart[1];
             });
 
             let claered = 0;
@@ -432,7 +432,7 @@
         <text x="880" y="50" text-anchor="end" font-size="20" fill="black"
         style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">
-            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開 debug1.4</tspan>
+            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開 debug1.</tspan>
             <tspan x="880" dy="30">制作 とと (@to_to_0121)</tspan>
             <tspan x="870" dy="30">#とと謎black_block</tspan>
         </text>
