@@ -1,0 +1,419 @@
+<!--
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+
+
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<html>
+<head>
+    <title>black_block</title>
+    <meta charset="UTF-8">
+    <meta name="twitter:card" content="summary_large_image" /> <!--①-->
+    <meta name="twitter:site" content="@to_to_0121" /> <!--②-->
+    <meta property="og:url" content="https://toto0121.github.io/spiky_mobile.html" /> <!--③-->
+    <meta property="og:title" content="spiky" /> <!--④-->
+    <meta property="og:description" content="web謎解き spiky 2021年8月7日公開" /> <!--⑤-->
+    <meta property="og:image" content="https://toto0121.github.io/spiky_image.png" /> <!--⑥-->
+</head>
+<body>
+    <svg id="svg" viewBox="0 0 900 1600">
+        <rect x="0" y="0" width="900" height="1800" fill="#888888"/>
+        <script>
+
+            var URL = "https://toto0121.github.io/spiky.html";
+            document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
+
+            var svg = document.getElementById("svg");
+            
+            
+            function setAttributes(obj, cmd) {
+                let len = cmd.length;
+                let i=0;
+                while (i+1 < len)
+                {
+                    obj.setAttribute(cmd[i], cmd[i+1]);
+                    i += 2;
+                }
+            }
+
+            function addObj(parent, objtype, cmd) {
+                obj = document.createElementNS('http://www.w3.org/2000/svg',objtype);
+                setAttributes(obj, cmd);
+                parent.appendChild(obj);
+                return obj;
+            }
+
+            const answerText = [];
+            function addText(parent, text, cmd)
+            {
+                obj = document.createElementNS('http://www.w3.org/2000/svg',"text");
+                setAttributes(obj, ["font-size", 200, "font-family", "Yu Mincho", "fill", "black", "text-anchor", "middle", "pointer-events", "none", "style", "user-select:none; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none;"]);
+                setAttributes(obj, cmd);
+                obj.textContent = text;
+                parent.appendChild(obj);
+                return obj;
+            }
+
+            function addTextAns(parent, text, cmd)
+            {
+                obj = addText(parent, text, cmd);
+                answerText.push(obj);
+            }
+
+            let grid = addObj(svg, "g",[]);
+            let black = addObj(grid, "g", []);
+            for (let i=0; i<8; i++) for (let j=0; j<4; j++)
+            {
+                if (i==0 && j==0) continue;
+                if (i==7 && j==3) continue;
+                addObj(black, "rect", ["x",50+100*i,"y",300+100*j,"width",100,"height",100, "stroke", "white", "fill", "black"]);
+            }
+            addObj(black, "rect", ["x",650,"y",200,"width",100,"height",100, "stroke", "white", "fill", "black"]);
+            addObj(black, "rect", ["x",750,"y",200,"width",100,"height",100, "stroke", "white", "fill", "black"]);
+            addObj(black, "rect", ["x",250,"y",700,"width",100,"height",100, "stroke", "white", "fill", "black"]);
+            addTextAns(black, "b", ["x", 200, "y", 600, "fill", "white"]);
+            addTextAns(black, "l", ["x", 300, "y", 600, "fill", "white"]);
+            addTextAns(black, "a", ["x", 400, "y", 600, "fill", "white"]);
+            addTextAns(black, "c", ["x", 500, "y", 600, "fill", "white"]);
+            addTextAns(black, "k", ["x", 600, "y", 600, "fill", "white"]);
+
+            grid.setAttribute("transform", "translate(90,160) scale(0.8)");
+
+            let red = addObj(grid, "g", ["transform", "translate(300,950)"]);
+            addObj(red, "rect", ["x", -50, "y", -50, "width", 100, "height", 100, "fill", "red", "stroke", "white"]);
+            addObj(red, "rect", ["x", -150, "y", -50, "width", 100, "height", 100, "fill", "red", "stroke", "white"]);
+            addObj(red, "rect", ["x", 50, "y", -50, "width", 100, "height", 100, "fill", "red", "stroke", "white"]);
+            addObj(red, "rect", ["x", 50, "y", -150, "width", 100, "height", 100, "fill", "red", "stroke", "white"]);
+            addTextAns(red, "r", ["x", -100, "y", 50]);
+            addTextAns(red, "e", ["x", 0, "y", 50]);
+            addTextAns(red, "d", ["x", 100, "y", 50]);
+
+            let blue = addObj(grid, "g", ["transform", "translate(600,950)"]);
+            addObj(blue, "rect", ["x", -50, "y", -50, "width", 100, "height", 100, "fill", "blue", "stroke", "white"]);
+            addObj(blue, "rect", ["x", -50, "y", -150, "width", 100, "height", 100, "fill", "blue", "stroke", "white"]);
+            addObj(blue, "rect", ["x", -150, "y", -50, "width", 100, "height", 100, "fill", "blue", "stroke", "white"]);
+            addObj(blue, "rect", ["x", -150, "y", -150, "width", 100, "height", 100, "fill", "blue", "stroke", "white"]);
+            addObj(blue, "rect", ["x", 50, "y", -50, "width", 100, "height", 100, "fill", "blue", "stroke", "white"]);
+            addObj(blue, "rect", ["x", 150, "y", -50, "width", 100, "height", 100, "fill", "blue", "stroke", "white"]);
+            addTextAns(blue, "b", ["x", -100, "y", 50]);
+            addTextAns(blue, "l", ["x", 0, "y", 50]);
+            addTextAns(blue, "u", ["x", 100, "y", 50]);
+            addTextAns(blue, "e", ["x", 200, "y", 50]);
+
+            let green = addObj(grid, "g", ["transform", "translate(400, 1050)"]);
+            addObj(green, "rect", ["x", -50, "y", -50, "width", 100, "height", 100, "fill", "green", "stroke", "white"]);
+            addObj(green, "rect", ["x", -150, "y", -50, "width", 100, "height", 100, "fill", "green", "stroke", "white"]);
+            addObj(green, "rect", ["x", -250, "y", -50, "width", 100, "height", 100, "fill", "green", "stroke", "white"]);
+            addObj(green, "rect", ["x", -250, "y", 50, "width", 100, "height", 100, "fill", "green", "stroke", "white"]);
+            addObj(green, "rect", ["x", 50, "y", -50, "width", 100, "height", 100, "fill", "green", "stroke", "white"]);
+            addObj(green, "rect", ["x", 150, "y", -50, "width", 100, "height", 100, "fill", "green", "stroke", "white"]);
+            addTextAns(green, "g", ["x", -200, "y", 50]);
+            addTextAns(green, "r", ["x", -100, "y", 50]);
+            addTextAns(green, "e", ["x", 0, "y", 50]);
+            addTextAns(green, "e", ["x", 100, "y", 50]);
+            addTextAns(green, "n", ["x", 200, "y", 50]);
+
+            let yellow = addObj(grid, "g", ["transform", "translate(400,1250)"]);
+            addObj(yellow, "rect", ["x", -50, "y", -50, "width", 100, "height", 100, "fill", "yellow", "stroke", "white"]);
+            addObj(yellow, "rect", ["x", -50, "y", -150, "width", 100, "height", 100, "fill", "yellow", "stroke", "white"]);
+            addObj(yellow, "rect", ["x", -150, "y", -50, "width", 100, "height", 100, "fill", "yellow", "stroke", "white"]);
+            addObj(yellow, "rect", ["x", -250, "y", -50, "width", 100, "height", 100, "fill", "yellow", "stroke", "white"]);
+            addObj(yellow, "rect", ["x", -250, "y", 50, "width", 100, "height", 100, "fill", "yellow", "stroke", "white"]);
+            addObj(yellow, "rect", ["x", 50, "y", -50, "width", 100, "height", 100, "fill", "yellow", "stroke", "white"]);
+            addObj(yellow, "rect", ["x", 50, "y", -150, "width", 100, "height", 100, "fill", "yellow", "stroke", "white"]);
+            addObj(yellow, "rect", ["x", 150, "y", -50, "width", 100, "height", 100, "fill", "yellow", "stroke", "white"]);
+            addObj(yellow, "rect", ["x", 250, "y", -50, "width", 100, "height", 100, "fill", "yellow", "stroke", "white"]);
+            addTextAns(yellow, "y", ["x", -200, "y", 50]);
+            addTextAns(yellow, "e", ["x", -100, "y", 50]);
+            addTextAns(yellow, "l", ["x", 0, "y", 50]);
+            addTextAns(yellow, "l", ["x", 100, "y", 50]);
+            addTextAns(yellow, "o", ["x", 200, "y", 50]);
+            addTextAns(yellow, "w", ["x", 300, "y", 50]);
+
+            function toTop(obj)
+            {
+                grid.removeChild(obj);
+                grid.appendChild(obj);
+            }
+
+            let ansColor = 1;
+
+            function changeAnsTextColor()
+            {
+                ansColor = 1 - ansColor;
+                if (ansColor == 0) answerText.forEach (e => e.setAttribute("display", "none"));
+                else answerText.forEach (e => e.setAttribute("display", "inline"));
+            }
+
+            changeAnsTextColor();
+
+
+            let blockPos = [[300,1050,0], [600, 1050,0], [400,1150,0], [400,1350,0]];
+
+            let winH = svg.getBoundingClientRect().height;
+            let winW = svg.getBoundingClientRect().width;
+            let dx = 0, dy = 0;
+            svg.addEventListener("mousemove", function(e) {
+                if (touchBlockNum < 0) return;
+                let touchPos = [e.pageX/winW * 900, e.pageY/winH * 1600];
+                dx = Math.round((touchPos[0] - touchStart[0]) / 100);
+                dy = Math.round((touchPos[1] - touchStart[1]) / 100);
+                blocks[touchBlockNum].setAttribute("transform", "translate(" + (blockPos[touchBlockNum][0] + dx * 100) + " " + (blockPos[touchBlockNum][1] + dy * 100) + ") rotate(" + blockPos[touchBlockNum][2] +")"); 
+            });
+
+            let touchStart = [0, 0];
+            let startTime;
+            let stopTime;
+
+            svg.addEventListener("mousedown", function(e) {
+                
+                winH = svg.getBoundingClientRect().height;
+                winW = svg.getBoundingClientRect().width;
+                touchStart = [e.pageX/winW * 900, e.pageY/winH * 1600];
+                startTime = new Date();
+            });
+
+            let claered = 0;
+
+            svg.addEventListener("mouseup", function(e) {
+                release_btn();
+                if (touchBlockNum == -1) return;
+                blockPos[touchBlockNum][0] += dx * 100;
+                blockPos[touchBlockNum][1] += dy * 100;
+                stopTime = new Date();
+                if (stopTime.getTime() - startTime.getTime() < 200 && dx == 0 && dy == 0)
+                {
+                    blockPos[touchBlockNum][2] += 90;
+                    if (blockPos[touchBlockNum][2] == 360) blockPos[touchBlockNum][2] = 0;
+                    blocks[touchBlockNum].setAttribute("transform", "translate(" + (blockPos[touchBlockNum][0]) + " " + (blockPos[touchBlockNum][1]) + ") rotate(" + blockPos[touchBlockNum][2] +")");
+                }
+                touchBlockNum = -1;
+                dx = 0;
+                dy = 0;
+                if (JSON.stringify(blockPos) == JSON.stringify([[100,550,90],[800,450,270],[500,650,0],[500,350,180]]))
+                {
+                    if (claered == 0)
+                    {
+                        clearEvt();
+                        claered == 1;
+                    } 
+                }
+            });
+            
+            let touchBlockNum = -1;
+
+            red.setAttribute("onmousedown", "touchBlock(0)");
+            blue.setAttribute("onmousedown", "touchBlock(1)");
+            green.setAttribute("onmousedown", "touchBlock(2)");
+            yellow.setAttribute("onmousedown", "touchBlock(3)");
+            
+
+            function touchBlock(num)
+            {
+                touchBlockNum = num;
+                toTop(blocks[num]);
+            }
+
+            const blocks = [red, blue, green, yellow];
+
+            let clearObj;
+
+            function clearEvt()
+            {
+                clearObj = addObj(svg, "g", ["transform", "translate(0,200)"]);
+                addObj(clearObj, "rect", ["x", 100, "y", 150, "width", 700, "height", 900, "fill", "white", "stroke", "black", "stroke-width", 5, "opacity", 0.9])
+                addObj(clearObj, "rect", ["x", 700, "y", 150, "width", 100, "height", 100, "fill", "#DDDDDD", "stroke", "black", "stroke-width", 3, "onclick", "closeClear()"]);
+                addObj(clearObj, "line", ["x1", 720, "y1", 170, "x2", 780, "y2", 230, "stroke", "black", "stroke-width", 3, "pointer-events", "none"]);
+                addObj(clearObj, "line", ["x1", 720, "y1", 230, "x2", 780, "y2", 170, "stroke", "black", "stroke-width", 3, "pointer-events", "none"]);
+                addText(clearObj, "Congratulations!", ["fill", "red", "x", 450, "y", 400, "font-size", 80, "font-weight", "bold"]);
+                addObj(clearObj, "rect", ["x", 350, "y",450, "width", 200, "height", 80, "rx", 5, "ry", 5, "fill", "#00BFFF"]);
+                addObj(clearObj, "path", ["pointer-events", "none", "fill","#FFFFFF","transform","translate(340,450) scale(0.2)","d","M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"]);
+                addText(clearObj, "TWEET", ["x", 470, "y", 503, "fill", "white", "font-family", "Arial", "font-size", 35])
+                addText(clearObj, "謎は解けましたか？", ["x", 450, "y", 700, "font-size", 60]);
+                addText(clearObj, "!マークを押すと", ["x", 450, "y", 820, "font-size", 60]);
+                addText(clearObj, "解説が表示されます。", ["x", 450, "y", 900, "font-size", 60]);
+                
+                addObj(svg, "circle", ["cx","100","cy","240","r","60","stroke-width","5","stroke","#888888","fill","#DDDDDD", "onclick", "changeAnsTextColor()"]);
+                addText(svg, "!", ["x", 100, "y", 270, "font-size", 80, "fill", "#888888", "font-family", "Arial"]);
+            }
+            
+            function closeClear()
+            {
+                clearObj.setAttribute("display", "none");
+            }
+
+            function reset_click()
+            {
+                document.getElementById("reset_btn").setAttribute("fill", "#AAAAAA");
+                red.setAttribute("transform", "translate(300,950)");
+                blockPos[0] = [300,950,0];
+                blue.setAttribute("transform", "translate(600,950)");
+                blockPos[1] = [600,950,0];
+                green.setAttribute("transform", "translate(400,1050)");
+                blockPos[2] = [400,1050,0];
+                yellow.setAttribute("transform", "translate(400,1250)");
+                blockPos[3] = [400,1250,0];
+                claered == 0;
+            }
+
+            function release_btn()
+            {
+                document.getElementById("reset_btn").setAttribute("fill", "#DDDDDD");
+            }
+
+            function tweet()
+            {
+                var EUC = encodeURIComponent;
+                var twitter_url = "http://twitter.com/intent/tweet?text=";
+                
+                //var connection = 0;
+                var message = "web謎解き spiky の謎を解き明かした！";
+
+                //あらかじめ設定されたツイート内容と現在いるページのURLを取得してツイートします。
+                message += URL + "\n\n#web謎解き #とと謎spiky";
+
+                if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+                    location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
+                }else{
+                    window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
+                }
+            }
+
+            function clk_q()
+            {
+                var inst = document.getElementById("instruction");
+                if(inst.getAttribute("display") == "none") inst.setAttribute("display", "inline");
+                else close_inst();
+            }
+
+            function close_inst()
+            {
+                document.getElementById("instruction").setAttribute("display", "none");
+            }
+            
+        </script>
+        <text x="450" y="250" text-anchor="middle" font-size="110" fill="black"
+        cursor="default" font-family="Times New Roman"
+        style="user-select:none; -webkit-user-select:none;
+        -moz-user-select:none; -ms-user-select:none;">black block</text>
+        
+        <g onmousedown="reset_click()">
+            <rect x="370" y="1330" width="160" height="160" fill="#DDDDDD" stroke="black" 
+            id="reset_btn">
+            </rect>
+            <text x="450" y="1425" text-anchor="middle" font-size="40" fill="black"
+                cursor="default" style="user-select:none; -webkit-user-select:none;
+                -moz-user-select:none; -ms-user-select:none;">
+                RESET
+            </text>
+        </g>
+        
+        <g id="clear" display="none">
+            <text x="450" y="970" text-anchor="middle" font-size="70" fill="red" cursor="default" 
+             style="user-select:none; -webkit-user-select:none;
+             -moz-user-select:none; -ms-user-select:none;">congratulations!</text>
+            <g onclick="tweet()">
+            <rect x="350" y="1010" width="200" height="75" fill="#00BFFF" rx="5" ry="5"></rect>
+            <path fill="#FFFFFF" transform="translate(350,1018) scale(0.15)" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/>
+            <text x="470" y="1060" text-anchor="middle" font-size="35" fill="white" cursor="default" 
+             style="user-select:none; -webkit-user-select:none;
+             -moz-user-select:none; -ms-user-select:none;">TWEET</text>
+            </g>
+        </g>
+        <text x="880" y="50" text-anchor="end" font-size="20" fill="black"
+        style="user-select:none; -webkit-user-select:none;
+        -moz-user-select:none; -ms-user-select:none;">
+            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開</tspan>
+            <tspan x="880" dy="30">制作 とと (@to_to_0121)</tspan>
+            <tspan x="870" dy="30">#とと謎black_block</tspan>
+        </text>
+
+        <g onclick="clk_q()">
+                <circle cx="100" cy="100" r="60" stroke-width="5" stroke="#888888" fill="#DDDDDD"></circle>
+                <text x="100" y="130" text-anchor="middle" font-size="80" fill="#888888"
+                style="user-select:none; -webkit-user-select:none;
+                    -moz-user-select:none; -ms-user-select:none;">?</text>
+            </g>
+    
+            <g id="instruction" display="none" transform="translate(0,150)">
+                <rect x="100" y="200" width="700" height="800" fill="#DDDDDD" stroke="#222222" stroke-width="10"></rect>
+                <text x="800" y="365" text-anchor="middle" font-size="40" fill="black"
+                style="user-select:none; -webkit-user-select:none;
+                -moz-user-select:none; -ms-user-select:none;">
+                    <tspan x="460" dy="0" font-size="60">what's this page?</tspan>
+                    <tspan x="460" dy="100">赤青緑黄のブロックは</tspan>
+                    <tspan x="460" dy="80">動かすことができます。</tspan>
+                    <tspan x="460" dy="80">隠された法則を見極め、</tspan>
+                    <tspan x="460" dy="80">クリア条件を推測してください。</tspan>
+                    <tspan x="460" dy="80">見事クリアできれば、</tspan>
+                    <tspan x="460" dy="80">"Congratulations!"と表示されます。</tspan>
+                </text>
+                <g id="close" onclick="close_inst()">
+                    <rect x="700" y="200" width="100" height="100" fill="#EEEEEE" stroke="#222222" stroke-width="3"></rect>
+                    <line x1="720" y1="220" x2="780" y2="280" stroke="black" stroke-width="3"></line>
+                    <line x1="720" y1="280" x2="780" y2="220" stroke="black" stroke-width="3"></line>
+                </g>
+            </g>
+    </svg>
+</body>
+</html>
