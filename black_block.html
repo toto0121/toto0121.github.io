@@ -313,19 +313,20 @@
             
             let touchBlockNum = -1;
 
-            red.setAttribute("onmousedown", "touchBlock(0)");
-            blue.setAttribute("onmousedown", "touchBlock(1)");
-            green.setAttribute("onmousedown", "touchBlock(2)");
-            yellow.setAttribute("onmousedown", "touchBlock(3)");
+            red.setAttribute("onmousedown", "touchBlock(event, 0)");
+            blue.setAttribute("onmousedown", "touchBlock(event, 1)");
+            green.setAttribute("onmousedown", "touchBlock(event, 2)");
+            yellow.setAttribute("onmousedown", "touchBlock(event, 3)");
 
-            red.setAttribute("ontouchstart", "touchBlock(0)");
-            blue.setAttribute("ontouchstart", "touchBlock(1)");
-            green.setAttribute("ontouchstart", "touchBlock(2)");
-            yellow.setAttribute("ontouchstart", "touchBlock(3)");
+            red.setAttribute("ontouchstart", "touchBlock(event, 0)");
+            blue.setAttribute("ontouchstart", "touchBlock(event, 1)");
+            green.setAttribute("ontouchstart", "touchBlock(event, 2)");
+            yellow.setAttribute("ontouchstart", "touchBlock(event, 3)");
             
 
-            function touchBlock(num)
+            function touchBlock(e, num)
             {
+                e.preventDefault();
                 touchBlockNum = num;
                 toTop(blocks[num]);
             }
@@ -444,7 +445,7 @@
         <text x="880" y="50" text-anchor="end" font-size="20" fill="black"
         style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">
-            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開 debug1.6</tspan>
+            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開 debug1.7</tspan>
             <tspan x="880" dy="30">制作 とと (@to_to_0121)</tspan>
             <tspan x="870" dy="30">#とと謎black_block</tspan>
         </text>
