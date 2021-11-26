@@ -215,7 +215,7 @@
             let dx = 0, dy = 0;
             svg.addEventListener("mousemove", function(e) {
                 if (touchBlockNum < 0) return;
-                let touchPos = [e.changedTouches[0].pageX/winW * 900, e.changedTouches[0].pageY/winH * 1600];
+                let touchPos = [e.pageX/winW * 900, e.pageY/winH * 1600];
                 dx = Math.round((touchPos[0] - touchStart[0]) / 100);
                 dy = Math.round((touchPos[1] - touchStart[1]) / 100);
                 blocks[touchBlockNum].setAttribute("transform", "translate(" + (blockPos[touchBlockNum][0] + dx * 100) + " " + (blockPos[touchBlockNum][1] + dy * 100) + ") rotate(" + blockPos[touchBlockNum][2] +")"); 
@@ -223,7 +223,7 @@
 
             svg.addEventListener("touchmove", function(e) {
                 if (touchBlockNum < 0) return;
-                let touchPos = [e.pageX/winW * 900, e.pageY/winH * 1600];
+                let touchPos = [e.changedTouches[0].pageX/winW * 900, e.changedTouches[0].pageY/winH * 1600];
                 dx = Math.round((touchPos[0] - touchStart[0]) / 100);
                 dy = Math.round((touchPos[1] - touchStart[1]) / 100);
                 blocks[touchBlockNum].setAttribute("transform", "translate(" + (blockPos[touchBlockNum][0] + dx * 100) + " " + (blockPos[touchBlockNum][1] + dy * 100) + ") rotate(" + blockPos[touchBlockNum][2] +")"); 
@@ -424,7 +424,7 @@
         <text x="880" y="50" text-anchor="end" font-size="20" fill="black"
         style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">
-            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開 debug1.1</tspan>
+            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開 debug1.2</tspan>
             <tspan x="880" dy="30">制作 とと (@to_to_0121)</tspan>
             <tspan x="870" dy="30">#とと謎black_block</tspan>
         </text>
