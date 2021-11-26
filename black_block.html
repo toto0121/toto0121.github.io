@@ -208,7 +208,7 @@
             changeAnsTextColor();
 
 
-            let blockPos = [[300,1050,0], [600, 1050,0], [400,1150,0], [400,1350,0]];
+            let blockPos = [[300,950,0], [600, 950,0], [400,1050,0], [400,1250,0]];
 
             let winH = svg.getBoundingClientRect().height;
             let winW = svg.getBoundingClientRect().width;
@@ -227,6 +227,7 @@
                 dx = Math.round((touchPos[0] - touchStart[0]) / 100);
                 dy = Math.round((touchPos[1] - touchStart[1]) / 100);
                 blocks[touchBlockNum].setAttribute("transform", "translate(" + (blockPos[touchBlockNum][0] + dx * 100) + " " + (blockPos[touchBlockNum][1] + dy * 100) + ") rotate(" + blockPos[touchBlockNum][2] +")"); 
+                document.getElementById("debug").textContent = "x: " + touchPos[0] + " y: " + touchPos[1];
             });
 
             let touchStart = [0, 0];
@@ -247,6 +248,7 @@
                 winW = svg.getBoundingClientRect().width;
                 touchStart = [e.changedTouches[0].pageX/winW * 900, e.changedTouches[0].pageY/winH * 1600];
                 startTime = new Date();
+                document.getElementById("debug").textContent = "x: " + touchStart[0] + " y: " + touchStart[1];
             });
 
             let claered = 0;
@@ -397,6 +399,11 @@
         cursor="default" font-family="Times New Roman"
         style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">black block</text>
+
+        <text x="450" y="320" text-anchor="middle" font-size="50" fill="black"
+        cursor="default" font-family="Times New Roman" id="debug"
+        style="user-select:none; -webkit-user-select:none;
+        -moz-user-select:none; -ms-user-select:none;">x: y:</text>
         
         <g onmousedown="reset_click()">
             <rect x="370" y="1330" width="160" height="160" fill="#DDDDDD" stroke="black" 
@@ -424,7 +431,7 @@
         <text x="880" y="50" text-anchor="end" font-size="20" fill="black"
         style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">
-            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開 debug1.2</tspan>
+            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開 debug1.3</tspan>
             <tspan x="880" dy="30">制作 とと (@to_to_0121)</tspan>
             <tspan x="870" dy="30">#とと謎black_block</tspan>
         </text>
@@ -444,7 +451,7 @@
                     <tspan x="460" dy="0" font-size="60">what's this page?</tspan>
                     <tspan x="460" dy="100">赤青緑黄のブロックは</tspan>
                     <tspan x="460" dy="80">動かすことができます。</tspan>
-                    <tspan x="460" dy="80">隠された法則を見極め、</tspan>
+                    <tspan x="460" dy="80">タップで回すこともできます。</tspan>
                     <tspan x="460" dy="80">クリア条件を推測してください。</tspan>
                     <tspan x="460" dy="80">見事クリアできれば、</tspan>
                     <tspan x="460" dy="80">"Congratulations!"と表示されます。</tspan>
