@@ -70,10 +70,10 @@
     <meta charset="UTF-8">
     <meta name="twitter:card" content="summary_large_image" /> <!--①-->
     <meta name="twitter:site" content="@to_to_0121" /> <!--②-->
-    <meta property="og:url" content="https://toto0121.github.io/spiky_mobile.html" /> <!--③-->
-    <meta property="og:title" content="spiky" /> <!--④-->
-    <meta property="og:description" content="web謎解き spiky 2021年8月7日公開" /> <!--⑤-->
-    <meta property="og:image" content="https://toto0121.github.io/spiky_image.png" /> <!--⑥-->
+    <meta property="og:url" content="https://toto0121.github.io/black_block.html" /> <!--③-->
+    <meta property="og:title" content="black_block" /> <!--④-->
+    <meta property="og:description" content="web謎解き black_block 2021年11月n日公開" /> <!--⑤-->
+    <meta property="og:image" content="https://toto0121.github.io/black_block_image.png" /> <!--⑥-->
 </head>
 <body>
     <svg id="svg" viewBox="0 0 900 1600">
@@ -215,6 +215,14 @@
             let dx = 0, dy = 0;
             svg.addEventListener("mousemove", function(e) {
                 if (touchBlockNum < 0) return;
+                let touchPos = [e.changedTouches[0].pageX/winW * 900, e.changedTouches[0].pageY/winH * 1600];
+                dx = Math.round((touchPos[0] - touchStart[0]) / 100);
+                dy = Math.round((touchPos[1] - touchStart[1]) / 100);
+                blocks[touchBlockNum].setAttribute("transform", "translate(" + (blockPos[touchBlockNum][0] + dx * 100) + " " + (blockPos[touchBlockNum][1] + dy * 100) + ") rotate(" + blockPos[touchBlockNum][2] +")"); 
+            });
+
+            svg.addEventListener("touchmove", function(e) {
+                if (touchBlockNum < 0) return;
                 let touchPos = [e.pageX/winW * 900, e.pageY/winH * 1600];
                 dx = Math.round((touchPos[0] - touchStart[0]) / 100);
                 dy = Math.round((touchPos[1] - touchStart[1]) / 100);
@@ -233,9 +241,42 @@
                 startTime = new Date();
             });
 
+            svg.addEventListener("touchstart", function(e) {
+                
+                winH = svg.getBoundingClientRect().height;
+                winW = svg.getBoundingClientRect().width;
+                touchStart = [e.changedTouches[0].pageX/winW * 900, e.changedTouches[0].pageY/winH * 1600];
+                startTime = new Date();
+            });
+
             let claered = 0;
 
             svg.addEventListener("mouseup", function(e) {
+                release_btn();
+                if (touchBlockNum == -1) return;
+                blockPos[touchBlockNum][0] += dx * 100;
+                blockPos[touchBlockNum][1] += dy * 100;
+                stopTime = new Date();
+                if (stopTime.getTime() - startTime.getTime() < 200 && dx == 0 && dy == 0)
+                {
+                    blockPos[touchBlockNum][2] += 90;
+                    if (blockPos[touchBlockNum][2] == 360) blockPos[touchBlockNum][2] = 0;
+                    blocks[touchBlockNum].setAttribute("transform", "translate(" + (blockPos[touchBlockNum][0]) + " " + (blockPos[touchBlockNum][1]) + ") rotate(" + blockPos[touchBlockNum][2] +")");
+                }
+                touchBlockNum = -1;
+                dx = 0;
+                dy = 0;
+                if (JSON.stringify(blockPos) == JSON.stringify([[100,550,90],[800,450,270],[500,650,0],[500,350,180]]))
+                {
+                    if (claered == 0)
+                    {
+                        clearEvt();
+                        claered == 1;
+                    } 
+                }
+            });
+
+            svg.addEventListener("touchend", function(e) {
                 release_btn();
                 if (touchBlockNum == -1) return;
                 blockPos[touchBlockNum][0] += dx * 100;
@@ -383,7 +424,7 @@
         <text x="880" y="50" text-anchor="end" font-size="20" fill="black"
         style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">
-            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開</tspan>
+            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開 debug1.1</tspan>
             <tspan x="880" dy="30">制作 とと (@to_to_0121)</tspan>
             <tspan x="870" dy="30">#とと謎black_block</tspan>
         </text>
