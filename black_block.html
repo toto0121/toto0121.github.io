@@ -297,8 +297,9 @@
 
             let ansColor = 1;
 
-            function changeAnsTextColor()
+            function changeAnsTextColor(n)
             {
+                if (ontouchstart in window && n == 0) return;
                 ansColor = 1 - ansColor;
                 if (ansColor == 0) answerText.forEach (e => e.setAttribute("display", "none"));
                 else answerText.forEach (e => e.setAttribute("display", "inline"));
@@ -449,7 +450,7 @@
                 addText(clearObj, "! マークを押すと", ["x", 450, "y", 820, "font-size", 60]);
                 addText(clearObj, "解説が表示されます。", ["x", 450, "y", 900, "font-size", 60]);
                 
-                addObj(svg, "circle", ["cx","100","cy","240","r","60","stroke-width","5","stroke","#888888","fill","#DDDDDD", "onclick", "changeAnsTextColor()"]);
+                addObj(svg, "circle", ["cx","100","cy","240","r","60","stroke-width","5","stroke","#888888","fill","#DDDDDD", "onclick", "changeAnsTextColor(0)", "ontouchstart", "changeAnsTextColor(1)"]);
                 addText(svg, "!", ["x", 100, "y", 270, "font-size", 80, "fill", "#888888", "font-family", "Arial"]);
             }
             
