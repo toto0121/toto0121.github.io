@@ -1,0 +1,237 @@
+<!--
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+
+
+
+!!!! WARNING !!!!
+
+以下にはこの謎の著しいネタバレが含まれます。
+
+ソースコードを閲覧してのミッションクリアは不正行為となります。
+
+絶対におやめください。
+
+!!!! WARNING !!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<html>
+<head>
+    <title>とと謎一覧</title>
+</head>
+<body>
+    <svg id="svg" viewBox="0 0 900 1600">
+        <rect x="0" y="0" width="900" height="1800" fill="#CCCCFF" id="bg"/>
+        <script>
+
+            var URL = "https://toto0121.github.io/spiky.html";
+            document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
+            
+
+            if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+                
+            }
+            else
+            {
+                //window.location.href = URL;
+            }
+
+            var svg = document.getElementById("svg");
+            
+            
+            function setAttributes(obj, cmd) {
+                let len = cmd.length;
+                let i=0;
+                while (i+1 < len)
+                {
+                    obj.setAttribute(cmd[i], cmd[i+1]);
+                    i += 2;
+                }
+            }
+
+            function addObj(parent, objtype, cmd) {
+                obj = document.createElementNS('http://www.w3.org/2000/svg',objtype);
+                setAttributes(obj, cmd);
+                parent.appendChild(obj);
+                return obj;
+            }
+
+            let contentPosY = 300;
+            let index = 0;
+            let jumpURL = [];
+
+            function createContent(url, image, name, date, difficulty) {
+                jumpURL.push(url);
+                let obj = addObj(svg, "g", ["onclick", "jumpPage(" + index + ")", "transform", "translate(0 " + contentPosY + ")"]);
+                addObj(obj, "rect", ["x",50,"y",50,"width",800,"height",520, "rx",5,"ry",5,"fill","#FFFFDD"]);
+                addObj(obj, "image", ["href", image, "width",600, "height", 300, "x", 150, "y",70]);
+                addObj(obj,"text",["x",450,"y",470, "text-anchor","middle","font-size","110","fill","black",
+                    "style","user-select:none; -webkit-user-select:none;-moz-user-select:none; -ms-user-select:none;"]
+                    ).textContent = name;
+                addObj(obj,"text",["x",450,"y",540, "text-anchor","middle","font-size","40","fill","black",
+                    "style","user-select:none; -webkit-user-select:none;-moz-user-select:none; -ms-user-select:none;"]
+                    ).textContent = date + "公開  難易度" + difficulty;
+                contentPosY += 550;
+                index++;
+            }
+
+            
+            
+            function jumpPage(id)
+            {
+                window.location.href = jumpURL[id];
+            }
+
+            function createTemplate(name, date, difficulty)
+            {
+                createContent("https://toto0121.github.io/" + name.replace(" ","_") + ".html", "https://toto0121.github.io/" + name.replace(" ","_") + "_image.png", name, date, difficulty);
+            }
+
+            createTemplate("black block", "2021年11月27日", 2);
+            createTemplate("spiky", "2021年8月7日", 3);
+
+            svg.setAttribute("viewBox", "0 0 900 " + (contentPosY + 400));
+            document.getElementById("bg").setAttribute("height", contentPosY + 400);
+
+            addObj(svg, "text", ["x",450,"y",contentPosY + 150, "text-anchor","middle","font-size","60","fill","black",
+                    "style","user-select:none; -webkit-user-select:none;-moz-user-select:none; -ms-user-select:none;"]
+                    ).textContent = "まだまだ開発中です";
+            
+            addObj(svg, "text", ["x",450,"y",contentPosY + 150, "text-anchor","middle","font-size","60","fill","black",
+                    "style","user-select:none; -webkit-user-select:none;-moz-user-select:none; -ms-user-select:none;"]
+                    ).textContent = "まだまだ開発中です";
+            
+            jumpURL.push("https://toagents.wordpress.com/to_agents-top/");
+            addObj(svg, "rect", ["x", 20,"y",contentPosY + 190,"width",860,"height", 80, "onclick", "jumpPage(" + index + ")"]);
+            addObj(svg, "text", [ "pointer-events", "none","x",450,"y",contentPosY + 250, "text-anchor","middle","font-size","60","fill","white",
+                    "style","user-select:none; -webkit-user-select:none;-moz-user-select:none; -ms-user-select:none;"]
+                    ).textContent = "もっと難しいのを解きたい方へ";
+            index++;
+
+            function tweet()
+            {
+                var EUC = encodeURIComponent;
+                var twitter_url = "http://twitter.com/intent/tweet?text=";
+                
+                //var connection = 0;
+                var message = "web謎解き spiky の謎を解き明かした！";
+
+                //あらかじめ設定されたツイート内容と現在いるページのURLを取得してツイートします。
+                message += URL + "\n\n#web謎解き #とと謎spiky";
+
+                if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+                    location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
+                }else{
+                    window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
+                }
+            }
+
+            function clk_q()
+            {
+                var inst = document.getElementById("instruction");
+                if(inst.getAttribute("display") == "none") inst.setAttribute("display", "inline");
+                else close_inst();
+                console.log (window.scrollY);
+            }
+
+            function close_inst()
+            {
+                document.getElementById("instruction").setAttribute("display", "none");
+            }
+            
+        </script>
+        <text x="450" y="250" text-anchor="middle" font-size="110" fill="black"
+        cursor="default" style="user-select:none; -webkit-user-select:none;
+        -moz-user-select:none; -ms-user-select:none;">とと謎一覧</text>
+        
+        <g id="clear" display="none">
+            <text x="450" y="970" text-anchor="middle" font-size="70" fill="red" cursor="default" 
+             style="user-select:none; -webkit-user-select:none;
+             -moz-user-select:none; -ms-user-select:none;">congratulations!</text>
+            <g onclick="tweet()">
+            <rect x="350" y="1010" width="200" height="75" fill="#00BFFF" rx="5" ry="5"></rect>
+            <path fill="#FFFFFF" transform="translate(350,1018) scale(0.15)" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/>
+            <text x="470" y="1060" text-anchor="middle" font-size="35" fill="white" cursor="default" 
+             style="user-select:none; -webkit-user-select:none;
+             -moz-user-select:none; -ms-user-select:none;">TWEET</text>
+            </g>
+        </g>
+
+        <g onclick="clk_q()">
+                <circle cx="100" cy="100" r="60" stroke-width="5" stroke="#888888" fill="#CCCCFF"></circle>
+                <text x="100" y="130" text-anchor="middle" font-size="80" fill="#888888"
+                style="user-select:none; -webkit-user-select:none;
+                    -moz-user-select:none; -ms-user-select:none;">?</text>
+            </g>
+    
+            <g id="instruction" display="none">
+                <rect x="100" y="200" width="700" height="800" fill="#DDDDDD" stroke="#222222" stroke-width="10"></rect>
+                <text x="800" y="365" text-anchor="middle" font-size="40" fill="black"
+                style="user-select:none; -webkit-user-select:none;
+                -moz-user-select:none; -ms-user-select:none;">
+                    <tspan x="460" dy="0" font-size="60">what's this page?</tspan>
+                    <tspan x="460" dy="100">ここに載っているのはどれも</tspan>
+                    <tspan x="460" dy="80">知識のいらない謎解き問題です。</tspan>
+                    <tspan x="460" dy="80">webページを動かして、</tspan>
+                    <tspan x="460" dy="80">クリア条件を推測してください。</tspan>
+                    <tspan x="460" dy="80">見事クリアできれば、</tspan>
+                    <tspan x="460" dy="80">"Congratulations!"と表示されます。</tspan>
+                </text>
+                <g id="close" onclick="close_inst()">
+                    <rect x="700" y="200" width="100" height="100" fill="#EEEEEE" stroke="#222222" stroke-width="3"></rect>
+                    <line x1="720" y1="220" x2="780" y2="280" stroke="black" stroke-width="3"></line>
+                    <line x1="720" y1="280" x2="780" y2="220" stroke="black" stroke-width="3"></line>
+                </g>
+            </g>
+    </svg>
+</body>
+</html>
