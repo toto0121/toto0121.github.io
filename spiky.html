@@ -273,6 +273,11 @@
             {
                 document.getElementById("instruction").setAttribute("display", "none");
             }
+
+            function toIndex()
+            {
+                window.location.href = "https://toto0121.github.io/nazo_index.html";
+            }
             
         </script>
         <text x="800" y="100" text-anchor="middle" font-size="60" fill="black"
@@ -296,6 +301,17 @@
                 RESET
             </text>
         </g>
+
+        <g onmousedown="toIndex()">
+                <rect x="1350" y="760" width="200" height="80" fill="#DDDDDD" stroke="black" cursor="pointer"
+                id="reset_btn">
+                </rect>
+                <text x="1450" y="810" text-anchor="middle" font-size="30" fill="black"
+                    style="user-select:none; -webkit-user-select:none;
+                    -moz-user-select:none; -ms-user-select:none;">
+                    とと謎一覧へ
+                </text>
+            </g>
         
         <g id="clear" display="none">
             <text x="50" y="400" text-anchor="left" font-size="50" fill="red" cursor="default" 
