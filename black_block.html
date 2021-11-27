@@ -353,7 +353,7 @@
                 //document.getElementById("debug").textContent = "x: " + touchStart[0] + " y: " + touchStart[1];
             });
 
-            let claered = 0;
+            let cleared = 0;
             let endCount = 0;
 
             svg.addEventListener("mouseup", function(e) {
@@ -374,10 +374,10 @@
                 dy = 0;
                 if (JSON.stringify(blockPos) == JSON.stringify([[100,550,90],[800,450,270],[500,650,0],[500,350,180]]))
                 {
-                    if (claered == 0)
+                    if (cleared == 0)
                     {
                         clearEvt();
-                        claered == 1;
+                        cleared = 1;
                     } 
                 }
                 //document.getElementById("debug").textContent = "end!" + endCount;
@@ -401,10 +401,10 @@
                 dy = 0;
                 if (JSON.stringify(blockPos) == JSON.stringify([[100,550,90],[800,450,270],[500,650,0],[500,350,180]]))
                 {
-                    if (claered == 0)
+                    if (cleared == 0)
                     {
                         clearEvt();
-                        claered == 1;
+                        cleared = 1;
                     } 
                 }
                 document.getElementById("debug").textContent = "end" + endCount;
@@ -472,7 +472,7 @@
                 blockPos[2] = [400,1050,0];
                 yellow.setAttribute("transform", "translate(400,1250)");
                 blockPos[3] = [400,1250,0];
-                claered == 0;
+                cleared = 0;
             }
 
             function release_btn()
