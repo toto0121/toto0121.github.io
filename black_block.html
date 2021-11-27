@@ -80,7 +80,7 @@
         <rect x="0" y="0" width="900" height="1800" fill="#888888"/>
         <script>
 
-            var URL = "https://toto0121.github.io/spiky.html";
+            var URL = "https://toto0121.github.io/black_block.html";
             document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
 
             var svg = document.getElementById("svg");
@@ -97,7 +97,7 @@
             }
 
             function addObj(parent, objtype, cmd) {
-                obj = document.createElementNS('http://www.w3.org/2000/svg',objtype);
+                let obj = document.createElementNS('http://www.w3.org/2000/svg',objtype);
                 setAttributes(obj, cmd);
                 parent.appendChild(obj);
                 return obj;
@@ -106,7 +106,7 @@
             const answerText = [];
             function addText(parent, text, cmd)
             {
-                obj = document.createElementNS('http://www.w3.org/2000/svg',"text");
+                let obj = document.createElementNS('http://www.w3.org/2000/svg',"text");
                 setAttributes(obj, ["font-size", 200, "font-family", "Yu Mincho", "fill", "black", "text-anchor", "middle", "pointer-events", "none", "style", "user-select:none; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none;"]);
                 setAttributes(obj, cmd);
                 obj.textContent = text;
@@ -114,9 +114,108 @@
                 return obj;
             }
 
+            function addLineLeft(parent, cmd)
+            {
+                let obj = addObj(parent, "line", ["x1", -35, "y1", -50, "x2", -35, "y2", 50]);
+                setAttributes(obj, cmd);
+                return obj;
+            }
+
+            function addLineRight(parent, cmd)
+            {
+                let obj = addObj(parent, "line", ["x1", 35, "y1", -50, "x2", 35, "y2", 50]);
+                setAttributes(obj, cmd);
+                return obj;
+            }
+
+            function addArc(parent, start, end, cmd)
+            {
+                const deg2rad = Math.PI / 180;
+                const x1 = 50 * Math.cos(start * deg2rad);
+                const y1 = 50 * Math.sin(start * deg2rad);
+                const x2 = 50 * Math.cos(end * deg2rad);
+                const y2 = 50 * Math.sin(end * deg2rad);
+                const array = [x1,y1,"A",50,50,start,end - start <= 180 ? 0 : 1,1,x2,y2];
+
+                let obj = addObj(parent, "path", ["d", "M " + array.join(" "), "fill", "none", "transform", "scale(0.7, 1)"]);
+                setAttributes(obj, cmd);
+                return obj;
+            }
+
+            function addCircle(parent, cmd)
+            {
+                let obj = addObj(parent, "circle", ["cx", 0, "cy", 0, "r", 50, "transform", "scale(0.7,1)", "fill", "none"])
+            }
+
             function addTextAns(parent, text, cmd)
             {
-                obj = addText(parent, text, cmd);
+                let obj = addObj(parent, "g", ["stroke", "black", "stroke-width", 8]);
+                setAttributes(obj, cmd);
+                let posX = obj.getAttribute("x");
+                let posY = obj.getAttribute("y") - 50;
+                obj.setAttribute("transform", "translate(" + posX + " " + posY + ")");
+                switch (text)
+                {
+                    case "r":
+                        addLineLeft(obj, []);
+                        addArc(obj, 180, 360, []);
+                        break;
+                    case "e":
+                        addLineLeft(obj, ["x1", -35, "y1", 0, "x2", 35, "y2", 0]);
+                        addArc(obj, 45, 360, []);
+                        break;
+                    case "d":
+                        addCircle(obj, []);
+                        addLineRight(obj, ["y1",-150]);
+                        break;
+                    case "b":
+                        addLineLeft(obj, ["y1", -150]);
+                        addCircle(obj, []);
+                        break;
+                    case "l":
+                        addLineLeft(obj, ["x1",0,"y1",-150,"x2",0]);
+                        break;
+                    case "u":
+                        addArc(obj, 0, 180, []);
+                        addLineLeft(obj,["y2", 0]);
+                        addLineRight(obj, []);
+                        break;
+                    case "g":
+                        addCircle(obj, []);
+                        addLineRight(obj, ["y2", 100]);
+                        addArc(obj, 0, 180, ["transform", "translate(0,100) scale(0.7,1)"]);
+                        break;
+                    case "n":
+                        addLineLeft(obj, []);
+                        addArc(obj, 180,360,[]);
+                        addLineRight(obj,["y1",0]);
+                        break;
+                    case "y":
+                        addLineLeft(obj,["x2",0]);
+                        addLineRight(obj,["x2",-35,"y2",150]);
+                        break;
+                    case "o":
+                        addCircle(obj, []);
+                        break;
+                    case "w":
+                        addLineLeft(obj,["x2",-17.5]);
+                        addLineLeft(obj,["x1",0,"x2",-17.5]);
+                        addLineLeft(obj,["x1",0,"x2",17.5]);
+                        addLineRight(obj,["x2",17.5]);
+                        break;
+                    case "a":
+                        addCircle(obj, []);
+                        addLineRight(obj, []);
+                        break;
+                    case "c":
+                        addArc(obj,45,315,[]);
+                        break;
+                    case "k":
+                        addLineLeft(obj,["y1", -150]);
+                        addLineRight(obj,["x2",-35,"y2",0]);
+                        addLineRight(obj,["x1",-35,"y1",0]);
+                        break;
+                }
                 answerText.push(obj);
             }
 
@@ -131,11 +230,11 @@
             addObj(black, "rect", ["x",650,"y",200,"width",100,"height",100, "stroke", "white", "fill", "black"]);
             addObj(black, "rect", ["x",750,"y",200,"width",100,"height",100, "stroke", "white", "fill", "black"]);
             addObj(black, "rect", ["x",250,"y",700,"width",100,"height",100, "stroke", "white", "fill", "black"]);
-            addTextAns(black, "b", ["x", 200, "y", 600, "fill", "white"]);
-            addTextAns(black, "l", ["x", 300, "y", 600, "fill", "white"]);
-            addTextAns(black, "a", ["x", 400, "y", 600, "fill", "white"]);
-            addTextAns(black, "c", ["x", 500, "y", 600, "fill", "white"]);
-            addTextAns(black, "k", ["x", 600, "y", 600, "fill", "white"]);
+            addTextAns(black, "b", ["x", 200, "y", 600, "stroke", "white"]);
+            addTextAns(black, "l", ["x", 300, "y", 600, "stroke", "white"]);
+            addTextAns(black, "a", ["x", 400, "y", 600, "stroke", "white"]);
+            addTextAns(black, "c", ["x", 500, "y", 600, "stroke", "white"]);
+            addTextAns(black, "k", ["x", 600, "y", 600, "stroke", "white"]);
 
             grid.setAttribute("transform", "translate(90,160) scale(0.8)");
 
@@ -229,7 +328,7 @@
                 dx = Math.round((touchPos[0] - touchStart[0]) / 100);
                 dy = Math.round((touchPos[1] - touchStart[1]) / 100);
                 blocks[touchBlockNum].setAttribute("transform", "translate(" + (blockPos[touchBlockNum][0] + dx * 100) + " " + (blockPos[touchBlockNum][1] + dy * 100) + ") rotate(" + blockPos[touchBlockNum][2] +")"); 
-                document.getElementById("debug").textContent = "x: " + touchPos[0] + " y: " + touchPos[1];
+                //document.getElementById("debug").textContent = "x: " + touchPos[0] + " y: " + touchPos[1];
             });
 
             let touchStart = [0, 0];
@@ -280,7 +379,7 @@
                         claered == 1;
                     } 
                 }
-                document.getElementById("debug").textContent = "end!" + endCount;
+                //document.getElementById("debug").textContent = "end!" + endCount;
                 endCount++;
             });
 
@@ -343,11 +442,11 @@
                 addObj(clearObj, "line", ["x1", 720, "y1", 170, "x2", 780, "y2", 230, "stroke", "black", "stroke-width", 3, "pointer-events", "none"]);
                 addObj(clearObj, "line", ["x1", 720, "y1", 230, "x2", 780, "y2", 170, "stroke", "black", "stroke-width", 3, "pointer-events", "none"]);
                 addText(clearObj, "Congratulations!", ["fill", "red", "x", 450, "y", 400, "font-size", 80, "font-weight", "bold"]);
-                addObj(clearObj, "rect", ["x", 350, "y",450, "width", 200, "height", 80, "rx", 5, "ry", 5, "fill", "#00BFFF"]);
+                addObj(clearObj, "rect", ["x", 350, "y",450, "width", 200, "height", 80, "rx", 5, "ry", 5, "fill", "#00BFFF", "onclick", "tweet()"]);
                 addObj(clearObj, "path", ["pointer-events", "none", "fill","#FFFFFF","transform","translate(340,450) scale(0.2)","d","M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"]);
                 addText(clearObj, "TWEET", ["x", 470, "y", 503, "fill", "white", "font-family", "Arial", "font-size", 35])
                 addText(clearObj, "謎は解けましたか？", ["x", 450, "y", 700, "font-size", 60]);
-                addText(clearObj, "!マークを押すと", ["x", 450, "y", 820, "font-size", 60]);
+                addText(clearObj, "! マークを押すと", ["x", 450, "y", 820, "font-size", 60]);
                 addText(clearObj, "解説が表示されます。", ["x", 450, "y", 900, "font-size", 60]);
                 
                 addObj(svg, "circle", ["cx","100","cy","240","r","60","stroke-width","5","stroke","#888888","fill","#DDDDDD", "onclick", "changeAnsTextColor()"]);
@@ -384,10 +483,10 @@
                 var twitter_url = "http://twitter.com/intent/tweet?text=";
                 
                 //var connection = 0;
-                var message = "web謎解き spiky の謎を解き明かした！";
+                var message = "web謎解き black block の謎を解き明かした！";
 
                 //あらかじめ設定されたツイート内容と現在いるページのURLを取得してツイートします。
-                message += URL + "\n\n#web謎解き #とと謎spiky";
+                message += URL + "\n\n#web謎解き #とと謎black_block";
 
                 if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
                     location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
@@ -413,11 +512,6 @@
         cursor="default" font-family="Times New Roman"
         style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">black block</text>
-
-        <text x="450" y="320" text-anchor="middle" font-size="50" fill="black"
-        cursor="default" font-family="Times New Roman" id="debug"
-        style="user-select:none; -webkit-user-select:none;
-        -moz-user-select:none; -ms-user-select:none;">x: y:</text>
         
         <g onmousedown="reset_click()">
             <rect x="370" y="1330" width="160" height="160" fill="#DDDDDD" stroke="black" 
@@ -445,7 +539,7 @@
         <text x="880" y="50" text-anchor="end" font-size="20" fill="black"
         style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">
-            <tspan x="880" dy="0">web謎解き black block 2021年11月n日公開 debug1.7</tspan>
+            <tspan x="880" dy="0">web謎解き black block 2021年11月27日公開</tspan>
             <tspan x="880" dy="30">制作 とと (@to_to_0121)</tspan>
             <tspan x="870" dy="30">#とと謎black_block</tspan>
         </text>
