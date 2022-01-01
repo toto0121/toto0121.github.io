@@ -303,8 +303,11 @@
                             shot(-1,1);
                         }, interval*(2 * frame2 * (5 - boundY)));
                         window.setTimeout(function f() {
-                            if (blockNum[(ballPos[0]-1)/2][boundY-1] == 0) blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = "";
-                            else blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = blockNum[(ballPos[0]-1)/2][boundY-1];
+                            if (boundY > 0)
+                            {
+                                if (blockNum[(ballPos[0]-1)/2][boundY-1] == 0) blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = "";
+                                else blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = blockNum[(ballPos[0]-1)/2][boundY-1];
+                            }
                             audio.currentTime = 0;
                             audio.play();
                         }, interval * (frame2 * (5 - boundY)));
@@ -379,6 +382,7 @@
                     cleared = true;
                     ball.setAttribute("display", "inline");
                     reset_click(1);
+                    release_btn();
                     document.getElementById("ansBtn").setAttribute("fill", "#FFD700");
                 }
                 else
@@ -386,6 +390,7 @@
                     cleared = false;
                     if (difficulty == 1) ball.setAttribute("display", "none");
                     reset_click(1);
+                    release_btn();
                     document.getElementById("ansBtn").setAttribute("fill", "#DDDDDD");
                 }
             }
