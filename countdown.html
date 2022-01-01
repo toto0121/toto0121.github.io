@@ -114,43 +114,104 @@
                 return obj;
             }
 
+            const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
             let blockNum = [[3,0,0,6,0], [7,1,0,4,0], [0,8,0,5,0], [0,0,0,2,0]];
             let ballPos = [1,10];
             let ballDir = 1;
 
+            let difficulty = -1;
+            let cleared = false;
+
+            function start(n)
+            {
+                difficulty = n;
+                if (n == 1)
+                {
+                    document.getElementById("hard").setAttribute("fill", "#AAAAAA");
+                    ball.setAttribute("display", "none");
+                } 
+                else
+                {
+                    document.getElementById("normal").setAttribute("fill", "#AAAAAA");
+                }
+            }
+
+            let animate = 0;
+            const frame = 10;
+            let frame2 = Math.floor(frame * Math.SQRT2);
+            let interval = 25;
+            let timeoutID;
+
             function moveBall()
             {
+                if (cleared && ballDir > 2 && ballPos[1] == 10)
+                {
+                    shot(-1,1);
+                    return;
+                }
                 let moveX = 1, moveY = 1;
                 if (ballDir == 2 || ballDir == 3) moveX = -1;
                 if (ballDir <= 2) moveY = -1;
-                ballPos[0] += moveX;
-                ballPos[1] += moveY;
+                if (cleared && animate < frame)
+                {
+                        setAttributes(ball, ["cx",75*(ballPos[0] + moveX * animate / frame)+150,"cy",75*(ballPos[1] + moveY * animate / frame)+330]);
+                        timeoutID = window.setTimeout(moveBall, interval);
+                        animate++;
+                        return;
+                }
+                else
+                {
+                    ballPos[0] += moveX;
+                    ballPos[1] += moveY;
+                    animate = 0;
+                }
+                
 
                 if (ballPos[0] % 2 == 0)
                 {
+                    let blockX = (ballPos[0]+moveX-1)/2;
+                    let blockY = (ballPos[1]-1)/2
                     if (ballPos[0] == 0 || ballPos[0] == 8)
                     {
                         ballDir = 7 - ballDir;
                         if (ballDir > 4) ballDir -= 4;
                     }
-                    else if (blockNum[(ballPos[0]+moveX-1)/2][(ballPos[1]-1)/2] > 0)
+                    else if (blockNum[blockX][blockY] > 0)
                     {
-                        blockNum[(ballPos[0]+moveX-1)/2][(ballPos[1]-1)/2]--;
+                        
+                        blockNum[blockX][blockY]--;
+                        if (cleared)
+                        {
+                            if (blockNum[blockX][blockY] == 0) blockNumText[blockX][blockY].textContent = "";
+                            else blockNumText[blockX][blockY].textContent = blockNum[blockX][blockY];
+                        } 
                         ballDir = 7 - ballDir;
                         if (ballDir > 4) ballDir -= 4;
                     }
                 }
                 else
                 {
+                    let blockX = (ballPos[0]-1)/2;
+                    let blockY = (ballPos[1]+moveY-1)/2;
                     if (ballPos[1] == 0)
                     {
                         ballDir = 5 - ballDir;
                     }
-                    else if (blockNum[(ballPos[0]-1)/2][(ballPos[1]+moveY-1)/2] > 0)
+                    else if (blockNum[blockX][blockY] > 0)
                     {
-                        blockNum[(ballPos[0]-1)/2][(ballPos[1]+moveY-1)/2]--;
+                        blockNum[blockX][blockY]--;
+                        if (cleared)
+                        {
+                            if (blockNum[blockX][blockY] == 0) blockNumText[blockX][blockY].textContent = "";
+                            else blockNumText[blockX][blockY].textContent = blockNum[blockX][blockY];
+                        } 
                         ballDir = 5 - ballDir;
                     }
+                }
+                if (cleared)
+                {
+                    moveBall();
                 }
             }
 
@@ -181,38 +242,67 @@
 
             function shot(dir, n)
             {
+                if (difficulty < 0) return;
                 if ("ontouchstart" in window && n == 0) return;
-                document.getElementById("btn" + dir).setAttribute("fill", "#AAAAAA");
+                if (cleared && (ballPos[1] < 10 || animate > 0)) return;
+                if (dir >= 0) document.getElementById("btn" + dir).setAttribute("fill", "#AAAAAA");
                 if (dir > 0)
                 {
                     ballDir = dir;
                     for (let i=0; i<10000; i++)
                     {
                         moveBall();
-                        if (ballPos[1] == 10) break;
+                        if (ballPos[1] == 10 || cleared) break;
                     }
                 }
-                else
+                else if (dir == 0)
                 {
+                    let boundY = 0;
                     for (let i=4;i--;i>=0)
                     {
                         if (blockNum[(ballPos[0]-1)/2][i] > 0)
                         {
                             blockNum[(ballPos[0]-1)/2][i]--;
+                            boundY = i + 1;
                             break;
                         }
                     }
+                    if (cleared)
+                    {
+                        animate = 1;
+                        for (let i=1; i<=frame2 * (5 - boundY); i++)
+                        {
+                            window.setTimeout(function f() {
+                                ball.setAttribute("cy", 75*(10 - 2/frame2*i)+330);
+                            }, interval*i);
+                            window.setTimeout(function f() {
+                                ball.setAttribute("cy", 75*(10 - 2/frame2*i)+330);
+                            }, interval*(2 * frame2 * (5 - boundY) - i));
+                        }
+                        window.setTimeout(function f() {
+                            animate = 0;
+                            shot(-1,1);
+                        }, interval*(2 * frame2 * (5 - boundY)));
+                        window.setTimeout(function f() {
+                            if (blockNum[(ballPos[0]-1)/2][boundY-1] == 0) blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = "";
+                            else blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = blockNum[(ballPos[0]-1)/2][boundY-1];
+                        }, interval * (frame2 * (5 - boundY)));
+                    }
                 }
 
-                countNum--;
-                if (countNum < 0)
+                if (dir >= 0)
                 {
-                   countText.textContent = "-"; 
-                   countText.setAttribute("y",870);
-                } 
-                else countText.textContent = countNum;
+                    countNum--;
+                    if (countNum < 0)
+                    {
+                        countText.textContent = "-"; 
+                        countText.setAttribute("y",870);
+                    } 
+                    else countText.textContent = countNum;
+                }
+                
 
-                setAttributes(ball,["cx",75*ballPos[0]+150]);
+                setAttributes(ball,["cx",75*ballPos[0]+150,"cy",75*ballPos[1]+330]);
                 let allZero = true;
                 for (let i=0; i<4; i++)
                 {
@@ -220,14 +310,17 @@
                     {
                         if (blockNum[i][j] == 0) blockNum[i][j] = "";
                         if (blockNum[i][j] != "") allZero = false;
-                        blockNumText[i][j].textContent = blockNum[i][j];
+                        if (!cleared || dir != 0) blockNumText[i][j].textContent = blockNum[i][j];
                     }
                 }
 
                 if (countNum >= 0 && allZero)
                 {
+                    if (cleared && dir == 0) return;
                     clearEvt();
                 }
+                
+                
             }
 
             //110121
@@ -248,7 +341,7 @@
                 addText(clearObj, "! マークを押すと", ["x", 450, "y", 820, "font-size", 60]);
                 addText(clearObj, "解説が表示されます。", ["x", 450, "y", 900, "font-size", 60]);
                 
-                addObj(svg, "circle", ["cx","100","cy","240","r","60","stroke-width","5","stroke","#888888","fill","#DDDDDD", "onclick", "changeAnsTextColor(0)", "ontouchstart", "changeAnsTextColor(1)"]);
+                addObj(svg, "circle", ["cx","100","cy","240","r","60","stroke-width","5","stroke","#888888","fill","#DDDDDD", "onclick", "showBallMove()", "ontouchstart", "changeAnsTextColor(1)"]);
                 addText(svg, "!", ["x", 100, "y", 270, "font-size", 80, "fill", "#888888", "font-family", "Arial"]);
             }
             
@@ -258,8 +351,16 @@
                 clearObj.setAttribute("display", "none");
             }
 
+            function showBallMove()
+            {
+                cleared = true;
+                ball.setAttribute("display", "inline");
+                reset_click(1);
+            }
+
             function reset_click(n)
             {
+                if (difficulty < 0) return;
                 if ("ontouchstart" in window && n == 0) return;
                 document.getElementById("reset_btn").setAttribute("fill", "#AAAAAA");
                 blockNum = [[3,0,0,6,0], [7,1,0,4,0], [0,8,0,5,0], [0,0,0,2,0]];
@@ -269,7 +370,7 @@
                 countText.textContent = 7;
                 countText.setAttribute("y",900);
 
-                setAttributes(ball,["cx",75*ballPos[0]+150]);
+                setAttributes(ball,["cx",75*ballPos[0]+150,"cy",75*ballPos[1]+330]);
                 for (let i=0; i<4; i++)
                 {
                     for (let j=0; j<5; j++)
@@ -277,6 +378,11 @@
                         if (blockNum[i][j] == 0) blockNum[i][j] = "";
                         blockNumText[i][j].textContent = blockNum[i][j];
                     }
+                }
+
+                if (cleared)
+                {
+                    window.clearTimeout(timeoutID);
                 }
             }
 
@@ -286,6 +392,11 @@
                 document.getElementById("btn0").setAttribute("fill", "#DDDDDD");
                 document.getElementById("btn1").setAttribute("fill", "#DDDDDD");
                 document.getElementById("btn2").setAttribute("fill", "#DDDDDD");
+
+                if (difficulty >= 0)
+                {
+                    document.getElementById("startMenu").setAttribute("display","none");
+                }
             }
 
             svg.addEventListener("mouseup", function(e) {
@@ -425,6 +536,28 @@
                     <rect x="700" y="200" width="100" height="100" fill="#EEEEEE" stroke="#222222" stroke-width="3"></rect>
                     <line x1="720" y1="220" x2="780" y2="280" stroke="black" stroke-width="3"></line>
                     <line x1="720" y1="280" x2="780" y2="220" stroke="black" stroke-width="3"></line>
+                </g>
+            </g>
+
+            <g id="startMenu" transform="translate(0,150)">
+                <rect x="100" y="200" width="700" height="800" fill="#DDDDDD" stroke="#222222" stroke-width="10"></rect>
+                <text x="800" y="365" text-anchor="middle" font-size="40" fill="black"
+                style="user-select:none; -webkit-user-select:none;
+                -moz-user-select:none; -ms-user-select:none;">
+                    <tspan x="460" dy="0" font-size="60">難易度が選択できます。</tspan>
+                    <tspan x="460" dy="100">hardではヒントが減ります。</tspan>
+                </text>
+                <g onmousedown="start(0)"  ontouchstart="close_inst(1)">
+                    <rect id="normal" x="200" y="550" width="500" height="150" fill="#EEEEEE" stroke="#222222" stroke-width="3"></rect>
+                    <text x="450" y="650" font-size="80" text-anchor="middle" font-size="80" fill="black"
+                    style="user-select:none; -webkit-user-select:none;
+                    -moz-user-select:none; -ms-user-select:none;">NORMAL</text>
+                </g>
+                <g onmousedown="start(1)"  ontouchstart="close_inst(1)">
+                    <rect id="hard" x="200" y="770" width="500" height="150" fill="#EEEEEE" stroke="#222222" stroke-width="3"></rect>
+                    <text x="450" y="870" font-size="80" text-anchor="middle" font-size="80" fill="black"
+                    style="user-select:none; -webkit-user-select:none;
+                    -moz-user-select:none; -ms-user-select:none;">HARD</text>
                 </g>
             </g>
     </svg>
