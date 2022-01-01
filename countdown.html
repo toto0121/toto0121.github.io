@@ -76,6 +76,7 @@
     <meta property="og:image" content="https://toto0121.github.io/countdown_image.png" /> <!--⑥-->
 </head>
 <body>
+        <link href=”https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap&subset=japanese” rel=”stylesheet”>
     <svg id="svg" viewBox="0 0 900 1600">
         <rect x="0" y="0" width="900" height="1800" fill="#BBBBFF"/>
         <script>
@@ -106,7 +107,7 @@
             function addText(parent, text, cmd)
             {
                 let obj = document.createElementNS('http://www.w3.org/2000/svg',"text");
-                setAttributes(obj, ["font-size", 200, "font-family", "Yu Mincho", "fill", "black", "text-anchor", "middle", "pointer-events", "none", "style", "user-select:none; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none;"]);
+                setAttributes(obj, ["font-size", 200, "font-family", "Noto Serif JP", "fill", "black", "text-anchor", "middle", "pointer-events", "none", "style", "user-select:none; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none;"]);
                 setAttributes(obj, cmd);
                 obj.textContent = text;
                 parent.appendChild(obj);
@@ -180,8 +181,8 @@
 
             function shot(dir, n)
             {
-                document.getElementById("btn" + dir).setAttribute("fill", "#AAAAAA");
                 if ("ontouchstart" in window && n == 0) return;
+                document.getElementById("btn" + dir).setAttribute("fill", "#AAAAAA");
                 if (dir > 0)
                 {
                     ballDir = dir;
