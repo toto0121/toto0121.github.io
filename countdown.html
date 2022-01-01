@@ -66,7 +66,7 @@
 -->
 <html>
 <head>
-    <title>cowntdown</title>
+    <title>countdown</title>
     <meta charset="UTF-8">
     <meta name="twitter:card" content="summary_large_image" /> <!--①-->
     <meta name="twitter:site" content="@to_to_0121" /> <!--②-->
@@ -77,7 +77,10 @@
 </head>
 <body>
         <link href=”https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap&subset=japanese” rel=”stylesheet”>
-    <svg id="svg" viewBox="0 0 900 1600">
+        <audio id="BoundSound" preload="auto">
+            <source src="bound.wav" type="audio/wav">
+        </audio>
+        <svg id="svg" viewBox="0 0 900 1600">
         <rect x="0" y="0" width="900" height="1800" fill="#BBBBFF"/>
         <script>
 
@@ -122,6 +125,8 @@
 
             let difficulty = -1;
             let cleared = false;
+
+            let audio = document.getElementById("BoundSound");
 
             function start(diff, n)
             {
@@ -177,6 +182,11 @@
                     {
                         ballDir = 7 - ballDir;
                         if (ballDir > 4) ballDir -= 4;
+                        if (cleared)
+                        {
+                            audio.currentTime = 0;
+                            audio.play();
+                        } 
                     }
                     else if (blockNum[blockX][blockY] > 0)
                     {
@@ -186,6 +196,8 @@
                         {
                             if (blockNum[blockX][blockY] == 0) blockNumText[blockX][blockY].textContent = "";
                             else blockNumText[blockX][blockY].textContent = blockNum[blockX][blockY];
+                            audio.currentTime = 0;
+                            audio.play();
                         } 
                         ballDir = 7 - ballDir;
                         if (ballDir > 4) ballDir -= 4;
@@ -198,6 +210,10 @@
                     if (ballPos[1] == 0)
                     {
                         ballDir = 5 - ballDir;
+                        if (cleared){
+                            audio.currentTime = 0;
+                            audio.play();
+                        } 
                     }
                     else if (blockNum[blockX][blockY] > 0)
                     {
@@ -206,6 +222,8 @@
                         {
                             if (blockNum[blockX][blockY] == 0) blockNumText[blockX][blockY].textContent = "";
                             else blockNumText[blockX][blockY].textContent = blockNum[blockX][blockY];
+                            audio.currentTime = 0;
+                            audio.play();
                         } 
                         ballDir = 5 - ballDir;
                     }
@@ -287,6 +305,8 @@
                         window.setTimeout(function f() {
                             if (blockNum[(ballPos[0]-1)/2][boundY-1] == 0) blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = "";
                             else blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = blockNum[(ballPos[0]-1)/2][boundY-1];
+                            audio.currentTime = 0;
+                            audio.play();
                         }, interval * (frame2 * (5 - boundY)));
                     }
                 }
@@ -342,7 +362,7 @@
                 addText(clearObj, "! マークを押すと", ["x", 450, "y", 820, "font-size", 60]);
                 addText(clearObj, "解説が表示されます。", ["x", 450, "y", 900, "font-size", 60]);
                 
-                addObj(svg, "circle", ["cx","100","cy","240","r","60","stroke-width","5","stroke","#888888","fill","#DDDDDD", "onclick", "showBallMove()", "ontouchstart", "changeAnsTextColor(1)"]);
+                addObj(svg, "circle", ["id","ansBtn","cx","100","cy","240","r","60","stroke-width","5","stroke","#888888","fill","#DDDDDD", "onclick", "showBallMove()", "ontouchstart", "changeAnsTextColor(1)"]);
                 addText(svg, "!", ["x", 100, "y", 270, "font-size", 80, "fill", "#888888", "font-family", "Arial"]);
             }
             
@@ -354,9 +374,20 @@
 
             function showBallMove()
             {
-                cleared = true;
-                ball.setAttribute("display", "inline");
-                reset_click(1);
+                if (!cleared)
+                {
+                    cleared = true;
+                    ball.setAttribute("display", "inline");
+                    reset_click(1);
+                    document.getElementById("ansBtn").setAttribute("fill", "#FFD700");
+                }
+                else
+                {
+                    cleared = false;
+                    if (difficulty == 1) ball.setAttribute("display", "none");
+                    reset_click(1);
+                    document.getElementById("ansBtn").setAttribute("fill", "#DDDDDD");
+                }
             }
 
             function reset_click(n)
@@ -415,7 +446,8 @@
                 var twitter_url = "http://twitter.com/intent/tweet?text=";
                 
                 //var connection = 0;
-                var message = "web謎解き black block の謎を解き明かした！";
+                var message = "web謎解き countdown の謎を解き明かした！";
+                if (difficulty == 1) message+="\nなんとHARDモードでのクリアだ！すごい！"
 
                 //あらかじめ設定されたツイート内容と現在いるページのURLを取得してツイートします。
                 message += URL + "\n\n#web謎解き #とと謎black_block";
