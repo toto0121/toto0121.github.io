@@ -123,10 +123,11 @@
             let difficulty = -1;
             let cleared = false;
 
-            function start(n)
+            function start(diff, n)
             {
-                difficulty = n;
-                if (n == 1)
+                if ("ontouchstart" in window && n == 0) return;
+                difficulty = diff;
+                if (diff == 1)
                 {
                     document.getElementById("hard").setAttribute("fill", "#AAAAAA");
                     ball.setAttribute("display", "none");
@@ -547,13 +548,13 @@
                     <tspan x="460" dy="0" font-size="60">難易度が選択できます。</tspan>
                     <tspan x="460" dy="100">hardではヒントが減ります。</tspan>
                 </text>
-                <g onmousedown="start(0)"  ontouchstart="close_inst(1)">
+                <g onmousedown="start(0,0)"  ontouchstart="start(0,1)">
                     <rect id="normal" x="200" y="550" width="500" height="150" fill="#EEEEEE" stroke="#222222" stroke-width="3"></rect>
                     <text x="450" y="650" font-size="80" text-anchor="middle" font-size="80" fill="black"
                     style="user-select:none; -webkit-user-select:none;
                     -moz-user-select:none; -ms-user-select:none;">NORMAL</text>
                 </g>
-                <g onmousedown="start(1)"  ontouchstart="close_inst(1)">
+                <g onmousedown="start(1,0)"  ontouchstart="start(1,1)">
                     <rect id="hard" x="200" y="770" width="500" height="150" fill="#EEEEEE" stroke="#222222" stroke-width="3"></rect>
                     <text x="450" y="870" font-size="80" text-anchor="middle" font-size="80" fill="black"
                     style="user-select:none; -webkit-user-select:none;
