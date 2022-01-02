@@ -172,92 +172,9 @@
             let timeoutID;
             let timeoutID_C = [];
 
-            function moveBall()
-            {
-                if (cleared && ballDir > 2 && ballPos[1] == 10)
-                {
-                    shot(-1,1);
-                    return;
-                }
-                let moveX = 1, moveY = 1;
-                if (ballDir == 2 || ballDir == 3) moveX = -1;
-                if (ballDir <= 2) moveY = -1;
-                if (cleared && animate < frame)
-                {
-                        setAttributes(ball, ["cx",75*(ballPos[0] + moveX * animate / frame)+150,"cy",75*(ballPos[1] + moveY * animate / frame)+330]);
-                        timeoutID = window.setTimeout(moveBall, interval);
-                        animate++;
-                        return;
-                }
-                else
-                {
-                    ballPos[0] += moveX;
-                    ballPos[1] += moveY;
-                    animate = 0;
-                }
-                
-
-                if (ballPos[0] % 2 == 0)
-                {
-                    let blockX = (ballPos[0]+moveX-1)/2;
-                    let blockY = (ballPos[1]-1)/2
-                    if (ballPos[0] == 0 || ballPos[0] == 8)
-                    {
-                        ballDir = 7 - ballDir;
-                        if (ballDir > 4) ballDir -= 4;
-                        if (cleared)
-                        {
-                            audio.play();
-                            audio.currentTime = 0;
-                        } 
-                    }
-                    else if (blockNum[blockX][blockY] > 0)
-                    {
-                        
-                        blockNum[blockX][blockY]--;
-                        if (cleared)
-                        {
-                            if (blockNum[blockX][blockY] == 0) blockNumText[blockX][blockY].textContent = "";
-                            else blockNumText[blockX][blockY].textContent = blockNum[blockX][blockY];
-                            audio.play();
-                            audio.currentTime = 0;
-                        } 
-                        ballDir = 7 - ballDir;
-                        if (ballDir > 4) ballDir -= 4;
-                    }
-                }
-                else
-                {
-                    let blockX = (ballPos[0]-1)/2;
-                    let blockY = (ballPos[1]+moveY-1)/2;
-                    if (ballPos[1] == 0)
-                    {
-                        ballDir = 5 - ballDir;
-                        if (cleared){
-                            audio.currentTime = 0;
-                        } 
-                    }
-                    else if (blockNum[blockX][blockY] > 0)
-                    {
-                        blockNum[blockX][blockY]--;
-                        if (cleared)
-                        {
-                            if (blockNum[blockX][blockY] == 0) blockNumText[blockX][blockY].textContent = "";
-                            else blockNumText[blockX][blockY].textContent = blockNum[blockX][blockY];
-                            audio.play();
-                            audio.currentTime = 0;
-                        } 
-                        ballDir = 5 - ballDir;
-                    }
-                }
-                if (cleared)
-                {
-                    moveBall();
-                }
-            }
 
             let countNum = 0;
-            let countText = addText(svg, "7", ["x", 450, "y", 900, "font-size",500,"fill","#AAAAFF", "stroke", "#DDDDFF", "stroke-width", 5])
+            let countText = addText(svg, "a", ["x", 450, "y", 900, "font-size",500,"fill","#AAAAFF", "stroke", "#DDDDFF", "stroke-width", 5])
 
             for (let i=0; i<5; i++)
             {
@@ -316,19 +233,19 @@
         -moz-user-select:none; -ms-user-select:none;">countdown</text>
         
         <g ontouchstart="shot(2,1)">
-            <circle cx="280" cy="1220" r="70" fill="#DDDDDD" stroke="black" 
+            <circle cx="260" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
             id="btn2">
             </rect>
         </g>
 
         <g ontouchstart="shot(0,1)">
-            <circle cx="450" cy="1220" r="70" fill="#DDDDDD" stroke="black" 
+            <circle cx="450" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
             id="btn0">
             </rect>
         </g>
 
         <g ontouchstart="shot(1,1)">
-            <circle cx="620" cy="1220" r="70" fill="#DDDDDD" stroke="black" 
+            <circle cx="640" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
             id="btn1">
             </rect>
         </g>
