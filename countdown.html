@@ -80,13 +80,17 @@
         <audio id="BoundSound" preload="auto">
             <source src="bound.wav" type="audio/wav">
         </audio>
+        <style>
+            html {
+                touch-action: manipulation;
+            }
+        </style>
         <svg id="svg" viewBox="0 0 900 1600">
         <rect x="0" y="0" width="900" height="1800" fill="#BBBBFF"/>
         <script>
             let xx = 0;
             let URL = "https://toto0121.github.io/black_block.html";
             let svg = document.getElementById("svg");
-            svg.setAttribute("touch-action", "manipulation");
             
             function setAttributes(obj, cmd) {
                 let len = cmd.length;
@@ -191,7 +195,7 @@
                         if (ballDir > 4) ballDir -= 4;
                         if (cleared)
                         {
-                            audio.currentTime = 0;
+                            if( typeof(audio.currentTime ) != 'undefined' ) audio.currentTime = 0;
                             audio.play();
                         } 
                     }
@@ -203,7 +207,7 @@
                         {
                             if (blockNum[blockX][blockY] == 0) blockNumText[blockX][blockY].textContent = "";
                             else blockNumText[blockX][blockY].textContent = blockNum[blockX][blockY];
-                            audio.currentTime = 0;
+                            if( typeof(audio.currentTime ) != 'undefined' ) audio.currentTime = 0;
                             audio.play();
                         } 
                         ballDir = 7 - ballDir;
@@ -218,7 +222,7 @@
                     {
                         ballDir = 5 - ballDir;
                         if (cleared){
-                            audio.currentTime = 0;
+                            if( typeof(audio.currentTime ) != 'undefined' ) audio.currentTime = 0;
                             audio.play();
                         } 
                     }
@@ -229,7 +233,7 @@
                         {
                             if (blockNum[blockX][blockY] == 0) blockNumText[blockX][blockY].textContent = "";
                             else blockNumText[blockX][blockY].textContent = blockNum[blockX][blockY];
-                            audio.currentTime = 0;
+                            if( typeof(audio.currentTime ) != 'undefined' ) audio.currentTime = 0;
                             audio.play();
                         } 
                         ballDir = 5 - ballDir;
@@ -316,7 +320,7 @@
                                 if (blockNum[(ballPos[0]-1)/2][boundY-1] == 0) blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = "";
                                 else blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = blockNum[(ballPos[0]-1)/2][boundY-1];
                             }
-                            audio.currentTime = 0;
+                            if( typeof(audio.currentTime ) != 'undefined' ) audio.currentTime = 0;
                             audio.play();
                         }, interval * (frame2 * (5 - boundY))));
                     }
