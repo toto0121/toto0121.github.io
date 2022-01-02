@@ -175,7 +175,7 @@
             {
                 if (cleared && ballDir > 2 && ballPos[1] == 10)
                 {
-                    shot(-1,1);
+                    shot(0,-1,1);
                     return;
                 }
                 let moveX = 1, moveY = 1;
@@ -282,7 +282,7 @@
 
             function shot(e,dir, n)
             {
-                e.preventDefault();
+                if (typeof e == "object") e.preventDefault();
                 if (difficulty < 0) return;
                 if ("ontouchstart" in window && n == 0) return;
                 if (cleared && (ballPos[1] < 10 || animate > 0)) return;
@@ -322,7 +322,7 @@
                         }
                         timeoutID_C.push(window.setTimeout(function f() {
                             animate = 0;
-                            shot(-1,1);
+                            shot(0,-1,1);
                             timeoutID_C = [];
                         }, interval*(2 * frame2 * (5 - boundY))));
                         timeoutID_C.push(window.setTimeout(function f() {
@@ -402,7 +402,7 @@
                 {
                     cleared = true;
                     ball.setAttribute("display", "inline");
-                    reset_click(1);
+                    reset_click(0,1);
                     release_btn();
                     document.getElementById("ansBtn").setAttribute("fill", "#FFD700");
                 }
@@ -410,7 +410,7 @@
                 {
                     cleared = false;
                     if (difficulty == 1) ball.setAttribute("display", "none");
-                    reset_click(1);
+                    reset_click(0,1);
                     release_btn();
                     document.getElementById("ansBtn").setAttribute("fill", "#DDDDDD");
                 }
@@ -418,7 +418,7 @@
 
             function reset_click(e,n)
             {
-                e.preventDefault();
+                if (typeof e == "object") e.preventDefault();
                 if (difficulty < 0) return;
                 if ("ontouchstart" in window && n == 0) return;
                 document.getElementById("reset_btn").setAttribute("fill", "#AAAAAA");
