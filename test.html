@@ -77,14 +77,7 @@
 </head>
 <body onload="init()">
         <link href=”https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap&subset=japanese” rel=”stylesheet”>
-        <audio id="BoundSound" preload="auto">
-            <source src="bound.wav" type="audio/wav">
-        </audio>
-        <style>
-            html {
-                touch-action: manipulation;
-            }
-        </style>
+        
         <svg id="svg" viewBox="0 0 900 1600">
         <rect x="0" y="0" width="900" height="1800" fill="#BBBBFF"/>
         <script>
@@ -116,7 +109,7 @@
                 return obj;
             }
             let countNum = 0;
-            let countText = addText(svg, "b", ["x", 450, "y", 900, "font-size",500,"fill","#AAAAFF", "stroke", "#DDDDFF", "stroke-width", 5])
+            let countText = addText(svg, "a", ["x", 450, "y", 900, "font-size",500,"fill","#AAAAFF", "stroke", "#DDDDFF", "stroke-width", 5])
 
             let debugCount = 0;
             function shot(dir, n)
