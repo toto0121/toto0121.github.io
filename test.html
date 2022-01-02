@@ -121,23 +121,6 @@
                 return obj;
             }
 
-            function init()
-            {
-                if ("ontouchstart" in window == false)
-                {
-                    document.getElementById("btn0").setAttribute("onmousedown","shot(0,0)");
-                    document.getElementById("btn1").setAttribute("onmousedown","shot(1,0)");
-                    document.getElementById("btn2").setAttribute("onmousedown","shot(2,0)");
-                }
-
-                if ("ontouchend" in window == false)
-                {
-                    svg.addEventListener("mouseup", function(e) {
-                        release_btn(); 
-                    });
-                }
-            }
-
             let blockNum = [[3,0,0,6,0], [7,1,0,4,0], [0,8,0,5,0], [0,0,0,2,0]];
             let ballPos = [1,10];
             let ballDir = 1;
@@ -174,7 +157,7 @@
 
 
             let countNum = 0;
-            let countText = addText(svg, "a", ["x", 450, "y", 900, "font-size",500,"fill","#AAAAFF", "stroke", "#DDDDFF", "stroke-width", 5])
+            let countText = addText(svg, "b", ["x", 450, "y", 900, "font-size",500,"fill","#AAAAFF", "stroke", "#DDDDFF", "stroke-width", 5])
 
             for (let i=0; i<5; i++)
             {
@@ -204,27 +187,6 @@
                 countText.textContent = debugCount;
                 
             }
-
-
-            function release_btn()
-            {
-                document.getElementById("reset_btn").setAttribute("fill", "#DDDDDD");
-                document.getElementById("btn0").setAttribute("fill", "#DDDDDD");
-                document.getElementById("btn1").setAttribute("fill", "#DDDDDD");
-                document.getElementById("btn2").setAttribute("fill", "#DDDDDD");
-
-                if (difficulty >= 0)
-                {
-                    document.getElementById("startMenu").setAttribute("display","none");
-                }
-            }
-            
-            
-            
-
-            svg.addEventListener("touchend", function(e) {
-                release_btn(); 
-            });
             
         </script>
         <text x="450" y="250" text-anchor="middle" font-size="110" fill="black"
