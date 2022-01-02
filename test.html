@@ -112,8 +112,9 @@
             let countText = addText(svg, "a", ["x", 450, "y", 900, "font-size",500,"fill","#AAAAFF", "stroke", "#DDDDFF", "stroke-width", 5])
 
             let debugCount = 0;
-            function shot(dir, n)
+            function shot(e, dir, n)
             {
+                e.preventDefault();
                 debugCount++;
                 countText.textContent = debugCount;
                 
@@ -121,19 +122,19 @@
             
         </script>
         
-        <g ontouchstart="shot(2,1)">
+        <g ontouchstart="shot(evt,2,1)">
             <circle cx="260" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
             id="btn2">
             </rect>
         </g>
 
-        <g ontouchstart="shot(0,1)">
+        <g ontouchstart="shot(evt,0,1)">
             <circle cx="450" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
             id="btn0">
             </rect>
         </g>
 
-        <g ontouchstart="shot(1,1)">
+        <g ontouchstart="shot(evt,1,1)">
             <circle cx="640" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
             id="btn1">
             </rect>
