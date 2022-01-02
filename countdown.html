@@ -82,7 +82,7 @@
         </audio>
         <style>
             html {
-                touch-action: manipulation;
+                touch-action: none;
             }
         </style>
         <svg id="svg" viewBox="0 0 900 1600">
@@ -405,7 +405,6 @@
                     reset_click(1);
                     release_btn();
                     document.getElementById("ansBtn").setAttribute("fill", "#FFD700");
-                    audio.muted = false;
                 }
                 else
                 {
@@ -414,7 +413,6 @@
                     reset_click(1);
                     release_btn();
                     document.getElementById("ansBtn").setAttribute("fill", "#DDDDDD");
-                    audio.muted = true;
                 }
             }
 
