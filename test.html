@@ -88,58 +88,11 @@
         <svg id="svg" viewBox="0 0 900 1600">
         <rect x="0" y="0" width="900" height="1800" fill="#BBBBFF"/>
         <script>
-
-            let URL = "https://toto0121.github.io/black_block.html";
             let svg = document.getElementById("svg");
-
-            function setAttributes(obj, cmd) {
-                let len = cmd.length;
-                let i=0;
-                while (i+1 < len)
-                {
-                    obj.setAttribute(cmd[i], cmd[i+1]);
-                    i += 2;
-                }
-            }
-
-            function addObj(parent, objtype, cmd) {
-                let obj = document.createElementNS('http://www.w3.org/2000/svg',objtype);
-                setAttributes(obj, cmd);
-                parent.appendChild(obj);
-                return obj;
-            }
-
-            function addText(parent, text, cmd)
-            {
-                let obj = document.createElementNS('http://www.w3.org/2000/svg',"text");
-                setAttributes(obj, ["font-size", 200, "font-family", "‘Noto Serif JP’, serif", "fill", "black", "text-anchor", "middle", "pointer-events", "none", "style", "user-select:none; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none;"]);
-                setAttributes(obj, cmd);
-                obj.textContent = text;
-                parent.appendChild(obj);
-                return obj;
-            }
-
-            let blockNum = [[3,0,0,6,0], [7,1,0,4,0], [0,8,0,5,0], [0,0,0,2,0]];
-            let ballPos = [1,10];
-            let ballDir = 1;
-
-            let difficulty = -1;
-            let cleared = false;
-
-            let audio = document.getElementById("BoundSound");
-
-            let animate = 0;
-            const frame = 10;
-            let frame2 = Math.floor(frame * Math.SQRT2);
-            let interval = 25;
-            let timeoutID;
-            let timeoutID_C = [];
-
 
             let countNum = 0;
             let countText = addText(svg, "b", ["x", 450, "y", 900, "font-size",500,"fill","#AAAAFF", "stroke", "#DDDDFF", "stroke-width", 5])
 
-            let ball = addObj(svg,"circle",["cx",75*ballPos[0]+150,"cy",75*ballPos[1]+330,"r",15,"fill","red"]);
             let debugCount = 0;
             function shot(dir, n)
             {
@@ -149,10 +102,6 @@
             }
             
         </script>
-        <text x="450" y="250" text-anchor="middle" font-size="110" fill="black"
-        cursor="default" font-family="Times New Roman"
-        style="user-select:none; -webkit-user-select:none;
-        -moz-user-select:none; -ms-user-select:none;">countdown</text>
         
         <g ontouchstart="shot(2,1)">
             <circle cx="260" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
