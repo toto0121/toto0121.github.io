@@ -64,7 +64,7 @@
 
 
 -->
-<html>
+<html touchaction="manipulation" >
 <head>
     <title>countdown</title>
     <meta charset="UTF-8">
@@ -75,7 +75,7 @@
     <meta property="og:description" content="web謎解き countdown 2022年1月2日公開" /> <!--⑤-->
     <meta property="og:image" content="https://toto0121.github.io/countdown_image.png" /> <!--⑥-->
 </head>
-<body>
+<body onload="init()">
         <link href=”https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap&subset=japanese” rel=”stylesheet”>
         <audio id="BoundSound" preload="auto">
             <source src="bound.wav" type="audio/wav">
@@ -83,11 +83,9 @@
         <svg id="svg" viewBox="0 0 900 1600">
         <rect x="0" y="0" width="900" height="1800" fill="#BBBBFF"/>
         <script>
-
-            var URL = "https://toto0121.github.io/black_block.html";
-            document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
-
-            var svg = document.getElementById("svg");
+            let xx = 0;
+            let URL = "https://toto0121.github.io/black_block.html";
+            let svg = document.getElementById("svg");
             
             
             function setAttributes(obj, cmd) {
@@ -117,7 +115,10 @@
                 return obj;
             }
 
-            const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+            function init()
+            {
+                document.getElementById("btn0").setAttribute("onmousedown","shot(0,0)");
+            }
 
             let blockNum = [[3,0,0,6,0], [7,1,0,4,0], [0,8,0,5,0], [0,0,0,2,0]];
             let ballPos = [1,10];
@@ -148,6 +149,7 @@
             let frame2 = Math.floor(frame * Math.SQRT2);
             let interval = 25;
             let timeoutID;
+            let timeoutID_C = [];
 
             function moveBall()
             {
@@ -291,18 +293,19 @@
                         animate = 1;
                         for (let i=1; i<=frame2 * (5 - boundY); i++)
                         {
-                            window.setTimeout(function f() {
+                            timeoutID_C.push(window.setTimeout(function f() {
                                 ball.setAttribute("cy", 75*(10 - 2/frame2*i)+330);
-                            }, interval*i);
-                            window.setTimeout(function f() {
+                            }, interval*i));
+                            timeoutID_C.push(window.setTimeout(function f() {
                                 ball.setAttribute("cy", 75*(10 - 2/frame2*i)+330);
-                            }, interval*(2 * frame2 * (5 - boundY) - i));
+                            }, interval*(2 * frame2 * (5 - boundY) - i)));
                         }
-                        window.setTimeout(function f() {
+                        timeoutID_C.push(window.setTimeout(function f() {
                             animate = 0;
                             shot(-1,1);
-                        }, interval*(2 * frame2 * (5 - boundY)));
-                        window.setTimeout(function f() {
+                            timeoutID_C = [];
+                        }, interval*(2 * frame2 * (5 - boundY))));
+                        timeoutID_C.push(window.setTimeout(function f() {
                             if (boundY > 0)
                             {
                                 if (blockNum[(ballPos[0]-1)/2][boundY-1] == 0) blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = "";
@@ -310,7 +313,7 @@
                             }
                             audio.currentTime = 0;
                             audio.play();
-                        }, interval * (frame2 * (5 - boundY)));
+                        }, interval * (frame2 * (5 - boundY))));
                     }
                 }
 
@@ -346,8 +349,6 @@
                 
                 
             }
-
-            //110121
 
 
             function clearEvt()
@@ -420,6 +421,13 @@
                 if (cleared)
                 {
                     window.clearTimeout(timeoutID);
+                    
+                    timeoutID_C.forEach(element => {
+                        window.clearTimeout(element);
+                    });
+
+                    timeoutID_C = [];
+                    animate = 0;
                 }
             }
 
@@ -450,11 +458,9 @@
                 var EUC = encodeURIComponent;
                 var twitter_url = "http://twitter.com/intent/tweet?text=";
                 
-                //var connection = 0;
                 var message = "web謎解き countdown の謎を解き明かした！";
                 if (difficulty == 1) message+="\nなんとHARDモードでのクリアだ！すごい！"
 
-                //あらかじめ設定されたツイート内容と現在いるページのURLを取得してツイートします。
                 message += URL + "\n\n#web謎解き #とと謎black_block";
 
                 if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
@@ -496,7 +502,7 @@
             </rect>
         </g>
 
-        <g onmousedown="shot(0,0)" ontouchstart="shot(0,1)">
+        <g ontouchstart="shot(0,1)">
             <circle cx="450" cy="1220" r="70" fill="#DDDDDD" stroke="black" 
             id="btn0">
             </rect>
