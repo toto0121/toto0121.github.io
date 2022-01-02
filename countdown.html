@@ -64,7 +64,7 @@
 
 
 -->
-<html touch-action="manipulation" >
+<html>
 <head>
     <title>countdown</title>
     <meta charset="UTF-8">
@@ -72,7 +72,7 @@
     <meta name="twitter:site" content="@to_to_0121" /> <!--②-->
     <meta property="og:url" content="https://toto0121.github.io/countdown.html" /> <!--③-->
     <meta property="og:title" content="countdown" /> <!--④-->
-    <meta property="og:description" content="web謎解き countdown 2022年1月2日公開" /> <!--⑤-->
+    <meta property="og:description" content="web謎解き countdown 2022年1月2日公開d" /> <!--⑤-->
     <meta property="og:image" content="https://toto0121.github.io/countdown_image.png" /> <!--⑥-->
 </head>
 <body onload="init()">
@@ -86,7 +86,7 @@
             let xx = 0;
             let URL = "https://toto0121.github.io/black_block.html";
             let svg = document.getElementById("svg");
-            
+            svg.setAttribute("touch-action", "manipulation");
             
             function setAttributes(obj, cmd) {
                 let len = cmd.length;
@@ -120,6 +120,8 @@
                 if ("ontouchstart" in window == false)
                 {
                     document.getElementById("btn0").setAttribute("onmousedown","shot(0,0)");
+                    document.getElementById("btn1").setAttribute("onmousedown","shot(1,0)");
+                    document.getElementById("btn2").setAttribute("onmousedown","shot(2,0)");
                 }
             }
 
@@ -499,7 +501,7 @@
         style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">countdown</text>
         
-        <g onmousedown="shot(2,0)" ontouchstart="shot(2,1)">
+        <g ontouchstart="shot(2,1)">
             <circle cx="280" cy="1220" r="70" fill="#DDDDDD" stroke="black" 
             id="btn2">
             </rect>
@@ -511,7 +513,7 @@
             </rect>
         </g>
 
-        <g onmousedown="shot(1,0)" ontouchstart="shot(1,1)">
+        <g ontouchstart="shot(1,1)">
             <circle cx="620" cy="1220" r="70" fill="#DDDDDD" stroke="black" 
             id="btn1">
             </rect>
