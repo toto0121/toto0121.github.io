@@ -125,9 +125,9 @@
             {
                 if ("ontouchstart" in window == false)
                 {
-                    document.getElementById("btn0").setAttribute("onmousedown","shot(0,0)");
-                    document.getElementById("btn1").setAttribute("onmousedown","shot(1,0)");
-                    document.getElementById("btn2").setAttribute("onmousedown","shot(2,0)");
+                    document.getElementById("btn0").setAttribute("onmousedown","shot(evt,0,0)");
+                    document.getElementById("btn1").setAttribute("onmousedown","shot(evt,1,0)");
+                    document.getElementById("btn2").setAttribute("onmousedown","shot(evt,2,0)");
                 }
 
                 if ("ontouchend" in window == false)
@@ -416,8 +416,9 @@
                 }
             }
 
-            function reset_click(n)
+            function reset_click(e,n)
             {
+                e.preventDefault();
                 if (difficulty < 0) return;
                 if ("ontouchstart" in window && n == 0) return;
                 document.getElementById("reset_btn").setAttribute("fill", "#AAAAAA");
@@ -532,7 +533,7 @@
             </rect>
         </g>
 
-        <g onmousedown="reset_click(0)" ontouchstart="reset_click(1)">
+        <g onmousedown="reset_click(evt,0)" ontouchstart="reset_click(evt,1)">
             <rect x="370" y="1330" width="160" height="160" fill="#DDDDDD" stroke="black" 
             id="reset_btn">
             </rect>
