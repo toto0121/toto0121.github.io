@@ -72,7 +72,7 @@
     <meta name="twitter:site" content="@to_to_0121" /> <!--②-->
     <meta property="og:url" content="https://toto0121.github.io/countdown.html" /> <!--③-->
     <meta property="og:title" content="countdown" /> <!--④-->
-    <meta property="og:description" content="web謎解き countdown 2022年1月2日公開d" /> <!--⑤-->
+    <meta property="og:description" content="web謎解き countdown 2022年1月2日公開" /> <!--⑤-->
     <meta property="og:image" content="https://toto0121.github.io/countdown_image.png" /> <!--⑥-->
 </head>
 <body onload="init()">
@@ -91,6 +91,8 @@
             let xx = 0;
             let URL = "https://toto0121.github.io/black_block.html";
             let svg = document.getElementById("svg");
+
+            document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
             
             function setAttributes(obj, cmd) {
                 let len = cmd.length;
