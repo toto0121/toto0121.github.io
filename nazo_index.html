@@ -136,16 +136,14 @@
                 createContent("https://toto0121.github.io/" + name.replace(" ","_") + ".html", "https://toto0121.github.io/" + name.replace(" ","_") + "_image.png", name, date, difficulty);
             }
 
+            createTemplate("countdown", "2022年1月2日", "2(HARD 4)");
             createTemplate("black block", "2021年11月27日", 2);
             createTemplate("spiky", "2021年8月7日", 3);
+            
 
             svg.setAttribute("viewBox", "0 0 900 " + (contentPosY + 400));
             document.getElementById("bg").setAttribute("height", contentPosY + 400);
 
-            addObj(svg, "text", ["x",450,"y",contentPosY + 150, "text-anchor","middle","font-size","60","fill","black",
-                    "style","user-select:none; -webkit-user-select:none;-moz-user-select:none; -ms-user-select:none;"]
-                    ).textContent = "まだまだ開発中です";
-            
             addObj(svg, "text", ["x",450,"y",contentPosY + 150, "text-anchor","middle","font-size","60","fill","black",
                     "style","user-select:none; -webkit-user-select:none;-moz-user-select:none; -ms-user-select:none;"]
                     ).textContent = "まだまだ開発中です";
