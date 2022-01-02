@@ -88,7 +88,7 @@
         <svg id="svg" viewBox="0 0 900 1600">
         <rect x="0" y="0" width="900" height="1800" fill="#BBBBFF"/>
         <script>
-            let xx = 0;
+
             let URL = "https://toto0121.github.io/black_block.html";
             let svg = document.getElementById("svg");
 
@@ -129,6 +129,13 @@
                     document.getElementById("btn1").setAttribute("onmousedown","shot(1,0)");
                     document.getElementById("btn2").setAttribute("onmousedown","shot(2,0)");
                 }
+
+                if ("ontouchend" in window == false)
+                {
+                    svg.addEventListener("mouseup", function(e) {
+                        release_btn(); 
+                    });
+                }
             }
 
             let blockNum = [[3,0,0,6,0], [7,1,0,4,0], [0,8,0,5,0], [0,0,0,2,0]];
@@ -139,11 +146,14 @@
             let cleared = false;
 
             let audio = document.getElementById("BoundSound");
+            
 
             function start(diff, n)
             {
                 if ("ontouchstart" in window && n == 0) return;
                 difficulty = diff;
+                audio.play();
+                audio.muted = true;
                 if (diff == 1)
                 {
                     document.getElementById("hard").setAttribute("fill", "#AAAAAA");
@@ -197,8 +207,8 @@
                         if (ballDir > 4) ballDir -= 4;
                         if (cleared)
                         {
-                            if( typeof(audio.currentTime ) != 'undefined' ) audio.currentTime = 0;
                             audio.play();
+                            audio.currentTime = 0;
                         } 
                     }
                     else if (blockNum[blockX][blockY] > 0)
@@ -209,8 +219,8 @@
                         {
                             if (blockNum[blockX][blockY] == 0) blockNumText[blockX][blockY].textContent = "";
                             else blockNumText[blockX][blockY].textContent = blockNum[blockX][blockY];
-                            if( typeof(audio.currentTime ) != 'undefined' ) audio.currentTime = 0;
                             audio.play();
+                            audio.currentTime = 0;
                         } 
                         ballDir = 7 - ballDir;
                         if (ballDir > 4) ballDir -= 4;
@@ -224,8 +234,7 @@
                     {
                         ballDir = 5 - ballDir;
                         if (cleared){
-                            if( typeof(audio.currentTime ) != 'undefined' ) audio.currentTime = 0;
-                            audio.play();
+                            audio.currentTime = 0;
                         } 
                     }
                     else if (blockNum[blockX][blockY] > 0)
@@ -235,8 +244,8 @@
                         {
                             if (blockNum[blockX][blockY] == 0) blockNumText[blockX][blockY].textContent = "";
                             else blockNumText[blockX][blockY].textContent = blockNum[blockX][blockY];
-                            if( typeof(audio.currentTime ) != 'undefined' ) audio.currentTime = 0;
                             audio.play();
+                            audio.currentTime = 0;
                         } 
                         ballDir = 5 - ballDir;
                     }
@@ -322,8 +331,8 @@
                                 if (blockNum[(ballPos[0]-1)/2][boundY-1] == 0) blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = "";
                                 else blockNumText[(ballPos[0]-1)/2][boundY-1].textContent = blockNum[(ballPos[0]-1)/2][boundY-1];
                             }
-                            if( typeof(audio.currentTime ) != 'undefined' ) audio.currentTime = 0;
                             audio.play();
+                            audio.currentTime = 0;
                         }, interval * (frame2 * (5 - boundY))));
                     }
                 }
@@ -396,6 +405,7 @@
                     reset_click(1);
                     release_btn();
                     document.getElementById("ansBtn").setAttribute("fill", "#FFD700");
+                    audio.muted = false;
                 }
                 else
                 {
@@ -404,6 +414,7 @@
                     reset_click(1);
                     release_btn();
                     document.getElementById("ansBtn").setAttribute("fill", "#DDDDDD");
+                    audio.muted = true;
                 }
             }
 
@@ -454,11 +465,9 @@
                     document.getElementById("startMenu").setAttribute("display","none");
                 }
             }
-
-            svg.addEventListener("mouseup", function(e) {
-                if ("ontouchend" in window) return;
-                release_btn(); 
-            });
+            
+            
+            
 
             svg.addEventListener("touchend", function(e) {
                 release_btn(); 
@@ -470,9 +479,9 @@
                 var twitter_url = "http://twitter.com/intent/tweet?text=";
                 
                 var message = "web謎解き countdown の謎を解き明かした！";
-                if (difficulty == 1) message+="\nなんとHARDモードでのクリアだ！すごい！"
+                if (difficulty == 1) message+="\nなんとHARDモードでクリア！すごい！"
 
-                message += URL + "\n\n#web謎解き #とと謎black_block";
+                message += URL + "\n\n#web謎解き #とと謎countdown";
 
                 if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
                     location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
@@ -600,7 +609,7 @@
                 style="user-select:none; -webkit-user-select:none;
                 -moz-user-select:none; -ms-user-select:none;">
                     <tspan x="460" dy="0" font-size="60">難易度が選択できます。</tspan>
-                    <tspan x="460" dy="100">hardではヒントが減ります。</tspan>
+                    <tspan x="460" dy="100">HARDではヒントが減ります。</tspan>
                 </text>
                 <g onmousedown="start(0,0)"  ontouchstart="start(0,1)">
                     <rect id="normal" x="200" y="550" width="500" height="150" fill="#EEEEEE" stroke="#222222" stroke-width="3"></rect>
