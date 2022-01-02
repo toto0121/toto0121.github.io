@@ -152,8 +152,6 @@
             {
                 if ("ontouchstart" in window && n == 0) return;
                 difficulty = diff;
-                audio.play();
-                audio.muted = true;
                 if (diff == 1)
                 {
                     document.getElementById("hard").setAttribute("fill", "#AAAAAA");
@@ -281,8 +279,9 @@
 
             let ball = addObj(svg,"circle",["cx",75*ballPos[0]+150,"cy",75*ballPos[1]+330,"r",15,"fill","red"]);
 
-            function shot(dir, n)
+            function shot(e,dir, n)
             {
+                e.preventDefault();
                 if (difficulty < 0) return;
                 if ("ontouchstart" in window && n == 0) return;
                 if (cleared && (ballPos[1] < 10 || animate > 0)) return;
@@ -514,20 +513,20 @@
         style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">countdown</text>
         
-        <g ontouchstart="shot(2,1)">
-            <circle cx="280" cy="1220" r="70" fill="#DDDDDD" stroke="black" 
+        <g ontouchstart="shot(evt,2,1)">
+            <circle cx="260" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
             id="btn2">
             </rect>
         </g>
 
-        <g ontouchstart="shot(0,1)">
-            <circle cx="450" cy="1220" r="70" fill="#DDDDDD" stroke="black" 
+        <g ontouchstart="shot(evt,0,1)">
+            <circle cx="450" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
             id="btn0">
             </rect>
         </g>
 
-        <g ontouchstart="shot(1,1)">
-            <circle cx="620" cy="1220" r="70" fill="#DDDDDD" stroke="black" 
+        <g ontouchstart="shot(evt,1,1)">
+            <circle cx="640" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
             id="btn1">
             </rect>
         </g>
