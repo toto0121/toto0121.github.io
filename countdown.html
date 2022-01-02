@@ -64,7 +64,7 @@
 
 
 -->
-<html touchaction="manipulation" >
+<html touch-action="manipulation" >
 <head>
     <title>countdown</title>
     <meta charset="UTF-8">
@@ -117,7 +117,10 @@
 
             function init()
             {
-                document.getElementById("btn0").setAttribute("onmousedown","shot(0,0)");
+                if ("ontouchstart" in window == false)
+                {
+                    document.getElementById("btn0").setAttribute("onmousedown","shot(0,0)");
+                }
             }
 
             let blockNum = [[3,0,0,6,0], [7,1,0,4,0], [0,8,0,5,0], [0,0,0,2,0]];
