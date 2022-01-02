@@ -92,8 +92,6 @@
             let URL = "https://toto0121.github.io/black_block.html";
             let svg = document.getElementById("svg");
 
-            document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
-            
             function setAttributes(obj, cmd) {
                 let len = cmd.length;
                 let i=0;
@@ -129,24 +127,6 @@
             let cleared = false;
 
             let audio = document.getElementById("BoundSound");
-            
-
-            function start(diff, n)
-            {
-                if ("ontouchstart" in window && n == 0) return;
-                difficulty = diff;
-                audio.play();
-                audio.muted = true;
-                if (diff == 1)
-                {
-                    document.getElementById("hard").setAttribute("fill", "#AAAAAA");
-                    ball.setAttribute("display", "none");
-                } 
-                else
-                {
-                    document.getElementById("normal").setAttribute("fill", "#AAAAAA");
-                }
-            }
 
             let animate = 0;
             const frame = 10;
@@ -158,26 +138,6 @@
 
             let countNum = 0;
             let countText = addText(svg, "b", ["x", 450, "y", 900, "font-size",500,"fill","#AAAAFF", "stroke", "#DDDDFF", "stroke-width", 5])
-
-            for (let i=0; i<5; i++)
-            {
-                addObj(svg, "line", ["x1",150*i+150,"y1",330,"x2",150*i+150,"y2",1080,"stroke","black","stroke-width", 3]);
-            }
-            for (let i=0; i<6; i++)
-            {
-                addObj(svg, "line", ["x1",150,"y1",150*i+330,"x2",750,"y2",150*i+330,"stroke","black","stroke-width", 3])
-            }
-
-            let blockNumText = [[,,,,],[,,,,],[,,,,],[,,,,]];
-
-            for (let i=0; i<4; i++)
-            {
-                for (let j=0; j<5; j++)
-                {
-                    if (blockNum[i][j] == 0) blockNum[i][j] = "";
-                    blockNumText[i][j] = addText(svg,blockNum[i][j],["x",150*i+225,"y",150*j+450,"font-size",120])
-                }
-            }
 
             let ball = addObj(svg,"circle",["cx",75*ballPos[0]+150,"cy",75*ballPos[1]+330,"r",15,"fill","red"]);
             let debugCount = 0;
