@@ -146,12 +146,13 @@
             let cleared = false;
 
             let audio = document.getElementById("BoundSound");
-            
+            audio.muted = true;
 
             function start(diff, n)
             {
                 if ("ontouchstart" in window && n == 0) return;
                 difficulty = diff;
+                
                 if (diff == 1)
                 {
                     document.getElementById("hard").setAttribute("fill", "#AAAAAA");
