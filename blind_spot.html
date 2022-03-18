@@ -118,6 +118,21 @@
                 return obj;
             }
 
+            let irohaBlock = addObj(svg, "g", ["transform", "translate(20,320)", "fill", "white", "stroke", "black","stroke-width", 2]);
+            addObj(irohaBlock, "polygon", ["pointer-events", "none", "points", "0,0 688,0 688,602 602,602 602,430 516,430 516,516 430,516 430,430 344,430 344,602 258,602 258,430 172,430 172,602 86,602 86,430 0,430"]);
+            let iroha = ["ゑあけうつわちい", "ひさふゐねかりろ", "もきこのなよぬは", "せゆえおらたるに", "すめてくむれをほ", "　み　や　そ　へ", "　し　ま　　　と"];
+            
+            for (let i=0; i<7; i++)
+            {
+                for (let j=0; j<8; j++)
+                {
+                    addText(irohaBlock, iroha[i][j], ["x",43 + 86*j,"y",60 + 86 * i, "font-size", 60]);
+                }
+            }
+            let btnKU = addObj(irohaBlock, "rect", ["x", 86*3, "y", 86*4, "width", 86, "height", 86, "ontouchstart", "btn(0)", "fill-opacity", 0, "stroke", "none"]);
+            let btnRI = addObj(irohaBlock, "rect", ["x", 86*5.5, "y", 86*0.5, "width", 86*2, "height", 86*2, "ontouchstart", "btn(1)", "fill-opacity", 0, "stroke", "none"]);
+            let btnA = addObj(irohaBlock, "rect", ["x", 86*0.5, "y", 86*-0.5, "width", 86*2, "height", 86*2, "ontouchstart", "btn(2)", "fill-opacity", 0, "stroke", "none"]);
+
             function init()
             {
                 if ("ontouchstart" in window == false)
@@ -126,6 +141,9 @@
                     document.getElementById("btn1").setAttribute("onmousedown","move(1)");
                     document.getElementById("btn2").setAttribute("onmousedown","move(2)");
                     document.getElementById("btn3").setAttribute("onmousedown","move(3)");
+                    btnKU.setAttribute("onmousedown", "btn(0)");
+                    btnRI.setAttribute("onmousedown", "btn(1)");
+                    btnA.setAttribute("onmousedown", "btn(2)");
                 }
 
                 if ("ontouchend" in window == false)
@@ -178,18 +196,7 @@
                 }
             }
 
-            let irohaBlock = addObj(svg, "g", ["transform", "translate(20,320)", "fill", "white", "stroke", "black","stroke-width", 2]);
-            addObj(irohaBlock, "polygon", ["pointer-events", "none", "points", "0,0 688,0 688,602 602,602 602,430 516,430 516,516 430,516 430,430 344,430 344,602 258,602 258,430 172,430 172,602 86,602 86,430 0,430"]);
-            addText(irohaBlock, "ゑあけうつわちい", ["x",10,"y",60, "font-size", 60, "text-anchor", "left", "textLength", 660]);
-            addText(irohaBlock, "ひさふゐねかりろ", ["x",10,"y",146, "font-size", 60, "text-anchor", "left", "textLength", 660]);
-            addText(irohaBlock, "もきこのなよぬは", ["x",10,"y",232, "font-size", 60, "text-anchor", "left", "textLength", 660]);
-            addText(irohaBlock, "せゆえおらたるに", ["x",10,"y",318, "font-size", 60, "text-anchor", "left", "textLength", 660]);
-            addText(irohaBlock, "すめてくむれをほ", ["x",10,"y",404, "font-size", 60, "text-anchor", "left", "textLength", 660]);
-            addText(irohaBlock, "　み　や　そ　へ", ["x",10,"y",490, "font-size", 60, "text-anchor", "left", "textLength", 660]);
-            addText(irohaBlock, "　し　ま　　　と", ["x",10,"y",576, "font-size", 60, "text-anchor", "left", "textLength", 660]);
-            let btnKU = addObj(irohaBlock, "rect", ["x", 86*3, "y", 86*4, "width", 86, "height", 86, "ontouchstart", "btn(0)", "fill-opacity", 0, "stroke", "none"]);
-            let btnRI = addObj(irohaBlock, "rect", ["x", 86*5.5, "y", 86*0.5, "width", 86*2, "height", 86*2, "ontouchstart", "btn(1)", "fill-opacity", 0, "stroke", "none"]);
-            let btnA = addObj(irohaBlock, "rect", ["x", 86*0.5, "y", 86*-0.5, "width", 86*2, "height", 86*2, "ontouchstart", "btn(2)", "fill-opacity", 0, "stroke", "none"]);
+
 
             if (!("ontouchstart" in window))
             {
@@ -229,7 +236,7 @@
                     }
                     stat = 0;
                 }
-                if (stat == 3) clearEvt();
+                if (stat == 3) window.setTimeout(clearEvt,500);
             }
 
             function reset_click(e,n)
@@ -304,9 +311,9 @@
         style="user-select:none; -webkit-user-select:none;
         -moz-user-select:none; -ms-user-select:none;">blind_spot</text>
 
-        <rect x="20" y="320" width="860" height="860" stroke="black" fill="none" pointer-events="none"></rect>
+        <rect x="20" y="320" width="860" height="860" stroke="black" fill="none" pointer-events="none" stroke-width=3></rect>
         <g id="frame">
-            <rect x="192" y="492" width="516" height="516" stroke="#AAAAAA" stroke-width = "345" fill="none" display="inline" pointer-events="none"></rect>
+            <rect x="194" y="494" width="512" height="512" stroke="#AAAAAA" stroke-width = "347" fill="none" display="inline" pointer-events="none"></rect>
             <!--
             <line x1=106 y1=320 x2=106 y2=1180 stroke="black" stroke-width=1></line>
             <line x1=192 y1=320 x2=192 y2=1180 stroke="black" stroke-width=1></line>
