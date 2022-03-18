@@ -129,21 +129,21 @@
                     addText(irohaBlock, iroha[i][j], ["x",43 + 86*j,"y",60 + 86 * i, "font-size", 60]);
                 }
             }
-            let btnKU = addObj(irohaBlock, "rect", ["x", 86*3, "y", 86*4, "width", 86, "height", 86, "ontouchstart", "btn(0)", "fill-opacity", 0, "stroke", "none"]);
-            let btnRI = addObj(irohaBlock, "rect", ["x", 86*5.5, "y", 86*0.5, "width", 86*2, "height", 86*2, "ontouchstart", "btn(1)", "fill-opacity", 0, "stroke", "none"]);
-            let btnA = addObj(irohaBlock, "rect", ["x", 86*0.5, "y", 86*-0.5, "width", 86*2, "height", 86*2, "ontouchstart", "btn(2)", "fill-opacity", 0, "stroke", "none"]);
+            let btnKU = addObj(irohaBlock, "rect", ["x", 86*2.75, "y", 86*3.75, "width", 86*1.5, "height", 86*1.5, "ontouchstart", "btn(evt,0)", "fill-opacity", 0, "stroke", "none"]);
+            let btnRI = addObj(irohaBlock, "rect", ["x", 86*5.5, "y", 86*0.5, "width", 86*2, "height", 86*2, "ontouchstart", "btn(evt,1)", "fill-opacity", 0, "stroke", "none"]);
+            let btnA = addObj(irohaBlock, "rect", ["x", 86*0.5, "y", 86*-0.5, "width", 86*2, "height", 86*2, "ontouchstart", "btn(evt,2)", "fill-opacity", 0, "stroke", "none"]);
 
             function init()
             {
                 if ("ontouchstart" in window == false)
                 {
-                    document.getElementById("btn0").setAttribute("onmousedown","move(0)");
-                    document.getElementById("btn1").setAttribute("onmousedown","move(1)");
-                    document.getElementById("btn2").setAttribute("onmousedown","move(2)");
-                    document.getElementById("btn3").setAttribute("onmousedown","move(3)");
-                    btnKU.setAttribute("onmousedown", "btn(0)");
-                    btnRI.setAttribute("onmousedown", "btn(1)");
-                    btnA.setAttribute("onmousedown", "btn(2)");
+                    document.getElementById("btn0").setAttribute("onmousedown","move(evt,0)");
+                    document.getElementById("btn1").setAttribute("onmousedown","move(evt,1)");
+                    document.getElementById("btn2").setAttribute("onmousedown","move(evt,2)");
+                    document.getElementById("btn3").setAttribute("onmousedown","move(evt,3)");
+                    btnKU.setAttribute("onmousedown", "btn(evt,0)");
+                    btnRI.setAttribute("onmousedown", "btn(evt,1)");
+                    btnA.setAttribute("onmousedown", "btn(evt,2)");
                 }
 
                 if ("ontouchend" in window == false)
@@ -208,8 +208,9 @@
 
             let pos = [0,0];
 
-            function move(dir)
+            function move(evt, dir)
             {
+                evt.preventDefault();
                 if (dir == 0 && pos[0] > 0) pos[0]--;
                 if (dir == 1 && pos[0] < 2) pos[0]++;
                 if (dir == 2 && pos[1] > 0) pos[1]--;
@@ -221,8 +222,9 @@
 
             let stat = 0;
 
-            function btn(id)
+            function btn(evt, id)
             {
+                evt.preventDefault();
                 if (id == stat)
                 {
                     document.getElementById("clear" + id).setAttribute("fill", "#55FF55");
@@ -333,30 +335,36 @@
         <g stroke="black" stroke-width=2 stroke-dasharray="5 5" font-size=150 fill="none" text-anchor="middle"
             cursor="default" style="user-select:none; -webkit-user-select:none;
             -moz-user-select:none; -ms-user-select:none;">
-            <text x=200 y=1100 id="clear0">く</text>
-            <text x=450 y=1100 id="clear1">り</text>
-            <text x=700 y=1100 id="clear2">あ</text>
+            <text x=150 y=1100 id="clear0">く</text>
+            <text x=300 y=1100 id="clear1">り</text>
+            <text x=450 y=1100 id="clear2">あ</text>
         </g>
-        
-        <g ontouchstart="move(0)">
+        <g stroke="black" stroke-width=2 font-size=100 fill="black" text-anchor="middle"
+            cursor="default" style="user-select:none; -webkit-user-select:none;
+            -moz-user-select:none; -ms-user-select:none;">
+            <text x=650 y=1100 id="clear0">押</text>
+            <text x=750 y=1100 id="clear1">せ</text>
+        </g>
+
+        <g ontouchstart="move(evt,0)">
             <circle cx="150" cy="1385" r="70" fill="#DDDDDD" stroke="black" 
             id="btn0">
             </rect>
         </g>
 
-        <g ontouchstart="move(1)">
+        <g ontouchstart="move(evt,1)">
             <circle cx="380" cy="1385" r="70" fill="#DDDDDD" stroke="black" 
             id="btn1">
             </rect>
         </g>
 
-        <g ontouchstart="move(2)">
+        <g ontouchstart="move(evt,2)">
             <circle cx="265" cy="1270" r="70" fill="#DDDDDD" stroke="black" 
             id="btn2">
             </rect>
         </g>
 
-        <g ontouchstart="move(3)">
+        <g ontouchstart="move(evt,3)">
             <circle cx="265" cy="1500" r="70" fill="#DDDDDD" stroke="black" 
             id="btn3">
             </rect>
