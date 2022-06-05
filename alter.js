@@ -3,9 +3,9 @@ const contentDate = "2022年6月n日";
 
 document.title = contentName;
 document.getElementById("og:url").setAttribute("content","https://toto0121.github.io/" + contentName + ".html");
-addMeta(["property","og:title","content",contentName]);
-addMeta(["property","og:description","content","web謎解き " + contentName + contentDate + "公開"]);
-addMeta(["property","og:image","content","https://toto0121.github.io/" + contentName + "_image.png"]);
+document.getElementById("og:title").setAttribute("content",contentName);
+document.getElementById("og:description").setAttribute("content","web謎解き " + contentName + contentDate + "公開");
+document.getElementById("og:image").setAttribute("content","https://toto0121.github.io/" + contentName + "_image.png");
 
 
 addObj(svg, "rect", ["x", 0, "y", 0, "width", 900, "height", 1600, "fill", "#EEEEEE"]);
