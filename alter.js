@@ -51,11 +51,7 @@ function enter(evt)
         let s = 0;
         let change = payMoney - price;
         moneyArr.forEach(e => {
-            while(e <= payMoney)
-            {
-                payMoney -= e;
-                s++;
-            }
+            s += parseInt(document.getElementById(e + "yen").textContent);
             while(e <= change)
             {
                 change -= e;
