@@ -24,3 +24,10 @@ function addText(parent, text, cmd)
     parent.appendChild(obj);
     return obj;
 }
+
+function addMeta(cmd)
+{
+    let obj = document.createElement("meta");
+    setAttributes(obj, cmd);
+    head.appendChild(obj);
+}
