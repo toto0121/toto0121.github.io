@@ -24,7 +24,7 @@ function tweet()
 {
     var EUC = encodeURIComponent;
     var twitter_url = "http://twitter.com/intent/tweet?text=";
-    
+    const URL = "https://toto0121.github.io/" + contentName + ".html"
     var message = "web謎解き " + contentName  + " の謎を解き明かした！";
 
     message += URL + "\n\n#web謎解き #とと謎" + contentName + " #とと謎";
