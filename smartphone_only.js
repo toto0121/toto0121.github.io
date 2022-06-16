@@ -1,0 +1,1 @@
+if (!"ontouchstart" in window) window.location.href = "smartphone_only.html";

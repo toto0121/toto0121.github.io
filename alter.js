@@ -1,5 +1,5 @@
 const contentName = "alter";
-const contentDate = "2022年6月n日";
+const contentDate = "2022年6月23日";
 
 document.title = contentName;
 document.getElementById("og:url").setAttribute("content","https://toto0121.github.io/" + contentName + ".html");
@@ -34,7 +34,7 @@ addText(svg, "RESET", ["x", 600, "y", 1320, "id", "enter", "font-size", 60, "fil
 addText(svg, "Score", ["x", 450, "y", 400, "font-size", "100", "fill", "black"]);
 const score = addText(svg, "-", ["x", 450, "y", 600, "font-size", 150, "fill", "black"])
 
-const price = 462;
+const price = 623;
 let payMoney = 0;
 const moneyArr = [500, 100, 50, 10, 5, 1];
 
@@ -66,7 +66,7 @@ function enter(evt)
         });
         score.textContent = s;
 
-        if (s == 6) clearEvt();
+        if (s == 7) clearEvt();
     }
 }
 
