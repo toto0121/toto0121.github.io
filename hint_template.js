@@ -14,7 +14,7 @@ addText(svg, "解説", ["x", 450, "y", 980, "font-size", 70, "text-anchor", "mid
     "font-family", "Yu Gothic Medium", "pointer-events", "none"]);
 
 addButton("rect", ["x", 250, "y", 1200, "width", 400, "height", 100, "stroke", "black", "stroke-width", 5, "ontouchstart", "select(evt)", "onclick", "toQuestion()"]);
-addText(svg, "問題に戻る", ["x", 450, "y", 1260, "font-size", 40, "text-anchor", "middle",
+addText(svg, "問題に戻る", ["x", 450, "y", 1263, "font-size", 40, "text-anchor", "middle",
     "font-family", "Yu Gothic Medium", "pointer-events", "none"]);
 
 const hintObj = addObj(svg, "g", ["display", "none"]);
