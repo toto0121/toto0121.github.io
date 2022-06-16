@@ -1,1 +1,1 @@
-if (!"ontouchstart" in window) window.location.href = "smartphone_only.html";
+if ("ontouchstart" in window == false) window.location.href = "smartphone_only.html";
