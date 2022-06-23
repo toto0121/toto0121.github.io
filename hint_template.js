@@ -1,4 +1,4 @@
-addText(svg, contentName, ["x", 450, "y", 180, "font-size", 100, "font-family", "Yu Gothic Medium"]);
+addText(svg, contentName, ["x", 450, "y", 160, "font-size", 100, "font-family", "Yu Gothic Medium"]);
 addText(svg, "ヒント・解説", ["x", 450, "y", 240, "font-size", 50, "font-family", "Yu Gothic Medium"]);
 
 addButton("rect", ["x", 250, "y", 350, "width", 400, "height", 150, "stroke", "black", "stroke-width", 5, "ontouchstart", "select(evt)", "onclick", "showHint(0)"]);
