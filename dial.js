@@ -1,5 +1,5 @@
 const contentName = "dial";
-const contentDate = "2022年x月x日";
+const contentDate = "2022年7月19日";
 
 document.title = contentName;
 
