@@ -123,3 +123,24 @@ function lampEvent(num)
     lamps[num].setAttribute("fill", "#00FF00");
     setAttributes(ring, ["display", "inline", "cx", lamps[num].getAttribute("cx"), "cy", lamps[num].getAttribute("cy")])
 }
+
+addButton("rect", ["x", 325, "y", 1230, "width", 250, "height", 130, "ontouchstart", "reset(evt)"]);
+addText(svg, "RESET", ["x", 450, "y", 1320, "id", "enter", "font-size", 60, "fill", "black", "pointer-events", "none"]);
+
+
+function reset(evt)
+{
+    evt.preventDefault();
+    evt.target.setAttribute("fill", "#AAAAAA");
+    for (let i=0; i<12; i++)
+    {
+        lamps[i].setAttribute("fill", "#666666");
+    }
+    ring.setAttribute("display", "none");
+    for (let i=0; i<6; i++)
+    {
+        let cx =  (900 - space * 5) / 2 + space * i;
+        setAttributes(lines[i],["x1", cx-r, "y1", cy, "x2", cx+r, "y2", cy]);
+        lineStat[i] = 0;
+    }
+}
