@@ -4,19 +4,19 @@ addText(svg, "ヒント・解説", ["x", 450, "y", 240, "font-size", 50, "font-f
 addButton("rect", ["x", 250, "y", 350, "width", 400, "height", 150, "stroke", "black", "stroke-width", 5, "ontouchstart", "select(evt)", "onclick", "showHint(0)"]);
 addText(svg, "ヒント1", ["x", 450, "y", 435, "font-size", 70, "text-anchor", "middle",
     "font-family", "Yu Gothic Medium", "pointer-events", "none"]);
-addText(svg, "難易度2.5→2.2", ["x", 450, "y", 480, "font-size", 30, "text-anchor", "middle",
+addText(svg, "難易度"+difficulty[0]+"→"+difficulty[1], ["x", 450, "y", 480, "font-size", 30, "text-anchor", "middle",
     "font-family", "Yu Gothic Medium", "pointer-events", "none"]);
 
 addButton("rect", ["x", 250, "y", 550, "width", 400, "height", 150, "stroke", "black", "stroke-width", 5, "ontouchstart", "select(evt)", "onclick", "showHint(1)"]);
 addText(svg, "ヒント2", ["x", 450, "y", 635, "font-size", 70, "text-anchor", "middle",
     "font-family", "Yu Gothic Medium", "pointer-events", "none"]);
-addText(svg, "難易度2.2→1.8", ["x", 450, "y", 680, "font-size", 30, "text-anchor", "middle",
+addText(svg, "難易度"+difficulty[1]+"→"+difficulty[2], ["x", 450, "y", 680, "font-size", 30, "text-anchor", "middle",
     "font-family", "Yu Gothic Medium", "pointer-events", "none"]);
 
 addButton("rect", ["x", 250, "y", 750, "width", 400, "height", 150, "stroke", "black", "stroke-width", 5, "ontouchstart", "select(evt)", "onclick", "showHint(2)"]);
 addText(svg, "ヒント3", ["x", 450, "y", 835, "font-size", 70, "text-anchor", "middle",
     "font-family", "Yu Gothic Medium", "pointer-events", "none"]);
-addText(svg, "難易度1.8→1.0", ["x", 450, "y", 880, "font-size", 30, "text-anchor", "middle",
+addText(svg, "難易度"+difficulty[2]+"→"+difficulty[3], ["x", 450, "y", 880, "font-size", 30, "text-anchor", "middle",
     "font-family", "Yu Gothic Medium", "pointer-events", "none"]);
 
 addButton("rect", ["x", 250, "y", 950, "width", 400, "height", 150, "stroke", "black", "stroke-width", 5, "ontouchstart", "select(evt)", "onclick", "showHint(3)"]);

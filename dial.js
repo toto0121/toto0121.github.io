@@ -112,7 +112,6 @@ function turn(id)
         {
             if (lamps[i].getAttribute("fill") != "#00FF00")
             {
-                console.log(i);
                 break;
             }
             if (i == 11)

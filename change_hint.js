@@ -1,4 +1,5 @@
 const contentName = "change";
+const difficulty = [2.5, 2.2, 1.8, "1.0"];
 
 addObj(svg, "rect", ["width", 900, "height", 1600, "fill", "#EEEEEE"])
 
