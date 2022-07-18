@@ -2,11 +2,6 @@ const contentName = "dial";
 const contentDate = "2022年x月x日";
 
 document.title = contentName;
-document.getElementById("og:url").setAttribute("content","https://toto0121.github.io/" + contentName + ".html");
-document.getElementById("og:title").setAttribute("content",contentName);
-document.getElementById("og:description").setAttribute("content","web謎解き " + contentName + contentDate + "公開");
-document.getElementById("og:image").setAttribute("content","https://toto0121.github.io/" + contentName + "_image.png");
-
 
 addObj(svg, "rect", ["x", 0, "y", 0, "width", 900, "height", 1600, "fill", "#EEEEEE"]);
 
