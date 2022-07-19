@@ -66,7 +66,7 @@
 -->
 <html>
 <head>
-    <title>countdown</title>
+    <title>test</title>
     <meta charset="UTF-8">
     <meta name="twitter:card" content="summary_large_image" /> <!--①-->
     <meta name="twitter:site" content="@to_to_0121" /> <!--②-->
@@ -75,71 +75,9 @@
     <meta property="og:description" content="web謎解き countdown 2022年1月2日公開" /> <!--⑤-->
     <meta property="og:image" content="https://toto0121.github.io/countdown_image.png" /> <!--⑥-->
 </head>
-<body onload="init()">
-        <link href=”https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap&subset=japanese” rel=”stylesheet”>
+<body>
         
-        <svg id="svg" viewBox="0 0 900 1600">
         <rect x="0" y="0" width="900" height="1800" fill="#BBBBFF"/>
-        <script>
-            let svg = document.getElementById("svg");
-            function setAttributes(obj, cmd) {
-                let len = cmd.length;
-                let i=0;
-                while (i+1 < len)
-                {
-                    obj.setAttribute(cmd[i], cmd[i+1]);
-                    i += 2;
-                }
-            }
-
-            function addObj(parent, objtype, cmd) {
-                let obj = document.createElementNS('http://www.w3.org/2000/svg',objtype);
-                setAttributes(obj, cmd);
-                parent.appendChild(obj);
-                return obj;
-            }
-
-            function addText(parent, text, cmd)
-            {
-                let obj = document.createElementNS('http://www.w3.org/2000/svg',"text");
-                setAttributes(obj, ["font-size", 200, "font-family", "‘Noto Serif JP’, serif", "fill", "black", "text-anchor", "middle", "pointer-events", "none", "style", "user-select:none; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none;"]);
-                setAttributes(obj, cmd);
-                obj.textContent = text;
-                parent.appendChild(obj);
-                return obj;
-            }
-            let countNum = 0;
-            let countText = addText(svg, "b", ["x", 450, "y", 900, "font-size",500,"fill","#AAAAFF", "stroke", "#DDDDFF", "stroke-width", 5])
-
-            let debugCount = 0;
-            function shot(e, dir, n)
-            {
-                e.preventDefault();
-                debugCount++;
-                countText.textContent = debugCount;
-                
-            }
-            
-        </script>
-        
-        <g ontouchstart="shot(evt,2,1)">
-            <circle cx="260" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
-            id="btn2">
-            </rect>
-        </g>
-
-        <g ontouchstart="shot(evt,0,1)">
-            <circle cx="450" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
-            id="btn0">
-            </rect>
-        </g>
-
-        <g ontouchstart="shot(evt,1,1)">
-            <circle cx="640" cy="1210" r="80" fill="#DDDDDD" stroke="black" 
-            id="btn1">
-            </rect>
-        </g>
-
-    </svg>
+        <script src="test.js"></script>
 </body>
 </html>
