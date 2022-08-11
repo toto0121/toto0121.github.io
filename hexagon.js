@@ -136,7 +136,6 @@ function enter(evt)
     blueMap.push([pos[0], pos[1]]);
     draw();
 
-    console.log(blueMap.length);
     if (blueMap.length == 4)
     {
         let clear = true;
