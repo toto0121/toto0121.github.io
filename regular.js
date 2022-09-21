@@ -73,7 +73,7 @@ function enter(evt)
     let buf = inputNow;
     while (buf % 2 == 0) buf /= 2;
     while (buf % 5 == 0) buf /= 5;
-    if (buf > 1 && 360 % inputNow > 0) 
+    if ( (buf > 1 && 360 % inputNow > 0) || buf <= 2) 
     {
         errorObj.forEach(obj => {obj.setAttribute("display", "inline")});
         reset(evt);
