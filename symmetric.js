@@ -69,16 +69,20 @@ function enter(evt)
 {
     evt.preventDefault();
     evt.target.setAttribute("fill", "#AAAAAA");
-    let angle = 180.0 - 360.0 / inputNow;
+    
     let buf = inputNow;
-    while (buf % 2 == 0) buf /= 2;
-    while (buf % 5 == 0) buf /= 5;
+    if (buf > 0)
+    {
+        while (buf % 2 == 0) buf /= 2;
+        while (buf % 5 == 0) buf /= 5;
+    }
     if ( (buf > 1 && 360 % inputNow > 0) || inputNow <= 2) 
     {
         errorObj.forEach(obj => {obj.setAttribute("display", "inline")});
         reset(evt);
         return;
     }
+    let angle = 180.0 - 360.0 / inputNow;
     let angleString = angle + "";
     Array.prototype.forEach.call(angleString, c => {
         if (0 <= c && c <= 9)
