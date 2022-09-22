@@ -1,4 +1,4 @@
-const contentName = "regular";
+const contentName = "symmetric";
 const contentDate = "2022年9月x日";
 
 document.title = contentName;
