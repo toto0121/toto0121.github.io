@@ -5,8 +5,8 @@ document.title = contentName;
 
 addObj(svg, "rect", ["x", 0, "y", 0, "width", 900, "height", 1600, "fill", "#EEEEEE"]);
 
-let input = addText(svg, "35", ["x", 220, "y", 450, "font-size", 150, "fill", "black", "pointer-events", "none"]);
-let edge =  addText(svg, "0", ["x", 500, "y", 450, "font-size", 150, "fill", "black", "pointer-events", "none"]);
+let input = addText(svg, "35", ["x", 200, "y", 450, "font-size", 150, "fill", "black", "pointer-events", "none"]);
+let edge =  addText(svg, "0", ["x", 580, "y", 450, "font-size", 150, "fill", "black", "pointer-events", "none", "text-anchor", "end"]);
 let edgeGoal =  addText(svg, "/24", ["x", 700, "y", 450, "font-size", 150, "fill", "black", "pointer-events", "none"]);
 
 let btn = [];
@@ -56,7 +56,8 @@ function push(evt, num)
 {
     evt.preventDefault();
     evt.target.setAttribute("fill", "#AAAAAA");
-    
+    if (inputNow >= 10) return;
+
     inputNow *= 10;
     inputNow += num;
 
@@ -109,6 +110,7 @@ function enter(evt)
     edge.textContent = edgeSum;
 
     if (angleSum == 180) edge.textContent = edgeSum - 1;
+
 
     lastAngle = angle;
 
