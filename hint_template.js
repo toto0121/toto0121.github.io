@@ -39,7 +39,7 @@ for (let i=0; i<hintText.length; i++)
 {
     hintTextObj.push(addObj(hintObj, "g", ["display", "none"]));
     const dy = 70;
-    const yStart = 950 - hintText[i].length * dy / 2;
+    const yStart = 970 - hintText[i].length * dy / 2;
     for (let j=0; j<hintText[i].length; j++)
     {
         addText(hintTextObj[i], hintText[i][j], ["x", 450, "y", yStart + dy * j, "font-size", 45, "text-anchor", "middle",
