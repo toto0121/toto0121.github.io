@@ -1,5 +1,5 @@
 const contentName = "hexagon";
-const difficulty = [1.5, 1.3, "1.0", 0.8];
+const difficulty = [3.5, 3.2, 2.8, "2.0"];
 
 addObj(svg, "rect", ["width", 900, "height", 1600, "fill", "#EEEEEE"])
 
