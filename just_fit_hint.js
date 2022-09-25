@@ -1,4 +1,4 @@
-const contentName = "hexagon";
+const contentName = "just_fit";
 const difficulty = [3.5, 3.2, 2.8, "2.0"];
 
 addObj(svg, "rect", ["width", 900, "height", 1600, "fill", "#EEEEEE"])
