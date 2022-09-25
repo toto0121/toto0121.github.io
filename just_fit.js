@@ -1,5 +1,5 @@
-const contentName = "clockwise";
-const contentDate = "2022年9月24日";
+const contentName = "just_fit";
+const contentDate = "2022年9月25日";
 
 document.title = contentName;
 
