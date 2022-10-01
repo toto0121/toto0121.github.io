@@ -24,3 +24,9 @@ function addText(parent, text, cmd)
     parent.appendChild(obj);
     return obj;
 }
+
+function addImageObj(parent, cmd, path) {
+    const obj = addObj(parent, "image", cmd);
+    obj.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", path);
+    return obj;
+}
