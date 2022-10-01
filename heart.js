@@ -14,7 +14,7 @@ let clearImage;
 let tweetdiv;
 
 let camera = document.createElement("div");
-camera.setAttribute("style", "transform:perspective(800px); transform-style: preserve-3d; width: 100%; height: "+(screen.width * 6)+";")
+camera.setAttribute("style", "transform:perspective(800px); transform-style: preserve-3d; width: 100%; height: 100%;")
 document.body.appendChild(camera);
 
 let menuButton = document.createElement("div");
