@@ -63,3 +63,9 @@
     z-index: 1;
     transform: translateZ(100px);
 }
+
+.tweetImage{
+    position: absolute;
+    width: 20%;
+    left: 40%;
+}
