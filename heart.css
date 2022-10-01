@@ -34,6 +34,9 @@
     text-align: center;
     vertical-align: middle;
     pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
 
 .heartText{
@@ -46,6 +49,9 @@
     letter-spacing: 30px;
     margin-right: -20px;
     -webkit-text-stroke: 5px white;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
 
 
