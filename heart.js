@@ -168,7 +168,7 @@ function clearEvt()
     
     tweetdiv.innerHTML = '<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" '+
     'class="twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible;' + 
-    'width: 81px; height: 28px; transform: scale(2);" title="Twitter Tweet Button" src="https://platform.twitter.com/widgets/tweet_button.7dae38096d06923d683a2a807172322a.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;text=' + twtTxt + '"&amp;url=""></iframe>';
+    'width: 81px; height: 28px; transform: scale(2);" title="Twitter Tweet Button" src="https://platform.twitter.com/widgets/tweet_button.7dae38096d06923d683a2a807172322a.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;text=' + twtTxt + '&amp;url="></iframe>';
 
     //tweetdiv.innerHTML = '<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>';
 }
