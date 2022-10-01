@@ -159,19 +159,19 @@ function clearEvt()
 
     tweetdiv = document.createElement("div");
     tweetdiv.style.textAlign = "center";
-    tweetdiv.style.marginTop = "77%";
+    tweetdiv.style.marginTop = "73%";
     tweetdiv.style.position = "relative";
     tweetdiv.style.transform = "translateZ(110px)";
     camera.appendChild(tweetdiv);
 
-    let twtTxt = "見事" + contentName + "の謎を解き明かした！%0a%0a#web謎解き #とと謎" + contentName + " #とと謎%0a" + "https://toto0121.github.io/" + contentName + ".html";
+    let tweetImage = document.createElement("img");
+    tweetImage.setAttribute("src", "image/tweet.png");
+    tweetImage.setAttribute("ontouchstart", "tweet()");
+    tweetImage.classList.add("tweetImage");
+    tweetdiv.appendChild(tweetImage);
+    //let twtTxt = "見事" + contentName + "の謎を解き明かした！%0a%0a#web謎解き #とと謎" + contentName + " #とと謎%0a" + "https://toto0121.github.io/" + contentName + ".html";
     
-    tweetdiv.innerHTML = '<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" '+
-    'class="twitter-share-button-rendered twitter-tweet-button" data-url="a" style="position: static; visibility: visible;' + 
-    'width: 81px; height: 28px; transform: scale(2);" title="Twitter Tweet Button" src="https://platform.twitter.com/widgets/tweet_button.7dae38096d06923d683a2a807172322a.ja.html#dnt=false&amp;text=' + twtTxt + '&amp;url="></iframe>';
-
-    //tweetdiv.innerHTML = '<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>';
-}
+    }
 
 function reset()
 {
@@ -206,6 +206,22 @@ function toHint()
 const toHome = () => {
     menuButton.style.backgroundColor = "#AAAAAA";
     window.location.href = "nazo_index.html";
+}
+
+function tweet()
+{
+    var EUC = encodeURIComponent;
+    var twitter_url = "http://twitter.com/intent/tweet?text=";
+    const URL = "https://toto0121.github.io/" + contentName + ".html"
+    var message = "見事" + contentName  + "の謎を解き明かした！";
+
+    message += "\n\n#web謎解き #とと謎" + contentName + " #とと謎\n" + URL;
+
+    if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+        location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
+    }else{
+        window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
+    }
 }
 
 function release_btn(event)
