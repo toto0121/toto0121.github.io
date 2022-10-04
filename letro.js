@@ -442,4 +442,10 @@ function reset()
     camera.appendChild(nextBlock[0]);
 
     lastBlockBig = false;
+
+    if (clearImage != null)
+    {
+        clearImage.remove();
+        tweetdiv.remove();
+    }
 }

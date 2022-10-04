@@ -50,6 +50,9 @@ resetButtonText.innerText = "RESET";
 resetButtonText.classList.add("menuButtonText");
 resetButton.appendChild(resetButtonText);
 
+let clearImage;
+let tweetdiv;
+
 function clearEvt()
 {
     clearImage = document.createElement("img");
