@@ -292,7 +292,7 @@ function end(event)
     }
     let gridX = Math.floor(event.changedTouches[0].pageX / (width / 6));
     let gridY = Math.floor(event.changedTouches[0].pageY / (width / 6));
-    if (block.style.backgroundColor == "rgba(25, 25, 25, 0.5)")
+    if (block.style.backgroundColor == "rgba(25, 25, 25, 0.5)" && event.changedTouches.length < 2)
     {
         block.style.backgroundColor = "rgba(25,25,25,1)";
         block.childNodes.forEach(e => {e.style.backgroundColor = "rgba(25,25,25,1)"});
