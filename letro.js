@@ -202,11 +202,11 @@ function move(event)
     if (blockNum > 2) return;
     let gridX = Math.floor(event.touches[0].pageX / (width / 6));
     let gridY = Math.floor(event.touches[0].pageY / (width / 6));
-    block.style.top = gridY * (width / 6);
-    block.style.left= gridX * (width / 6);
     
     if (blockNum == 0)
     {
+        if (gridX > 4) gridX = 4;
+        if (gridY < 1) gridY = 1;
         if(blockMap[gridY][gridX] == 0 && blockMap[gridY - 1][gridX] == 0 && blockMap[gridY][gridX + 1] == 0) 
         {
             block.style.backgroundColor = "rgba(25,25,25,0.5)";
@@ -220,6 +220,8 @@ function move(event)
     }
     else if (blockNum == 1)
     {
+        if (gridX < 1) gridX = 1;
+        if (gridY > 8) gridY = 8;
         if(blockMap[gridY][gridX] == 0 && blockMap[gridY + 1][gridX] == 0 && blockMap[gridY][gridX - 1] == 0) 
         {
             block.style.backgroundColor = "rgba(25,25,25,0.5)";
@@ -246,6 +248,8 @@ function move(event)
     }
     else if (blockNum == 2 && lastBlockBig)
     {
+        if (gridX > 4) gridX = 4;
+        if (gridY < 1) gridY = 1;
         if(blockMap[gridY][gridX] == 0 && blockMap[gridY][gridX+1] == 0 && blockMap[gridY-1][gridX] == 0 && blockMap[gridY-1][gridX+1] == 0) 
         {
             block.style.backgroundColor = "rgba(25,25,25,0.5)";
@@ -257,6 +261,9 @@ function move(event)
             block.childNodes.forEach(e => {e.style.backgroundColor = "rgba(255,70,70,0.5)"});
         }   
     }
+
+    block.style.top = gridY * (width / 6);
+    block.style.left= gridX * (width / 6);
 }
 
 function end(event)
