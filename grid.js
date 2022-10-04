@@ -1,4 +1,4 @@
-const contentName = "letro";
+const contentName = "grid";
 const contentDate = "2022年10月7日";
 
 const canvas = document.getElementById("canvas");
