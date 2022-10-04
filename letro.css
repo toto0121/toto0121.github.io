@@ -57,10 +57,12 @@ body #wrapper{
     width: 80%;
     top: 35%;
     z-index: 1;
+    opacity: 0.8;
 }
 
 .tweetImage{
     position: absolute;
     width: 20%;
     left: 40%;
+    opacity: 0.8;
 }

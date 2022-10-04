@@ -77,6 +77,5 @@ function clearEvt()
 
 function release_btn(event)
 {
-    console.log("release");
     event.target.style.backgroundColor = "#DDDDDD";
 }

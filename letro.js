@@ -32,16 +32,16 @@ if (canvas.getContext)
     ctx.stroke();
 
     ctx.fillRect(width * (0.8 / 6), width * (7.8 / 6), width * (1.4 / 6), width * (1.4 / 6));
-    for (let i=1; i<3; i++)
+    for (let i=2; i<=4; i++)
     {
-        ctx.moveTo(width * (i / 6), width * (7.8 / 6));
-        ctx.lineTo(width * (i / 6), width * (9.2 / 6));
+        ctx.moveTo(width * (i / 12), width * (7.8 / 6));
+        ctx.lineTo(width * (i / 12), width * (9.2 / 6));
     }
 
-    for (let i=1; i<3; i++)
+    for (let i=16; i<=18; i++)
     {
-        ctx.moveTo(width * (0.8 / 6), width * ((7 + i) / 6));
-        ctx.lineTo(width * (2.2 / 6), width * ((7+i)/ 6));
+        ctx.moveTo(width * (0.8 / 6), width * (i / 12));
+        ctx.lineTo(width * (2.2 / 6), width * (i/ 12));
     }
 
     ctx.stroke();
@@ -111,7 +111,7 @@ nextBlock[1] = setNextBlock(1.5 * width / 6, 8 * width / 6);
 nextBlock[1].appendChild(setNextBlock(-0.5 * width / 6, 0));
 nextBlock[1].appendChild(setNextBlock(0, 0.5 * width / 6));
 
-nextBlock[2] = setNextBlock(1.25 * width / 6, 8.25 * width / 6);
+nextBlock[2] = setNextBlock(1 * width / 6, 8.5 * width / 6);
 
 function start(event)
 {
@@ -126,6 +126,7 @@ function start(event)
     block.style.position = "absolute";
     block.style.width = width / 6;
     block.style.height = width / 6;
+    block.style.pointerEvents = "none";
     if (blockNum == 0)
     {
         let child1 = document.createElement("div");
@@ -133,6 +134,7 @@ function start(event)
         child1.style.width = width / 6;
         child1.style.height = width / 6;
         child1.style.bottom = width / 6;
+        child1.style.pointerEvents = "none";
         block.appendChild(child1);
 
         let child2 = document.createElement("div");
@@ -140,6 +142,7 @@ function start(event)
         child2.style.width = width / 6;
         child2.style.height = width / 6;
         child2.style.left = width / 6;
+        child2.style.pointerEvents = "none";
         block.appendChild(child2);
     }
     else if (blockNum == 1)
@@ -149,6 +152,7 @@ function start(event)
         child1.style.width = width / 6;
         child1.style.height = width / 6;
         child1.style.top = width / 6;
+        child1.style.pointerEvents = "none";
         block.appendChild(child1);
 
         let child2 = document.createElement("div");
@@ -156,6 +160,7 @@ function start(event)
         child2.style.width = width / 6;
         child2.style.height = width / 6;
         child2.style.right = width / 6;
+        child2.style.pointerEvents = "none";
         block.appendChild(child2);
     }
     else if (blockNum == 2 && lastBlockBig)
@@ -165,6 +170,7 @@ function start(event)
         child1.style.width = width / 6;
         child1.style.height = width / 6;
         child1.style.bottom = width / 6;
+        child1.style.pointerEvents = "none";
         block.appendChild(child1);
 
         let child2 = document.createElement("div");
@@ -172,6 +178,7 @@ function start(event)
         child2.style.width = width / 6;
         child2.style.height = width / 6;
         child2.style.left = width / 6;
+        child2.style.pointerEvents = "none";
         block.appendChild(child2);
 
         let child3 = document.createElement("div");
@@ -180,6 +187,7 @@ function start(event)
         child3.style.height = width / 6;
         child3.style.bottom = width / 6;
         child3.style.left = width / 6;
+        child3.style.pointerEvents = "none";
         block.appendChild(child3);
     }
 
@@ -349,7 +357,7 @@ function end(event)
             }            
             if (clearBool)
             {
-                clearEvt();
+                window.setTimeout(clearEvt, 200);
             }
         }
     }
@@ -437,7 +445,8 @@ function reset()
         }
     }
 
-    if (blockNum < 3) camera.removeChild(nextBlock[blockNum]);
+    if (blockNum < 3 && !lastBlockBig) camera.removeChild(nextBlock[blockNum]);
+    else if (blockNum < 3 && lastBlockBig) camera.removeChild(lastBlockObj);
     blockNum = 0;
     camera.appendChild(nextBlock[0]);
 
@@ -449,3 +458,13 @@ function reset()
         tweetdiv.remove();
     }
 }
+
+let point = document.createElement("p");
+point.style.position = "absolute";
+point.style.width = width / 30;
+point.style.height = width / 30;
+point.style.borderRadius = "50%";
+point.style.backgroundColor = "#2e8b57";
+point.style.top = width * (5 / 6 - 1 / 30);
+point.style.left = width * (3 / 6 - 1 / 60);
+document.body.appendChild(point);
