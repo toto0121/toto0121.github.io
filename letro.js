@@ -47,6 +47,9 @@ if (canvas.getContext)
     ctx.stroke();
 }
 
+camera.style.width = width;
+camera.style.height = width * 10 / 6;
+
 let nextText = document.createElement("p");
 nextText.textContent = "NEXT";
 nextText.classList.add("nextText");
@@ -55,9 +58,9 @@ nextText.style.left = width * 0.18;
 
 camera.appendChild(nextText);
 
-window.addEventListener("touchstart", () => {start(event);});
-window.addEventListener("touchmove", () => {move(event);});
-window.addEventListener("touchend", () => {end(event);});
+window.addEventListener("touchstart", () => {start(event);}, { passive: false });
+window.addEventListener("touchmove", () => {move(event);}, { passive: false });
+window.addEventListener("touchend", () => {end(event);}, { passive: false });
 
 let block;
 let blockMap = [
@@ -112,6 +115,7 @@ nextBlock[2] = setNextBlock(1.25 * width / 6, 8.25 * width / 6);
 
 function start(event)
 {
+    event.preventDefault();
     if (event.target == resetButton)
     {
         block = null;
@@ -193,6 +197,7 @@ function start(event)
 
 function move(event)
 {
+    event.preventDefault();
     if (block == null) return;
     if (blockNum > 2) return;
     let gridX = Math.floor(event.touches[0].pageX / (width / 6));
@@ -256,6 +261,7 @@ function move(event)
 
 function end(event)
 {
+    event.preventDefault();
     if (block == null) return;
     if (blockNum > 2) return;
     let gridX = Math.floor(event.changedTouches[0].pageX / (width / 6));

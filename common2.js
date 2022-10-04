@@ -9,7 +9,7 @@ const toHome = () => {
     window.location.href = "nazo_index.html";
 }
 let camera = document.createElement("div");
-    camera.setAttribute("style", "width: 100%; height: 100%;")
+    camera.setAttribute("style", "position: static;")
     document.body.appendChild(camera);
 
 let menuButton = document.createElement("div");
