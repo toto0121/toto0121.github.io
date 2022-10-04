@@ -116,6 +116,7 @@ nextBlock[2] = setNextBlock(1 * width / 6, 8.5 * width / 6);
 function start(event)
 {
     event.preventDefault();
+    if (event.touches.length > 1) return;
     if (event.target == resetButton)
     {
         block = null;
@@ -206,6 +207,7 @@ function start(event)
 function move(event)
 {
     event.preventDefault();
+    if (event.touches.length > 1) return;
     if (block == null) return;
     if (blockNum > 2) return;
     let gridX = Math.floor(event.touches[0].pageX / (width / 6));
