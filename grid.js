@@ -113,6 +113,8 @@ nextBlock[1].appendChild(setNextBlock(0, 0.5 * width / 6));
 
 nextBlock[2] = setNextBlock(1 * width / 6, 8.5 * width / 6);
 
+let gridX = 0, gridY = 0;
+
 function start(event)
 {
     event.preventDefault();
@@ -210,8 +212,8 @@ function move(event)
     if (event.touches.length > 1) return;
     if (block == null) return;
     if (blockNum > 2) return;
-    let gridX = Math.floor(event.touches[0].pageX / (width / 6));
-    let gridY = Math.floor(event.touches[0].pageY / (width / 6));
+    gridX = Math.floor(event.touches[0].pageX / (width / 6));
+    gridY = Math.floor(event.touches[0].pageY / (width / 6));
     
     if (blockNum == 0)
     {
@@ -288,10 +290,8 @@ function end(event)
     else 
     {
         touchEndBool = true;
-        window.setTimeout(() => {touchEndBool = false;}, 1);
+        window.setTimeout(() => {touchEndBool = false;}, 10);
     }
-    let gridX = Math.floor(event.changedTouches[0].pageX / (width / 6));
-    let gridY = Math.floor(event.changedTouches[0].pageY / (width / 6));
     if (block.style.backgroundColor == "rgba(25, 25, 25, 0.5)" && event.changedTouches.length < 2)
     {
         block.style.backgroundColor = "rgba(25,25,25,1)";
