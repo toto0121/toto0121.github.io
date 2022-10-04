@@ -279,6 +279,7 @@ function move(event)
 function end(event)
 {
     event.preventDefault();
+    if (event.touches.length > 0) return;
     if (block == null) return;
     if (blockNum > 2) return;
     let gridX = Math.floor(event.changedTouches[0].pageX / (width / 6));
