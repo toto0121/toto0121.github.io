@@ -95,6 +95,7 @@ function setNextBlock(x, y)
     obj.style.left = x;
     obj.style.top = y;
     obj.style.backgroundColor = "rgba(25,25,25,1)";
+    obj.style.pointerEvents = "none";
     return obj;
 }
 
@@ -251,7 +252,6 @@ function move(event)
             block.childNodes.forEach(e => {e.style.backgroundColor = "rgba(255,70,70,0.5)"});
         }   
     }
-    
 }
 
 function end(event)
