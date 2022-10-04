@@ -276,12 +276,20 @@ function move(event)
     block.style.left= gridX * (width / 6);
 }
 
+let touchEndBool = false;
+
 function end(event)
 {
     event.preventDefault();
     if (event.touches.length > 0) return;
     if (block == null) return;
     if (blockNum > 2) return;
+    if (touchEndBool) return;
+    else 
+    {
+        touchEndBool = true;
+        window.setTimeout(() => {touchEndBool = false;}, 1);
+    }
     let gridX = Math.floor(event.changedTouches[0].pageX / (width / 6));
     let gridY = Math.floor(event.changedTouches[0].pageY / (width / 6));
     if (block.style.backgroundColor == "rgba(25, 25, 25, 0.5)")
