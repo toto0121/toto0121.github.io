@@ -12,36 +12,36 @@ if (canvas.getContext)
     ctx.fillRect(0,0,width,width * 10 / 6);//塗りつぶされた四角形
     
     ctx.fillStyle = "#8fbc8f";
-    ctx.fillRect(width * (0.8 / 6), width * (2.8 / 6), width * (4.4 / 6), width * (4.4 / 6));
+    ctx.fillRect(width * (0.8 / 6), width * (2.3 / 6), width * (4.4 / 6), width * (4.4 / 6));
     ctx.beginPath();
     ctx.strokeStyle = "#2e8b57";
     ctx.lineWidth = width * 0.003;
     ctx.setLineDash([width * 0.01,width * 0.01]);
     for (let i=1; i<6; i++)
     {
-        ctx.moveTo(width * (i / 6), width * (2.8 / 6));
-        ctx.lineTo(width * (i / 6), width * (7.2 / 6));
+        ctx.moveTo(width * (i / 6), width * (2.3 / 6));
+        ctx.lineTo(width * (i / 6), width * (6.7 / 6));
     }
 
     for (let i=1; i<6; i++)
     {
-        ctx.moveTo(width * (0.8 / 6), width * ((2 + i) / 6));
-        ctx.lineTo(width * (5.2 / 6), width * ((2+i)/ 6));
+        ctx.moveTo(width * (0.8 / 6), width * ((1.5 + i) / 6));
+        ctx.lineTo(width * (5.2 / 6), width * ((1.5+i)/ 6));
     }
     
     ctx.stroke();
 
-    ctx.fillRect(width * (0.8 / 6), width * (7.8 / 6), width * (1.4 / 6), width * (1.4 / 6));
+    ctx.fillRect(width * (0.8 / 6), width * (7.3 / 6), width * (1.4 / 6), width * (1.4 / 6));
     for (let i=2; i<=4; i++)
     {
-        ctx.moveTo(width * (i / 12), width * (7.8 / 6));
-        ctx.lineTo(width * (i / 12), width * (9.2 / 6));
+        ctx.moveTo(width * (i / 12), width * (7.3 / 6));
+        ctx.lineTo(width * (i / 12), width * (8.7 / 6));
     }
 
     for (let i=16; i<=18; i++)
     {
-        ctx.moveTo(width * (0.8 / 6), width * (i / 12));
-        ctx.lineTo(width * (2.2 / 6), width * (i/ 12));
+        ctx.moveTo(width * (0.8 / 6), width * ((i - 1) / 12));
+        ctx.lineTo(width * (2.2 / 6), width * ((i - 1)/ 12));
     }
 
     ctx.stroke();
@@ -53,7 +53,7 @@ camera.style.height = width * 10 / 6;
 let nextText = document.createElement("p");
 nextText.textContent = "NEXT";
 nextText.classList.add("nextText");
-nextText.style.top = width * 1.48;
+nextText.style.top = width * 1.48 - width * 0.5 / 6;
 nextText.style.left = width * 0.18;
 
 camera.appendChild(nextText);
@@ -73,6 +73,7 @@ let blockMap = [
     [1,0,0,0,0,1],
     [1,1,1,1,1,1],
     [1,0,1,1,1,1],
+    [1,1,1,1,1,1],
     [1,1,1,1,1,1],
 ];
 let blockNum = 0;
@@ -102,16 +103,16 @@ function setNextBlock(x, y)
     return obj;
 }
 
-nextBlock[0] = setNextBlock(width / 6, 8.5 * width / 6);
+nextBlock[0] = setNextBlock(width / 6, 8 * width / 6);
 nextBlock[0].appendChild(setNextBlock(0, -0.5 * width / 6));
 nextBlock[0].appendChild(setNextBlock(0.5 * width / 6, 0));
 camera.appendChild(nextBlock[0]);
 
-nextBlock[1] = setNextBlock(1.5 * width / 6, 8 * width / 6);
+nextBlock[1] = setNextBlock(1.5 * width / 6, 7.5 * width / 6);
 nextBlock[1].appendChild(setNextBlock(-0.5 * width / 6, 0));
 nextBlock[1].appendChild(setNextBlock(0, 0.5 * width / 6));
 
-nextBlock[2] = setNextBlock(1 * width / 6, 8.5 * width / 6);
+nextBlock[2] = setNextBlock(1 * width / 6, 8 * width / 6);
 
 let gridX = 0, gridY = 0;
 
@@ -213,7 +214,7 @@ function move(event)
     if (block == null) return;
     if (blockNum > 2) return;
     gridX = Math.floor(event.touches[0].pageX / (width / 6));
-    gridY = Math.floor(event.touches[0].pageY / (width / 6));
+    gridY = Math.floor(event.touches[0].pageY / (width / 6) + 0.5);
     
     if (blockNum == 0)
     {
@@ -274,7 +275,7 @@ function move(event)
         }   
     }
 
-    block.style.top = gridY * (width / 6);
+    block.style.top = (gridY - 0.5) * (width / 6);
     block.style.left= gridX * (width / 6);
 }
 
@@ -401,7 +402,7 @@ for (let i=0; i<4; i++)
     {
         let obj = document.createElement("div");
         obj.style.position = "absolute";
-        obj.style.top = (i + 3) * width / 6;
+        obj.style.top = (i + 2.5) * width / 6;
         obj.style.left = (j + 1) * width / 6;
         obj.style.width = width / 6;
         obj.style.height = width / 6;
@@ -419,7 +420,7 @@ function drawX(x, y)
     camera.appendChild(XObj[y][x]);
 }
 
-resetButton.style.top = width * 1.36;
+resetButton.style.top = width * 1.36 - width * 0.5 / 6;
 resetButton.style.left = width * 0.62;
 
 function reset()
@@ -435,6 +436,7 @@ function reset()
         [1,0,0,0,0,1],
         [1,1,1,1,1,1],
         [1,0,1,1,1,1],
+        [1,1,1,1,1,1],
         [1,1,1,1,1,1],
     ];
 
@@ -476,6 +478,6 @@ point.style.width = width / 30;
 point.style.height = width / 30;
 point.style.borderRadius = "50%";
 point.style.backgroundColor = "#2e8b57";
-point.style.top = width * (5 / 6 - 1 / 30);
+point.style.top = width * (5 / 6 - 1 / 30 - 1 / 12);
 point.style.left = width * (3 / 6 - 1 / 60);
 document.body.appendChild(point);
