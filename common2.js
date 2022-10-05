@@ -79,3 +79,19 @@ function release_btn(event)
 {
     event.target.style.backgroundColor = "#DDDDDD";
 }
+
+function tweet()
+{
+    var EUC = encodeURIComponent;
+    var twitter_url = "http://twitter.com/intent/tweet?text=";
+    const URL = "https://toto0121.github.io/" + contentName + ".html"
+    var message = "見事" + contentName  + "の謎を解き明かした！";
+
+    message += "\n\n#web謎解き #とと謎" + contentName + " #とと謎\n" + URL;
+
+    if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+        location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
+    }else{
+        window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
+    }
+}
