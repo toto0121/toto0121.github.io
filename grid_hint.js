@@ -1,5 +1,7 @@
-const contentName = "grid";
-const difficulty = ["1.5", "1.4", "1.1", "0.5"];
+const contentObj = grid;
+
+const contentName = contentObj.name;
+const difficulty = contentObj.difficulty;
 
 addObj(svg, "rect", ["width", 900, "height", 1600, "fill", "#EEEEEE"])
 
@@ -9,7 +11,7 @@ const hintText = [
         "状態で配置することが、",
         "クリアの条件です。",
         "×がつかないマスに注目すると",
-        "条件が分かりやすいかも",
+        "法則が分かりやすいかも",
         "しれません。",
     ],
     [

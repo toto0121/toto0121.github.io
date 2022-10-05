@@ -1,7 +1,7 @@
 function toHint()
 {
     hintButton.style.backgroundColor = "#AAAAAA";
-    window.location.href = contentName + "_hint.html";
+    window.location.href = contentObj.name + "_hint.html";
 }
 
 const toHome = () => {
@@ -34,11 +34,10 @@ hintButton.appendChild(hintButtonText);
 
 window.onload = () => {
     let infoText = document.createElement("div");
-    infoText.innerText = "web謎解き " + contentName + " " + contentDate + "公開\n制作 とと (@to_to_0121)\n#とと謎　#とと謎" + contentName;
+    infoText.innerText = "web謎解き " + contentObj.name + " " + contentObj.date + "公開\n制作 とと (@to_to_0121)\n#とと謎　#とと謎" + contentObj.name;
     infoText.classList.add("info");
     camera.appendChild(infoText);
 };
-
 
 let resetButton = document.createElement("div");
 camera.appendChild(resetButton);
@@ -84,10 +83,11 @@ function tweet()
 {
     var EUC = encodeURIComponent;
     var twitter_url = "http://twitter.com/intent/tweet?text=";
-    const URL = "https://toto0121.github.io/" + contentName + ".html"
-    var message = "見事" + contentName  + "の謎を解き明かした！";
+    const URL = "https://toto0121.github.io/" + contentObj.name + ".html"
+    var message = "見事" + contentObj.name  + "の謎を解き明かした！";
 
-    message += "\n\n#web謎解き #とと謎" + contentName + " #とと謎\n" + URL;
+    message += "\n\n難易度 " + contentObj.difficulty[0];
+    message += "\n#web謎解き #とと謎" + contentObj.name + " #とと謎\n" + URL;
 
     if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
         location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);

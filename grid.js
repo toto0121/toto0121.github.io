@@ -1,5 +1,4 @@
-const contentName = "grid";
-const contentDate = "2022年10月7日";
+const contentObj = grid;
 
 const canvas = document.getElementById("canvas");
 const width = window.innerWidth;
@@ -125,6 +124,13 @@ function start(event)
         return;
     } 
     if (blockNum > 2) return;
+    gridX = Math.floor(event.touches[0].pageX / (width / 6));
+    gridY = Math.floor(event.touches[0].pageY / (width / 6) - 0.5);
+    if (gridX<1 || gridX>4 || gridY<3 || gridY>6)
+    {
+        block = null;
+        return;
+    } 
     block = document.createElement("div");
     block.style.position = "absolute";
     block.style.width = width / 6;
@@ -375,6 +381,7 @@ function end(event)
     else
     {
         camera.removeChild(block);
+        block = null;
         allBlocks.pop();
         if (blockNum < 2) camera.removeChild(nextBlock[blockNum + 1]);
         if (lastBlockBig) camera.appendChild(lastBlockObj);

@@ -1,5 +1,8 @@
 const contentName = "heart";
 const contentDate = "2022年10月1日";
+let hintSrc = document.createElement("script");
+hintSrc.src = contentName + "_hint.js";
+document.body.appendChild(hintSrc);
 
 const cards = new Array(11);
 const cardsBack = new Array(11);
@@ -214,8 +217,9 @@ function tweet()
     var twitter_url = "http://twitter.com/intent/tweet?text=";
     const URL = "https://toto0121.github.io/" + contentName + ".html"
     var message = "見事" + contentName  + "の謎を解き明かした！";
-
-    message += "\n\n#web謎解き #とと謎" + contentName + " #とと謎\n" + URL;
+    
+    message += "\n\n難易度 " + difficulty[0];
+    message += "\n#web謎解き #とと謎" + contentName + " #とと謎\n" + URL;
 
     if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
         location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
