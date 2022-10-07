@@ -1,7 +1,8 @@
 const contentName = "heart";
 const contentDate = "2022年10月1日";
+const difficulty = ["1.0"];
+
 let hintSrc = document.createElement("script");
-hintSrc.src = contentName + "_hint.js";
 document.body.appendChild(hintSrc);
 
 const cards = new Array(11);

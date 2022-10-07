@@ -84,10 +84,10 @@ function tweet()
     var EUC = encodeURIComponent;
     var twitter_url = "http://twitter.com/intent/tweet?text=";
     const URL = "https://toto0121.github.io/" + contentObj.name + ".html"
-    var message = "見事" + contentObj.name  + "の謎を解き明かした！";
+    var message = "見事" + contentObj.name  + "の謎を解き明かした！\n\n";
 
-    message += "\n\n難易度 " + contentObj.difficulty[0];
-    message += "\n#web謎解き #とと謎" + contentObj.name + " #とと謎\n" + URL;
+    if (contentObj != undefined) message += "難易度 " + contentObj.difficulty[0] + "\n";
+    message += "#web謎解き #とと謎" + contentObj.name + " #とと謎\n" + URL;
 
     if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
         location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
