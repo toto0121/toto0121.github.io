@@ -108,7 +108,7 @@ for (let i=-1; i<3; i++)
     else
     {
         obj.style.color = "red";
-        obj.innerText = "▶";
+        obj.innerText = "→";
     }
 }
 
