@@ -16,7 +16,7 @@ let map = [
 ]
 
 //0:white 1:black 2:orange 3:green
-const colors = ["white", "black", "orange", "green"];
+const colors = ["white", "black", "#ff8c00", "green"];
 const ART = ["A", "R", "T"];
 
 let tiles = new Array(7);
@@ -26,7 +26,7 @@ let backTile = document.createElement("div");
 camera.appendChild(backTile);
 backTile.style.width = width * 0.15 * 3;
 backTile.style.height = width * 0.15 * 7;
-backTile.style.top = width * (0.32);
+backTile.style.top = width * (0.35);
 backTile.style.left = width * (0.33);
 backTile.style.backgroundColor = "white";
 backTile.classList.add("canvasButton");
@@ -57,7 +57,7 @@ function init()
             camera.appendChild(button);
             button.style.width = width * 0.152;
             button.style.height = width * 0.152;
-            button.style.top = width * (0.15 * i + 0.32);
+            button.style.top = width * (0.15 * i + 0.35);
             button.style.left = width * (0.15 * j + 0.33);
             button.style.backgroundColor = colors[map[i][j]];
             button.style.zIndex = j * 7 + i;
@@ -91,16 +91,17 @@ for (let i=-1; i<3; i++)
 {
     let table = document.createElement("div");
     table.classList.add("artTable");
-    table.style.top =  width * (0.15 * 3 + 0.32);
+    table.style.top =  width * (0.15 * 3 + 0.35);
     table.style.left = width * (0.15 * i + 0.33);
     table.style.width = width * 0.15;
     table.style.height = width * 0.15;
     camera.appendChild(table); 
     let obj = document.createElement("p");
     obj.classList.add("artText");
-    obj.innerText = "A";
+    obj.innerText = "";
     obj.style.fontSize = width * 0.1;
     obj.style.fontWeight = 700;
+    obj.style.opacity = 1;
     table.appendChild(obj);
     if (i >= 0) artText[i] = obj;
     else
@@ -112,7 +113,6 @@ for (let i=-1; i<3; i++)
 
 function move(event)
 {
-    console.log("move");
     if (pickTile.picking == false) return;
     event.preventDefault();
     if (event.touches.length > 1) return;
@@ -124,7 +124,6 @@ function move(event)
 
 function end(event)
 {
-    console.log("end");
     if (pickTile.picking == false) return;
     event.preventDefault();
     if (event.touches.length > 0) return;
@@ -133,7 +132,7 @@ function end(event)
     let top = pickTile.obj.style.top;
     top = top.slice(0, top.length - 2);
     let gridX = Math.round((left - width * 0.33) / (width * 0.15));
-    let gridY = Math.round((top - width * 0.32) / (width * 0.15));
+    let gridY = Math.round((top - width * 0.35) / (width * 0.15));
 
     if (gridX < 0 || gridX >= 3 || gridY < 0 || gridY >= 7)
     {
@@ -141,8 +140,9 @@ function end(event)
         gridY = pickTile.y;
     }
 
-    posFix(pickTile.obj, gridX, gridY, 0);
     fixing = true;
+    posFix(pickTile.obj, gridX, gridY, 0);
+    
     pickTile.picking = false;
     let buf = map[gridY][gridX];
     map[gridY][gridX] = map[pickTile.y][pickTile.x];
@@ -170,13 +170,13 @@ function posFix(obj, x, y, speed)
     left = parseFloat(left.slice(0, left.length - 2));
     let top = obj.style.top;
     top = parseFloat(top.slice(0, top.length - 2));
-    let vec = {"x": width * (0.33 + 0.15 * x) - left, "y": width * (0.32 + 0.15 * y) - top};
+    let vec = {"x": width * (0.33 + 0.15 * x) - left, "y": width * (0.35 + 0.15 * y) - top};
     vec.magnitude = Math.sqrt(vec.x * vec.x + vec.y * vec.y);
-    if (speed == 0) speed = vec.magnitude / 100 / 0.2;
+    if (speed == 0) speed = Math.max(vec.magnitude / 100 / 0.2, width * 0.001);
     if (vec.magnitude < speed)
     {
         obj.style.left = width * (0.33 + 0.15 * x);
-        obj.style.top = width * (0.32 + 0.15 * y);
+        obj.style.top = width * (0.35 + 0.15 * y);
         fixing = false;
         obj.style.zIndex = x*7 + y;
         return;
@@ -194,7 +194,7 @@ function setText()
     let ans = "";
     for (let i=0; i<3; i++)
     {
-        artText[i].innerText = "";
+        let nextText = "";
         for (let j=0; j<3; j++)
         {
             for (let k=0; k<5; k++)
@@ -205,7 +205,7 @@ function setText()
                 }
                 if (k == 4)
                 {
-                    artText[i].innerText = "WHITE".charAt(3 - j);
+                    nextText = "WHITE".charAt(3 - j);
                 }
             }
         }
@@ -219,7 +219,7 @@ function setText()
                 }
                 if (k == 4)
                 {
-                    artText[i].innerText = "BLACK".charAt(3 - j);
+                    nextText = "BLACK".charAt(3 - j);
                 }
             }
         }
@@ -233,7 +233,7 @@ function setText()
                 }
                 if (k == 5)
                 {
-                    artText[i].innerText = "ORANGE".charAt(3 - j);
+                    nextText = "ORANGE".charAt(3 - j);
                 }
             }
         }
@@ -247,11 +247,13 @@ function setText()
                 }
                 if (k == 4)
                 {
-                    artText[i].innerText = "GREEN".charAt(3 - j);
+                    nextText = "GREEN".charAt(3 - j);
+                    
                 }
             }
         }
-        ans += artText[i].innerText;
+        animateText(artText[i], nextText, nextText == ART[i] ? "red" : "#888888");
+        ans += nextText;
         if (artText[i].innerText == ART[i])
         {
             artText[i].style.color = "red";
@@ -264,6 +266,24 @@ function setText()
     if (ans == "ART") window.setTimeout(clearEvt, 300);
 }
 
+function animateText(obj, text, color)
+{
+    if (obj.innerText == text && obj.style.opacity == 1) return;
+    if (obj.innerText != text)
+    {
+        if (parseFloat(obj.style.opacity) > 0) obj.style.opacity = parseFloat(obj.style.opacity) - 0.07;
+        else 
+        {
+            obj.innerText = text;
+            obj.style.color = color;
+        }
+    } 
+    else 
+    {
+        obj.style.opacity = parseFloat(obj.style.opacity) + 0.07;
+    }
+    window.setTimeout(() => {animateText(obj, text, color);}, 10);
+}
 
 
 resetButton.style.top = width * 1.5;
