@@ -84,6 +84,7 @@ function pick(event,y,x){
     pickTile.x = x;
     pickTile.y = y;
     pickTile.obj = tiles[y][x];
+    move(event);
 }
 
 let artText = new Array(3);
