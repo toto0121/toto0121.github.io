@@ -63,7 +63,7 @@ function clearEvt()
     tweetdiv.style.textAlign = "center";
     tweetdiv.style.top = width * 0.92;
     tweetdiv.style.position = "relative";
-    tweetdiv.style.zIndex = 1;
+    tweetdiv.style.zIndex = 10000;
     camera.appendChild(tweetdiv);
 
     let tweetImage = document.createElement("img");

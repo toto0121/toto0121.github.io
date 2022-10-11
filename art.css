@@ -1,0 +1,30 @@
+body{
+    background-color: #888888;
+}
+
+.canvasButton{
+    position: absolute;
+}
+
+.artTable{
+    position: absolute;
+    background-color: none;
+    display: table;
+    pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    z-index: 500;
+}
+
+.artText{
+    color: #888888;
+    display: table-cell;
+    font-family: sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
