@@ -1,9 +1,6 @@
 const contentObj = allInfo.art;
 
-const width = window.innerWidth;
 
-camera.style.width = width;
-camera.style.height = width * 10 / 6;
 
 let map = [
     [0,2,3],

@@ -1,3 +1,11 @@
+const width = window.innerWidth;
+let camera = document.createElement("div");
+    camera.setAttribute("style", "position: static;")
+    document.body.appendChild(camera);
+
+camera.style.width = width;
+camera.style.height = width * 10 / 6;
+
 function toHint()
 {
     hintButton.style.backgroundColor = "#AAAAAA";
@@ -8,9 +16,7 @@ const toHome = () => {
     menuButton.style.backgroundColor = "#AAAAAA";
     window.location.href = "nazo_index.html";
 }
-let camera = document.createElement("div");
-    camera.setAttribute("style", "position: static;")
-    document.body.appendChild(camera);
+
 
 let menuButton = document.createElement("div");
 camera.appendChild(menuButton);

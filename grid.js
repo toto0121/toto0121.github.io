@@ -1,7 +1,6 @@
 const contentObj = grid;
 
 const canvas = document.getElementById("canvas");
-const width = window.innerWidth;
 canvas.setAttribute("width", width);
 canvas.setAttribute("height", width * 10 / 6);
 if (canvas.getContext)
@@ -45,9 +44,6 @@ if (canvas.getContext)
 
     ctx.stroke();
 }
-
-camera.style.width = width;
-camera.style.height = width * 10 / 6;
 
 let nextText = document.createElement("p");
 nextText.textContent = "NEXT";

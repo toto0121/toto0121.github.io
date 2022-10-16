@@ -1,0 +1,19 @@
+body{
+    background-color: #f1bcf1;
+}
+
+.spinObj{
+    position: absolute;
+}
+
+.equalText{
+    display: table-cell;
+    padding: 0%;
+    writing-mode: vertical-rl;
+    vertical-align: middle;
+}
+
+.equalTable{
+    display: table;
+    position: absolute;
+}
