@@ -173,11 +173,11 @@ function changeAnimation(obj, nextSrc, changed)
     if (c)
     {
         if (parseFloat(obj.style.opacity) >= 1) return;
-        obj.style.opacity = parseFloat(obj.style.opacity) + 0.1;
+        obj.style.opacity = parseFloat(obj.style.opacity) + 0.05;
     }
     else
     {
-        obj.style.opacity = parseFloat(obj.style.opacity) - 0.1;
+        obj.style.opacity = parseFloat(obj.style.opacity) - 0.05;
         if (parseFloat(obj.style.opacity) <= 0) 
         {
             obj.src = nextSrc;
@@ -219,3 +219,13 @@ function reset()
         tweetdiv.remove();
     }
 }
+
+function preload()
+{
+    const srcs = ["spin_4", "spin_5", "spin_8", "clear", "tweet"]
+    srcs.forEach(e => {
+        document.createElement("img").src = "image/" + e + ".png";
+    });   
+}
+
+preload();
