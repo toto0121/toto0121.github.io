@@ -9,7 +9,7 @@ for (let i=0; i<3; i++)
     let obj = document.createElement("img");
     obj.classList.add("spinObj");
     obj.style.height = width * 0.13;
-    obj.style.top = width * 0.35;
+    obj.style.top = width * 0.3;
     obj.style.left = width * (0.285 + 0.15 * i);
     obj.src = "image/spin_" + formula1[i] + ".png";
     obj.setAttribute("ontouchstart", "spin(0," + i + ")");
@@ -20,7 +20,7 @@ for (let i=0; i<3; i++)
 }
 let equalTable1 = document.createElement("div");
 equalTable1.classList.add("equalTable");
-equalTable1.style.top = width * 0.52;
+equalTable1.style.top = width * 0.47;
 equalTable1.style.left = width * 0.4;
 equalTable1.style.width = width * 0.2;
 equalTable1.style.height = width * 0.13;
@@ -40,7 +40,7 @@ for (let i=0; i<2; i++)
     let obj = document.createElement("img");
     obj.classList.add("spinObj");
     obj.style.height = width * 0.13;
-    obj.style.top = width * 0.65;
+    obj.style.top = width * 0.6;
     obj.style.left = width * (0.36 + 0.15 * i);
     obj.src = "image/spin_" + ans1[i] + ".png";
     obj.style.opacity = 1;
@@ -54,7 +54,7 @@ for (let i=0; i<8; i++)
     let obj = document.createElement("img");
     obj.classList.add("spinObj");
     obj.style.height = width * 0.13;
-    obj.style.top = width * (0.9 + 0.15 * Math.floor(i / 4));
+    obj.style.top = width * (0.85 + 0.15 * Math.floor(i / 4));
     obj.style.left = width * (0.21 + 0.15 * (i % 4));
     obj.src = "image/spin_" + formula2[i] + ".png";
     obj.setAttribute("ontouchstart", "spin(1," + i + ")");
@@ -66,7 +66,7 @@ for (let i=0; i<8; i++)
 
 let equalTable2 = document.createElement("div");
 equalTable2.classList.add("equalTable");
-equalTable2.style.top = width * 1.22;
+equalTable2.style.top = width * 1.17;
 equalTable2.style.left = width * 0.4;
 equalTable2.style.width = width * 0.2;
 equalTable2.style.height = width * 0.13;
@@ -86,7 +86,7 @@ for (let i=0; i<2; i++)
     let obj = document.createElement("img");
     obj.classList.add("spinObj");
     obj.style.height = width * 0.13;
-    obj.style.top = width * 1.35;
+    obj.style.top = width * 1.3;
     obj.style.left = width * (0.36 + 0.15 * i);
     obj.src = "image/spin_" + formula3[i] + ".png";
     obj.setAttribute("ontouchstart","spin(2," + i + ")");
@@ -187,7 +187,7 @@ function changeAnimation(obj, nextSrc, changed)
     window.setTimeout(() => {changeAnimation(obj, nextSrc, c);}, 10);
 }
 
-resetButton.style.top = width * 1.55;
+resetButton.style.top = width * 1.5;
 resetButton.style.left = width * 0.375;
 
 function init()
