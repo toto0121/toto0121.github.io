@@ -1,4 +1,4 @@
-window.addEventListener("dblclick", (event) => {event.preventDefault();});
+window.addEventListener("dbclick", (event) => {event.preventDefault();}, {passive: true});
 
 const width = window.innerWidth;
 let camera = document.createElement("div");
