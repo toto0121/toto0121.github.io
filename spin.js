@@ -18,20 +18,14 @@ for (let i=0; i<3; i++)
     spinObjs[0].push(obj);
     camera.appendChild(obj);
 }
-let equalTable1 = document.createElement("div");
-equalTable1.classList.add("equalTable");
-equalTable1.style.top = width * 0.47;
-equalTable1.style.left = width * 0.4;
-equalTable1.style.width = width * 0.2;
-equalTable1.style.height = width * 0.13;
 
-let euqal1 = document.createElement("p");
-euqal1.classList.add("equalText");
-euqal1.innerText = "=";
-euqal1.style.fontSize = width * 0.13;
-euqal1.style.width = width * 0.13;
-camera.appendChild(equalTable1);
-equalTable1.appendChild(euqal1);
+let equal1 = document.createElement("img");
+equal1.classList.add("spinObj");
+equal1.style.height = width * 0.08;
+equal1.style.top = width * 0.48;
+equal1.style.left = width * 0.46;
+equal1.src = "image/spin_eq_bk.png";
+camera.appendChild(equal1);
 
 let ans1Obj = [];
 let ans1 = "12";
@@ -64,20 +58,13 @@ for (let i=0; i<8; i++)
     camera.appendChild(obj);
 }
 
-let equalTable2 = document.createElement("div");
-equalTable2.classList.add("equalTable");
-equalTable2.style.top = width * 1.17;
-equalTable2.style.left = width * 0.4;
-equalTable2.style.width = width * 0.2;
-equalTable2.style.height = width * 0.13;
-
-let equal2 = document.createElement("p");
-equal2.classList.add("equalText");
-equal2.innerText = "≠";
-equal2.style.fontSize = width * 0.13;
-equal2.style.width = width * 0.13;
-camera.appendChild(equalTable2);
-equalTable2.appendChild(equal2);
+let equal2 = document.createElement("img");
+equal2.classList.add("spinObj");
+equal2.style.height = width * 0.08;
+equal2.style.top = width * 1.18;
+equal2.style.left = width * 0.46;
+equal2.src = "image/spin_neq.png";
+camera.appendChild(equal2);
 
 let formula3 = "16";
 
@@ -146,8 +133,7 @@ function spin(i, j)
     for (let i=0; i<8; i++) ans2 += spinObjs[1][i].val;
     if (ans2 == "N1NE+EEN" && (spinObjs[2][0].val + spinObjs[2][1].val == "19")) 
     {
-        equal2.innerText = "=";
-        equal2.style.color = "red";
+        changeAnimation(equal2, "image/spin_eq_r.png", false);
         window.setTimeout(clearEvt, 500);
     }
 }
@@ -170,6 +156,7 @@ function spinAnimation(obj, deg, startDeg)
 function changeAnimation(obj, nextSrc, changed)
 {
     let c = changed;
+    if (obj.style.opacity == "") obj.style.opacity = 1;
     if (c)
     {
         if (parseFloat(obj.style.opacity) >= 1) return;
@@ -207,6 +194,7 @@ function init()
     {
         ans1Obj[i].src = "image/spin_" + ans1[i] + ".png";
     }
+    equal2.src = "image/spin_neq.png";
 }
 
 function reset()

@@ -1,3 +1,5 @@
+window.addEventListener("dblclick", (event) => {event.preventDefault();});
+
 const width = window.innerWidth;
 let camera = document.createElement("div");
     camera.setAttribute("style", "position: static;")
