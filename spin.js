@@ -12,7 +12,7 @@ for (let i=0; i<3; i++)
     obj.style.top = width * 0.3;
     obj.style.left = width * (0.285 + 0.15 * i);
     obj.src = "image/spin_" + formula1[i] + ".png";
-    obj.setAttribute("ontouchstart", "spin(0," + i + ")");
+    obj.setAttribute("ontouchstart", "spin(event,0," + i + ")");
     obj.spinDeg = 0;
     obj.val = formula1[i];
     spinObjs[0].push(obj);
@@ -51,7 +51,7 @@ for (let i=0; i<8; i++)
     obj.style.top = width * (0.85 + 0.15 * Math.floor(i / 4));
     obj.style.left = width * (0.21 + 0.15 * (i % 4));
     obj.src = "image/spin_" + formula2[i] + ".png";
-    obj.setAttribute("ontouchstart", "spin(1," + i + ")");
+    obj.setAttribute("ontouchstart", "spin(event,1," + i + ")");
     obj.spinDeg = 0;
     obj.val = formula2[i];
     spinObjs[1].push(obj);
@@ -76,7 +76,7 @@ for (let i=0; i<2; i++)
     obj.style.top = width * 1.3;
     obj.style.left = width * (0.36 + 0.15 * i);
     obj.src = "image/spin_" + formula3[i] + ".png";
-    obj.setAttribute("ontouchstart","spin(2," + i + ")");
+    obj.setAttribute("ontouchstart","spin(event,2," + i + ")");
     obj.spinDeg = 0;
     obj.val = formula3[i];
     spinObjs[2].push(obj);
@@ -85,8 +85,9 @@ for (let i=0; i<2; i++)
 
 let animating = false;
 
-function spin(i, j)
+function spin(event,i, j)
 {
+    event.preventDefault();
     if (animating) return;
     animating = true;
     let obj = spinObjs[i][j];

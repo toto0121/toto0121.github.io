@@ -1,5 +1,3 @@
-window.addEventListener("dbclick", (event) => {event.preventDefault();}, {passive: false});
-
 const width = window.innerWidth;
 let camera = document.createElement("div");
     camera.setAttribute("style", "position: static;")
