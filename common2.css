@@ -43,7 +43,6 @@ body #wrapper{
     position: absolute;
     left: 10%;
     width: 80%;
-    top: 35%;
     z-index: 10000;
     opacity: 0.8;
 }

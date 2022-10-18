@@ -63,6 +63,7 @@ function clearEvt()
     clearImage = document.createElement("img");
     clearImage.setAttribute("src", "image/clear.png");
     clearImage.classList.add("clearImage");
+    clearImage.style.top = width * 0.6;
     camera.appendChild(clearImage);
 
     tweetdiv = document.createElement("div");
