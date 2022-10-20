@@ -211,7 +211,7 @@ function reset()
 
 function preload()
 {
-    const srcs = ["spin_4", "spin_5", "spin_8", "clear", "tweet"]
+    const srcs = ["spin_4", "spin_5", "spin_8", "spin_eq_r", "clear", "tweet"]
     srcs.forEach(e => {
         document.createElement("img").src = "image/" + e + ".png";
     });   
