@@ -1,11 +1,11 @@
 const contentObj = allInfo.bingo;
 
-const bingoTextChar = "オニエカセキコヌシトスアタノチ";
-const bingoTextGridPos = [[0,4],[4,1],[0,3],[1,0],[2,3],[1,1],[1,4],[4,2],[2,1],[3,4],[2,2],[0,0],[3,0],[4,4],[3,1]];
+const bingoTextChar = "オニエカセキコヌトスアタノチ";
+const bingoTextGridPos = [[0,4],[4,1],[0,3],[1,0],[2,3],[1,1],[1,4],[4,2],[3,4],[2,2],[0,0],[3,0],[4,4],[3,1]];
 const bingoTextStartPos = [
     [0.15, 1.01], [0.27, 1.03], [0.45, 1],[0.55, 1.02],[0.7, 0.97],
-    [0.17, 1.16],[0.29, 1.14],[0.4, 1.15],[0.6, 1.14],[0.75,1.17],
-    [0.16, 1.33],[0.25, 1.3],[0.43, 1.28],[0.57, 1.29],[0.77,1.31]];
+    [0.17, 1.16],[0.29, 1.14],[0.4, 1.15],[0.75,1.17],
+    [0.16, 1.33],[0.25, 1.3],[0.43, 1.28],[0.57, 1.2],[0.65,1.31]];
 const bingoTextObj = [];
 
 let frame = document.createElement("div");
@@ -17,7 +17,7 @@ frame.style.height = width * 0.2;
 frame.style.border = width * 0.01 + "px solid red";
 camera.appendChild(frame);
 
-for (let i=0; i<15; i++)
+for (let i=0; i<14; i++)
 {
     let table = document.createElement("div");
     table.classList.add("bingoTable");
@@ -43,10 +43,12 @@ let inFrame = [];
 function init()
 {
     inFrame = [];
-    for (let i=0; i<15; i++)
+    for (let i=0; i<14; i++)
     {
+        bingoTextObj[i].style.transition = "500ms";
         bingoTextObj[i].style.left = width * bingoTextStartPos[i][0];
         bingoTextObj[i].style.top =  width * bingoTextStartPos[i][1];
+        window.setTimeout(() => {bingoTextObj[i].style.transition = "0ms";}, 500);
     }
     for (let i=0; i<5; i++)
     {
@@ -177,7 +179,6 @@ function drawGrid()
         t2.slice(0, t2.length - 2);
         t2 = parseFloat(t2);
 
-        console.log ( (l2-l1) / width + " " + (t2-t1) / width);
         if (l2 - l1 < 0.105 * width && l2 - l1 > 0.08 * width && Math.abs(t2 - t1) < 0.025 * width)
         {
             bingoGrid[0][3].style.backgroundColor = "white";
@@ -202,7 +203,6 @@ function drawGrid()
         t2.slice(0, t2.length - 2);
         t2 = parseFloat(t2);
 
-        console.log ( (l2-l1) / width + " " + (t2-t1) / width);
         if (l2 - l1 < 0.08 * width && l2 - l1 > 0.065 * width && Math.abs(t2 - t1) < 0.025 * width)
         {
             bingoGrid[0][1].style.backgroundColor = "white";
