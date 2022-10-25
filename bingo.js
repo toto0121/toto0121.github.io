@@ -188,7 +188,7 @@ function drawGrid()
         }
     }
 
-    if (inFrame.indexOf(bingoTextObj[9]) >= 0 && inFrame.indexOf(bingoTextObj[12]) >= 0)
+    if (inFrame.indexOf(bingoTextObj[8]) >= 0 && inFrame.indexOf(bingoTextObj[11]) >= 0)
     {
         let l1 = bingoTextObj[11].style.left;
         l1.slice(0, l1.length - 2);
