@@ -179,7 +179,7 @@ function drawGrid()
         t2.slice(0, t2.length - 2);
         t2 = parseFloat(t2);
 
-        if (l2 - l1 < 0.105 * width && l2 - l1 > 0.08 * width && Math.abs(t2 - t1) < 0.025 * width)
+        if (l2 - l1 < 0.12 * width && l2 - l1 > 0.06 * width && Math.abs(t2 - t1) < 0.025 * width)
         {
             bingoGrid[0][3].style.backgroundColor = "white";
             bingoGrid[3][4].style.backgroundColor = "white";
@@ -203,7 +203,7 @@ function drawGrid()
         t2.slice(0, t2.length - 2);
         t2 = parseFloat(t2);
 
-        if (l2 - l1 < 0.08 * width && l2 - l1 > 0.065 * width && Math.abs(t2 - t1) < 0.025 * width)
+        if (l2 - l1 < 0.1 * width && l2 - l1 > 0.04 * width && Math.abs(t2 - t1) < 0.025 * width)
         {
             bingoGrid[0][1].style.backgroundColor = "white";
             bingoGrid[4][1].style.backgroundColor = "white";
