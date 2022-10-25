@@ -1,0 +1,29 @@
+body{
+    background-color: #faebd7;
+}
+
+.frame{
+    position: absolute;
+    background-color: none;
+
+}
+
+.bingoTable{
+    position: absolute;
+    background-color: none;
+    display: table;
+    z-index: 500;
+}
+
+.bingoText{
+    color: #000000;
+    display: table-cell;
+    font-family: sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    opacity: 1;
+}
