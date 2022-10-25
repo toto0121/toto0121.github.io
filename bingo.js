@@ -83,7 +83,7 @@ function end(event)
 {
     if (pickTile.picking == false) return;
     event.preventDefault();
-    if (event.touches.length > 0) return;
+    //if (event.touches.length > 0) return;
     pickTile.picking = false;
     pickTile.obj.style.zIndex = 100;
     
