@@ -3,7 +3,7 @@ const contentObj = allInfo.bingo;
 const bingoTextChar = "オニエカセキコヌトスアタノチ";
 const bingoTextGridPos = [[0,4],[4,1],[0,3],[1,0],[2,3],[1,1],[1,4],[4,2],[3,4],[2,2],[0,0],[3,0],[4,4],[3,1]];
 const bingoTextStartPos = [
-    [0.15, 1.01], [0.27, 1.03], [0.45, 1],[0.55, 1.02],[0.7, 0.97],
+    [0.15, 1.01], [0.27, 0.99], [0.45, 1],[0.55, 1.01],[0.7, 0.98],
     [0.17, 1.16],[0.29, 1.14],[0.4, 1.15],[0.75,1.17],
     [0.16, 1.33],[0.25, 1.3],[0.43, 1.28],[0.57, 1.2],[0.65,1.31]];
 const bingoTextObj = [];
@@ -11,9 +11,9 @@ const bingoTextObj = [];
 let frame = document.createElement("div");
 frame.classList.add("frame");
 frame.style.left = width * 0.1;
-frame.style.top = width * 0.95;
+frame.style.top = width * 1.0;
 frame.style.width = width * 0.8;
-frame.style.height = width * 0.2;
+frame.style.height = width * 0.1;
 frame.style.border = width * 0.01 + "px solid red";
 camera.appendChild(frame);
 
@@ -83,17 +83,16 @@ function end(event)
 {
     if (pickTile.picking == false) return;
     event.preventDefault();
-    //if (event.touches.length > 0) return;
     pickTile.picking = false;
     pickTile.obj.style.zIndex = 100;
     
     let top = pickTile.obj.style.top;
     top.slice(0, top.length - 2);
-    if (parseFloat(top) < width * (0.95 - 0.15 / 2))
+    if (parseFloat(top) < width * (1.04 - 0.15 / 2))
     {
         fix();
     }
-    else if (parseFloat(top) < width * (1.15 - 0.15 / 2))
+    else if (parseFloat(top) < width * (1.10 - 0.15 / 2))
     {
         if (inFrame.indexOf(pickTile.obj) < 0)
         {
