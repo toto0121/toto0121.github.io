@@ -190,16 +190,16 @@ function drawGrid()
 
     if (inFrame.indexOf(bingoTextObj[9]) >= 0 && inFrame.indexOf(bingoTextObj[12]) >= 0)
     {
-        let l1 = bingoTextObj[12].style.left;
+        let l1 = bingoTextObj[11].style.left;
         l1.slice(0, l1.length - 2);
         l1 = parseFloat(l1);
-        let t1 = bingoTextObj[12].style.top;
+        let t1 = bingoTextObj[11].style.top;
         t1.slice(0, t1.length - 2);
         t1 = parseFloat(t1);
-        let l2 = bingoTextObj[9].style.left;
+        let l2 = bingoTextObj[8].style.left;
         l2.slice(0, l2.length - 2);
         l2 = parseFloat(l2);
-        let t2 = bingoTextObj[9].style.top;
+        let t2 = bingoTextObj[8].style.top;
         t2.slice(0, t2.length - 2);
         t2 = parseFloat(t2);
 
