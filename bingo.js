@@ -3,7 +3,7 @@ const contentObj = allInfo.bingo;
 const bingoTextChar = "オニエカセキコヌトスアタノチ";
 const bingoTextGridPos = [[0,4],[4,1],[0,3],[1,0],[2,3],[1,1],[1,4],[4,2],[3,4],[2,2],[0,0],[3,0],[4,4],[3,1]];
 const bingoTextStartPos = [
-    [0.15, 1.01], [0.27, 0.99], [0.45, 1],[0.55, 1.01],[0.7, 0.98],
+    [0.15, 1.0], [0.27, 0.99], [0.46, 0.99],[0.55, 1.0],[0.7, 0.99],
     [0.17, 1.16],[0.29, 1.14],[0.4, 1.15],[0.75,1.17],
     [0.16, 1.33],[0.25, 1.3],[0.43, 1.28],[0.57, 1.2],[0.65,1.31]];
 const bingoTextObj = [];
@@ -88,11 +88,24 @@ function end(event)
     
     let top = pickTile.obj.style.top;
     top.slice(0, top.length - 2);
-    if (parseFloat(top) < width * (1.04 - 0.15 / 2))
+    if (parseFloat(top) < width * (0.96 - 0.15 / 2))
     {
         fix();
     }
-    else if (parseFloat(top) < width * (1.10 - 0.15 / 2))
+    else if (parseFloat(top) < width * (1.06 - 0.15 / 2))
+    {
+        if (inFrame.length == 5 && inFrame.indexOf(pickTile.obj) < 0)
+        {
+            fix();
+        }
+        else
+        {
+            inFrame.push(pickTile.obj);
+            pickTile.startPos = [pickTile.obj.style.left, width * (1.06 - 0.15 / 2)];
+            fix();
+        }
+    }
+    else if (parseFloat(top) < width * (1.08 - 0.15 / 2))
     {
         if (inFrame.indexOf(pickTile.obj) < 0)
         {
@@ -104,6 +117,19 @@ function end(event)
             {
                 inFrame.push(pickTile.obj);
             }
+        }
+    }
+    else if (parseFloat(top) < width * (1.18 - 0.15 / 2))
+    {
+        if (inFrame.length == 5 && inFrame.indexOf(pickTile.obj) < 0)
+        {
+            fix();
+        }
+        else
+        {
+            inFrame.push(pickTile.obj);
+            pickTile.startPos = [pickTile.obj.style.left, width * (1.08 - 0.15 / 2)];
+            fix();
         }
     }
     else
