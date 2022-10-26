@@ -10,9 +10,9 @@ const bingoTextObj = [];
 
 let frame = document.createElement("div");
 frame.classList.add("frame");
-frame.style.left = width * 0.1;
+frame.style.left = width * 0.05;
 frame.style.top = width * 1.0;
-frame.style.width = width * 0.8;
+frame.style.width = width * 0.9;
 frame.style.height = width * 0.1;
 frame.style.border = width * 0.01 + "px solid red";
 camera.appendChild(frame);
@@ -74,8 +74,14 @@ function move(event)
     event.preventDefault();
     if (event.touches.length > 1) return;
     
-    pickTile.obj.style.left = event.touches[0].pageX - width * 0.15 / 2;
-    pickTile.obj.style.top = event.touches[0].pageY - width * 0.15 / 2;
+    let l = event.touches[0].pageX - width * 0.15 / 2;
+    if (l < width * 0.05) l = width * 0.05;
+    else if (l > width * 0.8) l = width * 0.8;
+    pickTile.obj.style.left = l;
+    let t = event.touches[0].pageY - width * 0.15 / 2;
+    if (t < 0) t = 0;
+    else if (t > window.innerHeight - width * 0.15) t = window.innerHeight - width * 0.15;
+    pickTile.obj.style.top = t;
     pickTile.obj.style.zIndex = 200;
 }
 
@@ -100,7 +106,7 @@ function end(event)
         }
         else
         {
-            inFrame.push(pickTile.obj);
+            if (inFrame.indexOf(pickTile.obj) < 0) inFrame.push(pickTile.obj);
             pickTile.startPos = [pickTile.obj.style.left, width * (1.06 - 0.15 / 2)];
             fix();
         }
@@ -127,7 +133,7 @@ function end(event)
         }
         else
         {
-            inFrame.push(pickTile.obj);
+            if (inFrame.indexOf(pickTile.obj) < 0) inFrame.push(pickTile.obj);
             pickTile.startPos = [pickTile.obj.style.left, width * (1.08 - 0.15 / 2)];
             fix();
         }
