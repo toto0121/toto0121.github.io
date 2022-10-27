@@ -425,9 +425,8 @@ function drawX(x, y)
 resetButton.style.top = width * 1.38;
 resetButton.style.left = width * 0.38;
 
-function reset()
+function init()
 {
-    resetButton.style.backgroundColor = "#AAAAAA";
     blockMap = [
         [1,1,1,1,1,1],
         [1,1,1,0,1,1],
@@ -465,12 +464,6 @@ function reset()
     camera.appendChild(nextBlock[0]);
 
     lastBlockBig = false;
-
-    if (clearImage != null)
-    {
-        clearImage.remove();
-        tweetdiv.remove();
-    }
 }
 
 let point = document.createElement("p");

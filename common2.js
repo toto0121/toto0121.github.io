@@ -60,6 +60,7 @@ let tweetdiv;
 
 function clearEvt()
 {
+    if(clearImage != null) return;
     clearImage = document.createElement("img");
     clearImage.setAttribute("src", "image/clear.png");
     clearImage.classList.add("clearImage");
@@ -100,5 +101,17 @@ function tweet()
         location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
     }else{
         window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
+    }
+}
+
+function reset()
+{
+    resetButton.style.backgroundColor = "#AAAAAA";
+    init();
+    if (clearImage != null)
+    {
+        clearImage.remove();
+        tweetdiv.remove();
+        clearImage = null;
     }
 }

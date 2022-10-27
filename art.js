@@ -287,15 +287,4 @@ function animateText(obj, text, color)
 resetButton.style.top = width * 1.5;
 resetButton.style.left = width * 0.4;
 
-function reset()
-{
-    resetButton.style.backgroundColor = "#AAAAAA";
-    init();
-    if (clearImage != null)
-    {
-        clearImage.remove();
-        tweetdiv.remove();
-    }
-}
-
 init();

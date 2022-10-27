@@ -84,6 +84,7 @@ for (let i=0; i<2; i++)
 }
 
 let animating = false;
+let ans2eq = false;
 
 function spin(event,i, j)
 {
@@ -132,10 +133,16 @@ function spin(event,i, j)
 
     let ans2 = "";
     for (let i=0; i<8; i++) ans2 += spinObjs[1][i].val;
-    if (ans2 == "N1NE+EEN" && (spinObjs[2][0].val + spinObjs[2][1].val == "19")) 
+    if (ans2 == "N1NE+EEN" && (spinObjs[2][0].val + spinObjs[2][1].val == "19") && !ans2eq) 
     {
         changeAnimation(equal2, "image/spin_eq_r.png", false);
         window.setTimeout(clearEvt, 500);
+        ans2eq = true;
+    }
+    else if ((ans2 != "N1NE+EEN" || (spinObjs[2][0].val + spinObjs[2][1].val != "19")) && ans2eq)
+    {
+        changeAnimation(equal2, "image/spin_neq.png", false);
+        ans2eq = false;
     }
 }
 
@@ -196,17 +203,6 @@ function init()
         ans1Obj[i].src = "image/spin_" + ans1[i] + ".png";
     }
     equal2.src = "image/spin_neq.png";
-}
-
-function reset()
-{
-    resetButton.style.backgroundColor = "#AAAAAA";
-    init();
-    if (clearImage != null)
-    {
-        clearImage.remove();
-        tweetdiv.remove();
-    }
 }
 
 function preload()

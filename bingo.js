@@ -255,17 +255,6 @@ function drawGrid()
     if (cleared) window.setTimeout(clearEvt, 500);
 }
 
-function reset()
-{
-    resetButton.style.backgroundColor = "#AAAAAA";
-    init();
-    if (clearImage != null)
-    {
-        clearImage.remove();
-        tweetdiv.remove();
-    }
-}
-
 
 
 init();
