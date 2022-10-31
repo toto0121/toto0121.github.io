@@ -21,16 +21,16 @@ for (let i=0; i<4; i++)
     span.innerHTML = str.slice(i, i+1);
 
     // 必要に応じてスタイルを適用する.
-    span.style.fontSize = width * 0.1;
+    span.style.fontSize = width;
 
     // DOMに追加する（追加することで、ブラウザで領域が計算されます）
     document.body.appendChild(span);
 
     // 横幅を取得します.
     var w = span.clientWidth;
-    console.log('width:', w / width - 0.001);
+    console.log('width:', w);
 
-    coinWidth[i] = w / width - 0.001;
+    coinWidth[i] = w / width / 10;
 
     // 終わったらDOMから削除します.
     span.parentElement.removeChild(span);
