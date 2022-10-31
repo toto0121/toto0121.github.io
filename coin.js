@@ -455,7 +455,7 @@ function check()
         
             tweetdiv = document.createElement("div");
             tweetdiv.style.left = width * 0;
-            tweetdiv.style.top = width * 0.92;
+            tweetdiv.style.top = width * 0.91;
             tweetdiv.style.position = "relative";
             tweetdiv.style.zIndex = 10000;
             camera.appendChild(tweetdiv);
@@ -467,6 +467,7 @@ function check()
             continueButton.style.zIndex = 10000;
             continueButton.setAttribute("ontouchstart","cont()");
             continueButton.classList.add("menuButton");
+            continueButton.style.height = width * 0.12;
             let continueButtonText = document.createElement("p");
             continueButtonText.innerText = "CONTINUE";
             continueButtonText.classList.add("menuButtonText");
@@ -540,7 +541,7 @@ function tweet()
     var EUC = encodeURIComponent;
     var twitter_url = "http://twitter.com/intent/tweet?text=";
     const URL = "https://toto0121.github.io/" + contentObj.name + ".html"
-    var message = "見事" + contentObj.name  + "の謎を解き明かした！\n\n獲得コイン: ?枚";
+    var message = "見事" + contentObj.name  + "の謎を解き明かした！\n\n獲得コイン: ?枚\n";
 
     if (contentObj != undefined) message += "難易度 " + contentObj.difficulty[0] + "\n";
     message += "#web謎解き #とと謎" + contentObj.name + " #とと謎\n" + URL;
