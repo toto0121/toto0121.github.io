@@ -30,7 +30,7 @@ for (let i=0; i<4; i++)
     var w = span.clientWidth;
     console.log('width:', w / width - 0.001);
 
-    coinWidth[i] = w / width;
+    coinWidth[i] = w / width - 0.001;
 
     // 終わったらDOMから削除します.
     span.parentElement.removeChild(span);
