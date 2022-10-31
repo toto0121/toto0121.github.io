@@ -28,7 +28,7 @@ for (let i=0; i<4; i++)
 
     // 横幅を取得します.
     var w = span.clientWidth;
-    console.log('width:', w / width);
+    console.log('width:', w / width - 0.001);
 
     coinWidth[i] = w / width;
 
