@@ -1,0 +1,27 @@
+body{
+    background-color: #f7d4db;
+}
+
+.coinFrame{
+    position: absolute;
+    overflow: hidden;
+    background-color: none;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+.coinText{
+    position: relative;
+    color: #000000;
+    font-family: sans-serif;
+    text-align: start;
+    pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.coinImg{
+    position: absolute;
+    transition: 0.5s;
+}
