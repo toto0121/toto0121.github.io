@@ -523,7 +523,7 @@ function tweetNC(count)
     var EUC = encodeURIComponent;
     var twitter_url = "http://twitter.com/intent/tweet?text=";
     const URL = "https://toto0121.github.io/" + contentObj.name + ".html"
-    var message = contentObj.name  + "の謎を解き明かした...?\n\n獲得コイン: " + count +"枚";
+    var message = contentObj.name  + "の謎を解き明かした...?\n\n獲得コイン: " + count +"枚\n";
 
     if (contentObj != undefined) message += "難易度 " + contentObj.difficulty[0] + "\n";
     message += "#web謎解き #とと謎" + contentObj.name + " #とと謎\n" + URL;
