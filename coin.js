@@ -135,8 +135,8 @@ function decode()
             {
                 if (i > 0)
                 {
-                    buf.length--;
-                    buf[buf.length-1] += "IN"
+                    buf = buf.slice(0, i).concat(buf.slice(i+1, buf.length));
+                    buf[i-1] += "IN";
                 }
                 else if (buf.length == 1)
                 {
@@ -181,17 +181,17 @@ function decode()
                 {
                     if (i > 0)
                     {
-                        buf1.length--;
-                        buf1[buf1.length-1] += "ON"
+                        buf1 = buf1.slice(0, i).concat(buf1.slice(i+1, buf1.length));
+                        buf1[i-1] += "ON";
                     }
                     else if (buf1.length == 1)
                     {
-                        buf1[0] = "IN";
+                        buf1[0] = "ON";
                     }
                     else
                     {
                         buf1.shift();
-                        buf1[0] = "IN" + buf1[0];
+                        buf1[0] = "ON" + buf1[0];
                     }
                 }
             }
@@ -218,6 +218,29 @@ function decode()
             {
                 buf2.length--;
                 buf2[buf2.length-1] += "ON"
+            }
+            if (buf2.length > 1)
+            {
+                for (let i=buf2.length-1; i>=0; i--)
+                {
+                    if (buf2[i] == "")
+                    {
+                        if (i > 0)
+                        {
+                            buf2 = buf2.slice(0, i).concat(buf2.slice(i+1, buf2.length));
+                            buf2[i-1] += "ON";
+                        }
+                        else if (buf2.length == 1)
+                        {
+                            buf2[0] = "ON";
+                        }
+                        else
+                        {
+                            buf2.shift();
+                            buf2[0] = "ON" + buf2[0];
+                        }
+                    }
+                }
             }
             if (buf2.length == 2)
             {
@@ -262,20 +285,22 @@ function decode()
                 {
                     if (i > 0)
                     {
-                        buf1.length--;
-                        buf1[buf1.length-1] += "ON"
+                        buf1 = buf1.slice(0, i).concat(buf1.slice(i+1, buf1.length));
+                        buf1[i-1] += "ON";
                     }
                     else if (buf1.length == 1)
                     {
-                        buf1[0] = "IN";
+                        buf1[0] = "ON";
                     }
                     else
                     {
                         buf1.shift();
-                        buf1[0] = "IN" + buf1[0];
+                        buf1[0] = "ON" + buf1[0];
                     }
                 }
+                
             }
+            
         }
         
         if (buf1.length == 3)
@@ -390,7 +415,6 @@ function check()
 {
     let str = "COIN";
     let clear = true;
-    console.log(checkList);
     for (let i=0; i<4; i++)
     {
         if (checkList[str.slice(i, i+1)] == 1)
