@@ -82,15 +82,26 @@ function getLength(str, option)
 
     if (option == 0)
     {
-        
+        for (let i=0; i<str.length; i++)
+        {
+            checkList[str.slice(i, i+1)]++;
+        }
         return all / width;
     }
     else if (option == 1)
     {
+        for (let i=0; i<Math.ceil(str.length/2.0); i++)
+        {
+            checkList[str.slice(i, i+1)]++;
+        }
         return (halfL + middle) / width;
     }
     else if (option == 2)
     {
+        for (let i=str.length-1; i>=(str.length-1)/2; i--)
+        {
+            checkList[str.slice(i, i+1)]++;
+        }
         return (halfR + middle) / width;
     }
 }
@@ -379,6 +390,7 @@ function check()
 {
     let str = "COIN";
     let clear = true;
+    console.log(checkList);
     for (let i=0; i<4; i++)
     {
         if (checkList[str.slice(i, i+1)] == 1)
