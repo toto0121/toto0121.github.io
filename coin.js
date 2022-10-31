@@ -1,6 +1,6 @@
 const contentObj = allInfo.coin;
 
-const coinWidth = [0.066, 0.077, 0.034, 0.08];
+const coinWidth = [0.07, 0.083, 0.04, 0.088, 0.004];
 
 function init()
 {
@@ -41,6 +41,7 @@ function getLength(str, option)
         if (str[i] == 'N') s += coinWidth[3];
         if (option != 1) checkList[str[i]]++;
     }
+    s += (str.length - 1) * coinWidth[4];
     let t = 0;
     for (let i=0; i<str.length / 2.0; i++)
     {
@@ -51,6 +52,7 @@ function getLength(str, option)
         if (option == 1) checkList[str[i]]++;
         else if (option == 2) checkList[str[i]]--;
     }
+    t += (str.length - 1) / 2 * coinWidth[4];
     if (str.length % 2 == 1) 
     {
         if (str[(str.length-1) / 2] == 'C') t -= coinWidth[0] / 2;
