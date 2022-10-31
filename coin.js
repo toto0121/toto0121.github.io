@@ -375,7 +375,7 @@ function check()
             camera.appendChild(clearImage);
         
             tweetdiv = document.createElement("div");
-            tweetdiv.style.left = width * 0.2;
+            tweetdiv.style.left = width * 0;
             tweetdiv.style.top = width * 0.92;
             tweetdiv.style.position = "relative";
             tweetdiv.style.zIndex = 10000;
@@ -383,7 +383,7 @@ function check()
 
             continueButton = document.createElement("div");
             camera.appendChild(continueButton);
-            continueButton.style.top = width * 0.9;
+            continueButton.style.top = width * 0.88;
             continueButton.style.left = width * 0.2;
             continueButton.style.zIndex = 10000;
             continueButton.setAttribute("ontouchstart","cont()");
@@ -397,6 +397,7 @@ function check()
             tweetImage.setAttribute("src", "image/tweet.png");
             tweetImage.setAttribute("ontouchstart", "tweetNC(" + coinCount + ")");
             tweetImage.classList.add("tweetImage");
+            tweetImage.style.left = width * 0.57;
             tweetdiv.appendChild(tweetImage);           
         }
     }
