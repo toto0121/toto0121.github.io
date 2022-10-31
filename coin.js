@@ -12,6 +12,7 @@ function init()
 
 function createFramedText(str, posx, posy, wid, hei, top, left)
 {
+    hei = 0.1;
     let frame = document.createElement("div");
     frame.style.width = wid * width;
     frame.style.height = hei * width;
@@ -33,41 +34,6 @@ function createFramedText(str, posx, posy, wid, hei, top, left)
 
 function getLength(str, option)
 {
-    /*
-    let s = 0;
-    for (let i=0; i<str.length; i++)
-    {
-        if (str[i] == 'C') s += coinWidth[0];
-        if (str[i] == 'O') s += coinWidth[1];
-        if (str[i] == 'I') s += coinWidth[2];
-        if (str[i] == 'N') s += coinWidth[3];
-        if (option != 1) checkList[str[i]]++;
-    }
-    s += (str.length - 1) * coinWidth[4];
-    let t = 0;
-    for (let i=0; i<str.length / 2.0; i++)
-    {
-        if (str[i] == 'C') t += coinWidth[0];
-        if (str[i] == 'O') t += coinWidth[1];
-        if (str[i] == 'I') t += coinWidth[2];
-        if (str[i] == 'N') t += coinWidth[3];
-        if (option == 1) checkList[str[i]]++;
-        else if (option == 2) checkList[str[i]]--;
-    }
-    t += (str.length - 1) / 2 * coinWidth[4];
-    if (str.length % 2 == 1) 
-    {
-        if (str[(str.length-1) / 2] == 'C') t -= coinWidth[0] / 2;
-        if (str[(str.length-1) / 2] == 'O') t -= coinWidth[1] / 2;
-        if (str[(str.length-1) / 2] == 'I') t -= coinWidth[2] / 2;
-        if (str[(str.length-1) / 2] == 'N') t -= coinWidth[3] / 2;
-        if(option > 0) checkList[str[(str.length-1) / 2]] = -100;
-    }
-    
-    if (option == 0) return s;
-    if (option == 1) return t;
-    if (option == 2) return s - t;
-    */
 
     // spanを生成.
     var span = document.createElement('span');
@@ -104,14 +70,16 @@ function getLength(str, option)
     {
         span.innerHTML = str.slice(str.length / 2, str.length / 2 + 1);
         middle = span.clientWidth / 2;
+        if (span.innerHTML == "I")
+        {
+            if (option == 1) middle = span.clientWidth * 0.42;
+            else middle = span.clientWidth * 0.58;
+        }
     }
 
     // 終わったらDOMから削除します.
     span.parentElement.removeChild(span);
 
-    console.log (all/width);
-    console.log((halfL + middle) / width);
-    console.log((halfR + middle) / width);
     if (option == 0)
     {
         
@@ -181,8 +149,12 @@ function decode()
         let len3 = getLength(buf[1], 2);
         let len4 = getLength(buf[2], 1);
         let len5 = getLength(buf[2], 2);
-        createFramedText(buf[2], 0.5-(len1+len2+len3+len4+len5)/2, 0.45, len4, 0.09, -0.12, 0);
-        createFramedText(buf[1], 0.5-(len1+len2+len3-len4+len5)/2, 0.45, len2, 0.09, -0.12, 0);
+        let space1 = 0;
+        if (buf[1].length % 2 == 1) space1 = 0.01;
+        let space2 = 0;
+        if (buf[2].length % 2 == 1) space2 = 0.01;
+        createFramedText(buf[2], 0.5-(len1+len2+len3+len4+len5+space1+space2)/2, 0.45, len4, 0.09, -0.12, 0);
+        createFramedText(buf[1], 0.5-(len1+len2+len3-len4+len5+space1)/2, 0.45, len2, 0.09, -0.12, 0);
         createFramedText(buf[0], 0.5-(len1-len2+len3-len4+len5)/2, 0.45, len1, 0.09, -0.12, 0);
         createFramedText(buf[1], 0.5-(-len1-len2+len3-len4+len5)/2, 0.45, len3, 0.09, -0.12, -len2);
         createFramedText(buf[2], 0.5-(-len1-len2-len3-len4+len5)/2, 0.45, len5, 0.09, -0.12, -len4);
@@ -222,7 +194,9 @@ function decode()
             let len2 = getLength(buf1[1], 0);
             let len3 = getLength(buf[1], 1);
             let len4 = getLength(buf[1], 2);
-            createFramedText(buf[1], 0.5-(len2+len3+len4)/2, 0.5, len3, 0.09, -0.12, 0);
+            let space = 0;
+            if (buf[1].length % 2 == 1) space = 0.01;
+            createFramedText(buf[1], 0.5-(len2+len3+len4+space)/2, 0.5, len3, 0.09, -0.12, 0);
             createFramedText(buf1[1], 0.5-(len2-len3+len4)/2, 0.5, len2, 0.09, -0.12, 0);
             createFramedText(buf[1], 0.5-(-len2-len3+len4)/2, 0.5, len4, 0.09, -0.12, -len3);
         }
@@ -242,10 +216,14 @@ function decode()
                 let len3 = getLength(buf2[0], 2);
                 let len4 = getLength(buf2[1], 1);
                 let len5 = getLength(buf2[1], 2);
+                let space1 = 0;
+                if (buf2[0].length % 2 == 1) space1 = 0.01;
+                let space2 = 0;
+                if (buf2[1].length % 2 == 1) space2 = 0.01;
                 createFramedText(buf[0], 0.5-len1/2, 0.45, len1, 0.09, -0.12, 0);
-                createFramedText(buf2[0], 0.5-len1/2-len2, 0.4, len2, 0.09, -0.12, 0);
+                createFramedText(buf2[0], 0.5-len1/2-len2-space1, 0.4, len2, 0.09, -0.12, 0);
                 createFramedText(buf2[0], 0.5+len1/2, 0.4, len3, 0.09, -0.12, -len2);
-                createFramedText(buf2[1], 0.5-len1/2-len4, 0.5, len4, 0.09, -0.12, 0);
+                createFramedText(buf2[1], 0.5-len1/2-len4-space2, 0.5, len4, 0.09, -0.12, 0);
                 createFramedText(buf2[1], 0.5+len1/2, 0.5, len5, 0.09, -0.12, -len4);
             }
             else if (buf2.length == 1)
@@ -254,8 +232,10 @@ function decode()
                 let len1 = getLength(buf[0], 0);
                 let len2 = getLength(buf[1], 1);
                 let len3 = getLength(buf[1], 2);
+                let space = 0;
+                if (buf[1].length % 2 == 1) space = 0.01;
                 createFramedText(buf[0], 0.5-(len1-len2+len3)/2, 0.45, len1, 0.09, -0.12, 0);
-                createFramedText(buf[1], 0.5-(len1+len2+len3)/2, 0.45, len2, 0.09, -0.12, 0);
+                createFramedText(buf[1], 0.5-(len1+len2+len3+space)/2, 0.45, len2, 0.09, -0.12, 0);
                 createFramedText(buf[1], 0.5-(-len1-len2+len3)/2, 0.45, len3, 0.09, -0.12, -len2);
             }
         }
@@ -376,7 +356,7 @@ for (let i=0; i<4; i++)
     let obj = document.createElement("p");
     obj.innerText = str.slice(i, i+1);
     obj.style.fontSize = width * 0.15;
-    obj.style.top = 1.23 * width;
+    obj.style.top = 1.19 * width;
     let l = 0.1;
     for (let j=0; j<i; j++)
     {
@@ -386,6 +366,7 @@ for (let i=0; i<4; i++)
     obj.classList.add("coinText");
     obj.style.position = "absolute";
     obj.style.transition = "0.5s";
+    obj.style.color = "gray";
     camera.appendChild(obj);
     checkObjs.push(obj);
 }
