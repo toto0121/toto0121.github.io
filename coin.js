@@ -360,6 +360,7 @@ for (let i=0; i<12; i++)
 
 function onCoin(event, id)
 {
+    if (clearImage != null) return;
     if (event != undefined) event.preventDefault();
     onCoins[id].style.pointerEvents = "auto";
     onCoins[id].style.opacity = 1;
@@ -370,6 +371,7 @@ function onCoin(event, id)
 
 function offCoin(event, id)
 {
+    if (clearImage != null) return;
     if (event != undefined) event.preventDefault();
     onCoins[id].style.pointerEvents = "none";
     onCoins[id].style.opacity = 0;
@@ -442,8 +444,8 @@ function check()
         if (coinCount == 8) clearEvt();
         else if ((coinCount == 4 && !bronz) || coinCount == 6 && !silver)
         {
-            if (coinCount == 4) bronz = true;
-            else if (coinCount == 6) silver = true;
+            //if (coinCount == 4) bronz = true;
+            //else if (coinCount == 6) silver = true;
 
             if(clearImage != null) return;
             clearImage = document.createElement("img");
