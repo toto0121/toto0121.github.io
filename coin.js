@@ -1,6 +1,6 @@
 const contentObj = allInfo.coin;
 
-const coinWidth = [0.07, 0.083, 0.04, 0.088, 0.004];
+const coinWidth = [0.074, 0.087, 0.044, 0.092, 0.004];
 
 function init()
 {
@@ -24,6 +24,7 @@ function createFramedText(str, posx, posy, wid, hei, top, left)
     text.style.fontSize = width * 0.1;
     text.style.top = top * width;
     text.style.left = left * width;
+    text.style.letterSpacing = width * 0.01;
     text.classList.add("coinText");
     frame.appendChild(text);
     camera.appendChild(frame);
@@ -32,6 +33,7 @@ function createFramedText(str, posx, posy, wid, hei, top, left)
 
 function getLength(str, option)
 {
+    /*
     let s = 0;
     for (let i=0; i<str.length; i++)
     {
@@ -65,6 +67,64 @@ function getLength(str, option)
     if (option == 0) return s;
     if (option == 1) return t;
     if (option == 2) return s - t;
+    */
+
+    // spanを生成.
+    var span = document.createElement('span');
+
+    // 現在の表示要素に影響しないように、画面外に飛ばしておく.
+    span.style.position = 'absolute';
+    span.style.top = '-1000px';
+    span.style.left = '-1000px';
+    span.style.fontFamily = "Sawarabi Mincho";
+
+    // 折り返しはさせない.
+    span.style.whiteSpace = 'nowrap';
+
+    
+
+    // 必要に応じてスタイルを適用する.
+    span.style.fontSize = 0.1 * width;
+    span.style.letterSpacing = 0.01 * width;
+
+    // DOMに追加する（追加することで、ブラウザで領域が計算されます）
+    document.body.appendChild(span);
+
+    span.innerHTML = str;
+    let all = span.clientWidth;
+
+    span.innerHTML = str.slice(0, str.length / 2);
+    let halfL = span.clientWidth;
+
+    span.innerHTML = str.slice((str.length + 1) / 2, str.length);
+    let halfR = span.clientWidth;
+
+    let middle = 0;
+    if (str.length % 2 == 1)
+    {
+        span.innerHTML = str.slice(str.length / 2, str.length / 2 + 1);
+        middle = span.clientWidth / 2;
+    }
+
+    // 終わったらDOMから削除します.
+    span.parentElement.removeChild(span);
+
+    console.log (all/width);
+    console.log((halfL + middle) / width);
+    console.log((halfR + middle) / width);
+    if (option == 0)
+    {
+        
+        return all / width;
+    }
+    else if (option == 1)
+    {
+        return (halfL + middle) / width;
+    }
+    else if (option == 2)
+    {
+        return (halfR + middle) / width;
+    }
 }
 
 let textObjs = [];
