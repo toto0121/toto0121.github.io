@@ -13,7 +13,7 @@ body{
 .coinText{
     position: relative;
     color: #000000;
-    font-family: sans-serif;
+    font-family: "aleo";
     text-align: start;
     pointer-events: none;
     user-select: none;

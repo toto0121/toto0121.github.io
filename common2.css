@@ -53,3 +53,8 @@ body #wrapper{
     left: 40%;
     opacity: 0.8;
 }
+
+@font-face {
+	font-family: 'aleo';
+	src: url(fonts/aleo-regular-webfont.ttf);
+}

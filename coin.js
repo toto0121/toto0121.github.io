@@ -1,42 +1,6 @@
 const contentObj = allInfo.coin;
 
-const coinWidth = [0.068, 0.077, 0.042, 0.068];
-
-for (let i=0; i<4; i++)
-{
-    let str = "COIN";
-
-    // spanを生成.
-    var span = document.createElement('span');
-
-    // 現在の表示要素に影響しないように、画面外に飛ばしておく.
-    span.style.position = 'absolute';
-    span.style.top = '-1000px';
-    span.style.left = '-1000px';
-
-    // 折り返しはさせない.
-    span.style.whiteSpace = 'nowrap';
-
-    // 計測したい文字を設定する.
-    span.innerHTML = str.slice(i, i+1);
-
-    // 必要に応じてスタイルを適用する.
-    span.style.fontSize = width;
-
-    // DOMに追加する（追加することで、ブラウザで領域が計算されます）
-    document.body.appendChild(span);
-
-    // 横幅を取得します.
-    var w = span.clientWidth;
-    console.log('width:', w);
-
-    coinWidth[i] = w / width / 10;
-
-    // 終わったらDOMから削除します.
-    span.parentElement.removeChild(span);
-}
-
-
+const coinWidth = [0.066, 0.077, 0.034, 0.08];
 
 function init()
 {
@@ -350,7 +314,7 @@ for (let i=0; i<4; i++)
     let obj = document.createElement("p");
     obj.innerText = str.slice(i, i+1);
     obj.style.fontSize = width * 0.15;
-    obj.style.top = 1.2 * width;
+    obj.style.top = 1.23 * width;
     let l = 0.1;
     for (let j=0; j<i; j++)
     {
