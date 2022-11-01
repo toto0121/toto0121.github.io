@@ -4,10 +4,12 @@ const coinWidth = [0.074, 0.087, 0.044, 0.092, 0.004];
 
 function init()
 {
+    let e = null;
     for (let i=0; i<12; i++)
     {
-        offCoin(event, i);
+        offCoin(e, i);
     }
+    decode();
 }
 
 function createFramedText(str, posx, posy, wid, hei, top, left)
@@ -371,13 +373,13 @@ function onCoin(event, id)
 
 function offCoin(event, id)
 {
-    if (clearImage != null) return;
+    if (clearImage != null && event != undefined) return;
     if (event != undefined) event.preventDefault();
     onCoins[id].style.pointerEvents = "none";
     onCoins[id].style.opacity = 0;
     onCoins[id].on = false;
 
-    decode();
+    if (event != undefined) decode();
 }
 
 let checkList = {};
@@ -449,22 +451,22 @@ function check()
 
             if(clearImage != null) return;
             clearImage = document.createElement("img");
-            if (coinCount == 4) clearImage.setAttribute("src", "image/clear_bronz.png");
-            else if (coinCount == 6) clearImage.setAttribute("src", "image/clear_silver.png");
+            if (coinCount == 4) clearImage.setAttribute("src", "image/coin_clear_bronz.png");
+            else if (coinCount == 6) clearImage.setAttribute("src", "image/coin_clear_silver.png");
             clearImage.classList.add("clearImage");
             clearImage.style.top = width * 0.6;
             camera.appendChild(clearImage);
         
             tweetdiv = document.createElement("div");
             tweetdiv.style.left = width * 0;
-            tweetdiv.style.top = width * 0.91;
+            tweetdiv.style.top = width * 0.92;
             tweetdiv.style.position = "relative";
             tweetdiv.style.zIndex = 10000;
             camera.appendChild(tweetdiv);
 
             continueButton = document.createElement("div");
             camera.appendChild(continueButton);
-            continueButton.style.top = width * 0.88;
+            continueButton.style.top = width * 0.89;
             continueButton.style.left = width * 0.2;
             continueButton.style.zIndex = 10000;
             continueButton.setAttribute("ontouchstart","cont()");
@@ -491,7 +493,9 @@ resetButton.style.left = width * 0.6;
 function reset()
 {
     resetButton.style.backgroundColor = "#AAAAAA";
+    
     init();
+
     if (clearImage != null)
     {
         clearImage.remove();
