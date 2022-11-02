@@ -443,8 +443,6 @@ function check()
                 coinCount++;
             }
         }
-        if (coinCount == 8) clearEvt();
-        else if ((coinCount == 4 && !bronz) || coinCount == 6 && !silver)
         {
             //if (coinCount == 4) bronz = true;
             //else if (coinCount == 6) silver = true;
@@ -453,6 +451,7 @@ function check()
             clearImage = document.createElement("img");
             if (coinCount == 4) clearImage.setAttribute("src", "image/coin_clear_bronz.png");
             else if (coinCount == 6) clearImage.setAttribute("src", "image/coin_clear_silver.png");
+            else if (coinCount == 8) clearImage.setAttribute("src", "image/coin_clear_gold.png");
             clearImage.classList.add("clearImage");
             clearImage.style.top = width * 0.6;
             camera.appendChild(clearImage);
@@ -479,7 +478,7 @@ function check()
         
             let tweetImage = document.createElement("img");
             tweetImage.setAttribute("src", "image/tweet.png");
-            tweetImage.setAttribute("ontouchstart", "tweetNC(" + coinCount + ")");
+            tweetImage.setAttribute("ontouchstart", "tweet(" + coinCount + ")");
             tweetImage.classList.add("tweetImage");
             tweetImage.style.left = width * 0.57;
             tweetdiv.appendChild(tweetImage);           
@@ -525,31 +524,16 @@ function cont()
     }
 }
 
-function tweetNC(count)
+function tweet(count)
 {
     var EUC = encodeURIComponent;
     var twitter_url = "http://twitter.com/intent/tweet?text=";
     const URL = "https://toto0121.github.io/" + contentObj.name + ".html"
-    var message = contentObj.name  + "の謎を解き明かした...?\n\n獲得コイン: " + count +"枚\n";
+    var message = "見事" + contentObj.name  + "の謎を解き明かした！\n\n獲得コイン: " + count + "枚\nランク: ";
+    if (count == 4) message += "銅\n難易度 0.3\n";
+    else if (count == 6) message += "銀\n難易度1.0\n";
+    else if (count == 8) message += "金\n難易度2.0\n";
 
-    if (contentObj != undefined) message += "難易度 " + contentObj.difficulty[0] + "\n";
-    message += "#web謎解き #とと謎" + contentObj.name + " #とと謎\n" + URL;
-
-    if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
-        location.href = 'https://twitter.com/intent/tweet?text=' + EUC(message);
-    }else{
-        window.open(twitter_url + EUC(message), "_blank","top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1");
-    }
-}
-
-function tweet()
-{
-    var EUC = encodeURIComponent;
-    var twitter_url = "http://twitter.com/intent/tweet?text=";
-    const URL = "https://toto0121.github.io/" + contentObj.name + ".html"
-    var message = "見事" + contentObj.name  + "の謎を解き明かした！\n\n獲得コイン: ?枚\n";
-
-    if (contentObj != undefined) message += "難易度 " + contentObj.difficulty[0] + "\n";
     message += "#web謎解き #とと謎" + contentObj.name + " #とと謎\n" + URL;
 
     if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
@@ -560,4 +544,36 @@ function tweet()
 }
 
 init();
+
+let popup = document.createElement("div");
+popup.classList.add("popup");
+popup.style.height = width;
+popup.style.top = 0.5 * width;
+popup.style.borderSpacing = width * 0.05 + "px 10";
+
+let popupText = document.createElement("p");
+popupText.classList.add("popupText");
+popupText.innerText = "この謎は、クリア条件達成時の状況により銅・銀・金の3種類のクリアが存在します。より高いランクほど、クリアが難しくなるので頑張ってください。\n\n難易度\n銅ランク 0.3\n銀ランク 1.0\n金ランク 2.0\n\n";
+popupText.style.fontSize = width * 0.05;
+
+closeButton = document.createElement("div");
+closeButton.style.top = width * 0.85;
+closeButton.style.left = width * 0.35;
+closeButton.style.zIndex = 10000;
+closeButton.setAttribute("ontouchstart","closePopup()");
+closeButton.classList.add("menuButton");
+closeButton.style.height = width * 0.12;
+let closeButtonText = document.createElement("p");
+closeButtonText.innerText = "OK";
+closeButtonText.classList.add("menuButtonText");
+closeButton.appendChild(closeButtonText);
+
+camera.appendChild(popup);
+popup.appendChild(popupText);
+popup.appendChild(closeButton);
+
+function closePopup()
+{
+    popup.remove();
+}
 

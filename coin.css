@@ -25,3 +25,24 @@ body{
     position: absolute;
     transition: 0.5s;
 }
+
+.popup{
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    background-color: azure;
+    border: 5px solid black;
+    display: table;
+    border-collapse: separate;
+}
+
+.popupText{
+    position: relative;
+    color: black;
+    font-family: "Sawarabi Mincho";
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    left: 3.5%;
+    
+}
