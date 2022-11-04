@@ -532,7 +532,7 @@ function tweet(count)
     var message = "見事" + contentObj.name  + "の謎を解き明かした！\n\n獲得コイン: " + count + "枚\nランク: ";
     if (count == 4) message += "銅\n難易度 0.3\n";
     else if (count == 6) message += "銀\n難易度1.0\n";
-    else if (count == 8) message += "金\n難易度2.0\n";
+    else if (count == 8) message += "金\n難易度1.8\n";
 
     message += "#web謎解き #とと謎" + contentObj.name + " #とと謎\n" + URL;
 
