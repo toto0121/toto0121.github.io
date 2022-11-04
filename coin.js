@@ -553,7 +553,7 @@ popup.style.borderSpacing = width * 0.05 + "px 10";
 
 let popupText = document.createElement("p");
 popupText.classList.add("popupText");
-popupText.innerText = "この謎は、クリア条件達成時の状況により銅・銀・金の3種類のクリアが存在します。より高いランクほど、クリアが難しくなるので頑張ってください。\n\n難易度\n銅ランク 0.3\n銀ランク 1.0\n金ランク 2.0\n\n\n";
+popupText.innerText = "この謎は、クリア条件達成時の状況により銅・銀・金の3種類のクリアが存在します。より高いランクほど、クリアが難しくなるので頑張ってください。\n\n難易度\n銅ランク 0.3\n銀ランク 1.0\n金ランク 1.8\n\n\n";
 popupText.style.fontSize = width * 0.05;
 
 closeButton = document.createElement("div");
